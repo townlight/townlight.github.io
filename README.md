@@ -1,7 +1,41 @@
-# Townlight organization and product site
+# Townlight — Townlight Beta 1
 
-Dependency-free static source for https://townlight.github.io/ and eight individual pages under products/. GitHub Pages serves the existing main branch at the organization root. No app or installer build is involved.
+Nine connected municipal products: Core, Records, Meetings, Code, Zoning,
+Planning, Permitting, Inspections and Station.
 
-The site links each product’s current README/manual and the umbrella [overall guide](https://github.com/townlight/townlight/blob/main/USER-MANUAL.md) and [source-grounded assessment](https://github.com/townlight/townlight/blob/main/docs/assessment/feature-and-integration-review.md). Product details are sourced from those documents and exact accepted release receipts. The default download remains the signed 1.4 beta; newer compositions are explicit release links.
+[Townlight website](https://townlight.github.io/) · [Suite manual](https://townlight.github.io/manuals/suite.html) ·
+[Signed Windows installer and release information](https://github.com/townlight/townlight/releases/tag/townlight-beta-1) ·
+[Versions, provenance and limits](https://townlight.github.io/versions.html)
 
-Edit index.html for the organization page and products/<product>/index.html for individual pages. Preserve semantic headings, keyboard focus/skip links, reduced-motion behavior and the responsive layout. Preview with a local static HTTP server; check internal links and desktop/mobile widths. Documentation is CC BY 4.0; code follows the organization’s AGPL/public institution exception terms.
+The beta is a signed Windows fresh-install candidate verified using synthetic
+data in Windows Sandbox. City-specific policies, staff and equipment still
+require commissioning. Station uses a pinned CivicCast media implementation;
+standalone CivicCast remains a separate product. Current owned code and manuals
+are AGPL-3.0-only, with retained historical grants and vendor notices.
+
+| Product | Manual | Source |
+|---|---|---|
+| Core | [Manual](https://townlight.github.io/manuals/core.html) | [Repository](https://github.com/townlight/core) |
+| Records | [Manual](https://townlight.github.io/manuals/records.html) | [Repository](https://github.com/townlight/sunshine) |
+| Meetings | [Manual](https://townlight.github.io/manuals/meetings.html) | [Repository](https://github.com/townlight/meetings) |
+| Code | [Manual](https://townlight.github.io/manuals/code.html) | [Repository](https://github.com/townlight/ordinances) |
+| Zoning | [Manual](https://townlight.github.io/manuals/zoning.html) | [Repository](https://github.com/townlight/zone) |
+| Planning | [Manual](https://townlight.github.io/manuals/planning.html) | [Repository](https://github.com/townlight/plan) |
+| Permitting | [Manual](https://townlight.github.io/manuals/permitting.html) | [Repository](https://github.com/townlight/permit) |
+| Inspections | [Manual](https://townlight.github.io/manuals/inspections.html) | [Repository](https://github.com/townlight/inspect) |
+| Station | [Manual](https://townlight.github.io/manuals/station.html) | [Repository](https://github.com/townlight/station) |
+
+## Site source and maintenance
+
+Dependency-free static HTML/CSS/SVG documentation. GitHub Pages serves `main` at
+the repository root; `.nojekyll` preserves the portable file layout. `products/`
+contains nine landing pages, `manuals/` ten manuals, `api/` exact protocol/schema
+references, `pdf/` and `docx/` printable/editable editions, and `reference/`
+version/provenance/workflow evidence. `terms.html` includes terms and the full
+license; current owned content is AGPL-3.0-only.
+
+Preview with a loopback-only static server. Check relative links, headings, the
+first keyboard skip link, visible focus, reduced-motion behavior, image loading,
+console errors and desktop/mobile overflow. Preserve the accepted companion ZIP
+and its hash; publication banners describe the distribution change separately.
+Publishing this site does not install an application or provision a city portal.
