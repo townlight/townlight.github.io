@@ -4,7 +4,7 @@ Nine connected municipal products: Core, Records, Meetings, Code, Zoning,
 Planning, Permitting, Inspections and Station.
 
 [Townlight website](https://townlight.github.io/) · [Suite manual](https://townlight.github.io/manuals/suite.html) ·
-[Signed Windows installer and release information](https://github.com/townlight/townlight/releases/tag/townlight-beta-1) ·
+[Signed Windows installer and release information](https://github.com/townlight/townlight/releases/tag/townlight-beta-1-station-delivery) ·
 [Versions, provenance and limits](https://townlight.github.io/versions.html)
 
 The beta is a signed Windows fresh-install candidate verified using synthetic
@@ -39,3 +39,6 @@ first keyboard skip link, visible focus, reduced-motion behavior, image loading,
 console errors and desktop/mobile overflow. Preserve the accepted companion ZIP
 and its hash; publication banners describe the distribution change separately.
 Publishing this site does not install an application or provision a city portal.
+
+
+The Station delivery update adds an encrypted live feed to separate CivicCast and explicit completed-recording YouTube uploads. Staff review and the private Records original are retained. Existing component versions and AGPL-3.0-only ownership terms are unchanged.
