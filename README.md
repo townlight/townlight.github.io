@@ -42,3 +42,7 @@ Publishing this site does not install an application or provision a city portal.
 
 
 The Station delivery update adds an encrypted live feed to separate CivicCast and explicit completed-recording YouTube uploads. Staff review and the private Records original are retained. Existing component versions and AGPL-3.0-only ownership terms are unchanged.
+
+## Separately deployed resident portal beta
+
+[Portal release and downloads](https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal) · [Portal guide](https://townlight.github.io/manuals/portal.html). Includes the approved city-facing website and the Meetings → Station → Records publication workflow. Deploy the portal and matching native bridge separately; the signed Windows installer is unchanged and does not install them. Acceptance uses synthetic data; CivicCast remains separate.
