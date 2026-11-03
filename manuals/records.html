@@ -12,10 +12,10 @@ main,.toc a,.hero h1{overflow-wrap:anywhere}
 <body><a class="skip" href="#main">Skip to content</a>
 <header><a class="brand" href="../index.html">Townlight</a>
 <nav aria-label="Main"><a href="../manuals/suite.html">Suite manual</a>
-<a href="../versions.html">Versions and candidate status</a>
+<a href="../versions.html">Versions and Windows release</a>
 <a href="../terms.html">Terms and license</a></nav></header>
-<main id="main" class="reading wrap"><p class="edition">Naming, Access and Notice source candidate · 2 November 2026</p>
-<p>Prepared documentation. Build, signing, installed acceptance and publication remain pending.</p>
+<main id="main" class="reading wrap"><p class="edition">Windows x64 Beta 1 · MSI 1.7.0.1</p>
+<p>The signed <a href="https://github.com/townlight/townlight/releases/tag/townlight-beta-1-windows-1.7.0.1">Windows x64 beta 1.7.0.1</a> passed the documented fresh Windows Sandbox checks with synthetic data.</p>
 
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -137,7 +137,7 @@ included with the same documentation companion.</p>
 </tr>
 <tr>
 <td>Intended installer version</td>
-<td>1.7.0.1; build and acceptance pending</td>
+<td>1.7.0.1</td>
 </tr>
 <tr>
 <td>Product component</td>
@@ -153,7 +153,7 @@ included with the same documentation companion.</p>
 </tr>
 <tr>
 <td>Candidate hashes</td>
-<td>Pending candidate build, signing and installed acceptance</td>
+<td><a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/SHA256SUMS-Windows-1.7.0.1.txt">SHA-256 checksums</a> and <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a></td>
 </tr>
 <tr>
 <td>Current owned software license</td>
@@ -166,23 +166,13 @@ separately</td>
 </tr>
 </tbody>
 </table>
-<p>The naming change advances this package’s version and requires a new
-signed installer and installed acceptance. Those steps and publication
-remain pending. Historical tags, receipts and archived manuals keep
-their original names and certify only their identified artifacts. Use an
-empty database and fresh profile; no in-place legacy upgrade is
-supported. The approved Windows profile path remains
-<code>%LOCALAPPDATA%\CivicSuite</code>. Preserve existing profiles, data
-and recovery material.</p>
+<p>Use an empty database and fresh Windows profile. The installer refuses legacy profile initialization. The approved profile path is <code>%LOCALAPPDATA%\CivicSuite</code>. Keep existing profiles and backups.</p>
 <h2 id="first-run">First run</h2>
 <ol type="1">
 <li>Obtain the identified signed private candidate and its
 corresponding-source companion from the beta coordinator. The landing
 pages in this documentation are not an installer download service.</li>
-<li>On the intended fresh Windows test installation, verify the MSI hash
-and publisher signature before installing. Preserve unrelated profiles
-and recovery material. Installed acceptance for this source candidate
-remains pending; no in-place legacy upgrade is supported.</li>
+<li>Verify the MSI hash and Authenticode publisher before installing on a fresh Windows profile. See the <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a> for the tested setup.</li>
 <li>Launch Townlight under the intended named Windows account. Choose
 the storage folders. Select <strong>Townlight Inspections
 candidate</strong> (<code>inspections-preview</code>) for the bounded
@@ -299,7 +289,7 @@ acceptance. SMTP code exists; logging a message or outbox entry does not
 establish email delivery.</p>
 <h2 id="architecture">Architecture</h2>
 <figure>
-<img src="docs/beta-1/assets/records-architecture.svg"
+<img src="../assets/records-architecture.svg"
 alt="Townlight Records architecture and evidence flow" />
 <figcaption aria-hidden="true">Townlight Records architecture and
 evidence flow</figcaption>
@@ -455,8 +445,7 @@ statements</h3>
 <p>This beta has synthetic single-profile workflow evidence. It does not
 have a published benchmark for concurrent staff capacity, minimum
 RAM/CPU, large-source limits or a field SLA. Do not turn a developer
-machine’s specification into a supported minimum. The new installer size
-remains pending its build; allow additional disk for extracted runtime,
+machine’s specification into a supported minimum. The signed MSI is 2,082,697,216 bytes; allow additional disk for extracted runtime,
 database, originals, exports, media and backups. Select
 equipment/storage after sizing those actual workloads.</p>
 <p>The exact <a
@@ -739,12 +728,7 @@ synthetic. The guest install/uninstall and recovery passed, and the
 owned Sandbox stopped. No host installed application or standalone
 CivicCast was changed. This documentation task reuses those receipts; it
 does not claim a new software acceptance run.</p>
-<p>The <a href="../reference/workflow-matrix.json">workflow
-matrix</a> identifies raw receipt filenames. The <a
-href="../reference/sandbox-evidence-index.json">evidence
-index</a> retains their original hashes; raw receipts remain in the
-private beta handoff rather than being silently republished with the
-documentation site.</p>
+<p>See the <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a> for this MSI. The historical <a href="https://townlight.github.io/reference/sandbox-evidence-index.json">evidence index</a> applies to its original build.</p>
 <p>The limits remain: actual city field acceptance and equipment/network
 commissioning; Station automatic provisioning/SCM commissioning; every
 UI/role combination; field recognition accuracy; and historical in-place
@@ -755,9 +739,7 @@ general-availability claim.</p>
 <h2 id="terms-of-service-and-license">Terms of service and license</h2>
 <h3 id="scope-and-status">Scope and status</h3>
 <p>These terms describe the Townlight Beta 1 software and this
-documentation package. This is a locally prepared private beta, not a
-hosted-service subscription, a city deployment agreement or a public
-release. No uptime commitment, support response time, indemnity,
+documentation package. This public Windows beta is for evaluation. No uptime commitment, support response time, indemnity,
 data-processing agreement or paid service is created by these documents.
 A separate signed agreement, if any, governs services it actually
 provides.</p>

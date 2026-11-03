@@ -12,10 +12,10 @@ main,.toc a,.hero h1{overflow-wrap:anywhere}
 <body><a class="skip" href="#main">Skip to content</a>
 <header><a class="brand" href="../index.html">Townlight</a>
 <nav aria-label="Main"><a href="../manuals/suite.html">Suite manual</a>
-<a href="../versions.html">Versions and candidate status</a>
+<a href="../versions.html">Versions and Windows release</a>
 <a href="../terms.html">Terms and license</a></nav></header>
-<main id="main" class="reading wrap"><p class="edition">Naming, Access and Notice source candidate · 2 November 2026</p>
-<p>Prepared documentation. Build, signing, installed acceptance and publication remain pending.</p>
+<main id="main" class="reading wrap"><p class="edition">Windows x64 Beta 1 · MSI 1.7.0.1</p>
+<p>The signed <a href="https://github.com/townlight/townlight/releases/tag/townlight-beta-1-windows-1.7.0.1">Windows x64 beta 1.7.0.1</a> passed the documented fresh Windows Sandbox checks with synthetic data.</p>
 
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -75,12 +75,7 @@ id="toc-delivery-subject-index">Delivery subject index</a></li>
 </ul>
 </nav>
 <h1 id="townlight-station-manual">Townlight Station Manual</h1>
-<p>Prepared naming, Access and Notice candidate — 2 November 2026.
-Station’s existing Beta 1 Python service remains
-<code>townlight-station</code> 0.3.0 / <code>townlight_station</code>.
-Its separate Rust development line and standalone CivicCast are outside
-this migration. Exact signed Windows installed acceptance and
-publication for the coordinated candidate remain pending.</p>
+<p>The signed <a href="https://github.com/townlight/townlight/releases/tag/townlight-beta-1-windows-1.7.0.1">Windows x64 beta 1.7.0.1</a> passed the documented fresh Windows Sandbox checks with synthetic data. The <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a> applies to this exact MSI.</p>
 <h2 id="using-this-manual">Using this manual</h2>
 <p>Townlight Station helps station operators, clerks, records staff and
 deployment administrators. Station adapts a pinned CivicCast media
@@ -115,7 +110,7 @@ included with the same documentation companion.</p>
 </tr>
 <tr>
 <td>Intended installer</td>
-<td>1.7.0.1; build and installed acceptance pending</td>
+<td>1.7.0.1</td>
 </tr>
 <tr>
 <td>Desktop source</td>
@@ -136,7 +131,7 @@ separately</td>
 </tr>
 <tr>
 <td>Candidate hashes/signature</td>
-<td>Pending new build and signing</td>
+<td><a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/SHA256SUMS-Windows-1.7.0.1.txt">SHA-256 checksums</a> and <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a></td>
 </tr>
 <tr>
 <td>Owned software license</td>
@@ -156,10 +151,7 @@ remains <code>%LOCALAPPDATA%\CivicSuite</code> for that path only.</p>
 companion are available, verify their exact release identity with the
 beta coordinator. The landing pages in this documentation are not an
 installer download service.</li>
-<li>On the intended fresh Windows test installation, verify the MSI hash
-and publisher signature before installing. Preserve unrelated profiles
-and recovery material. Installed acceptance for this naming candidate
-remains pending; no in-place legacy upgrade is supported.</li>
+<li>Verify the MSI hash and Authenticode publisher before installing on a fresh Windows profile. See the <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a> for the tested setup.</li>
 <li>Launch Townlight under the intended named Windows account. Choose
 the storage folders. Select <strong>Townlight Inspections
 candidate</strong> (<code>inspections-preview</code>) for the bounded
@@ -277,7 +269,7 @@ remote identity, SCM commissioning, CDN delivery and long-duration field
 quality are not certified. Station does not perform automatic meeting
 speech recognition.</p>
 <h2 id="architecture">Architecture</h2>
-<p><img class="flow" src="docs/beta-1/assets/station-architecture.svg" alt="Townlight Station architecture and evidence flow"></p>
+<p><img class="flow" src="../assets/station-architecture.svg" alt="Townlight Station architecture and evidence flow"></p>
 <p>The drawing shows the principal staff/evidence path. Native commands
 carry trusted identity to Python business services; PostgreSQL and
 retained original files hold durable state. A downstream copy does not
@@ -1047,9 +1039,7 @@ additional provider or selected-model change is made.</p>
 <h2 id="terms-of-service-and-license">Terms of service and license</h2>
 <h3 id="scope-and-status">Scope and status</h3>
 <p>These terms describe the Townlight Beta 1 software and this
-documentation package. This is a locally prepared private beta, not a
-hosted-service subscription, a city deployment agreement or a public
-release. No uptime commitment, support response time, indemnity,
+documentation package. This public Windows beta is for evaluation. No uptime commitment, support response time, indemnity,
 data-processing agreement or paid service is created by these documents.
 A separate signed agreement, if any, governs services it actually
 provides.</p>
@@ -1083,8 +1073,7 @@ credential or record is required to exercise these examples in an
 isolated test environment.</p>
 <h3 id="local-operation-and-external-processors">Local operation and
 external processors</h3>
-<p>The bounded beta workflow uses named staff accounts; current
-installed acceptance is pending. Station has separate storage and
+<p>The tested Windows beta workflow uses named staff accounts. Station has separate storage and
 credentials. Configure backup destinations and optional model/network
 providers deliberately. A configured external provider may receive
 submitted prompts, images or audio according to that configuration and
@@ -1306,12 +1295,7 @@ href="#take-a-live-override-and-return">Take a live override and
 return</a>.</li>
 </ul>
 <h2 id="source-and-document-control">Source and document control</h2>
-<p>This edition carries forward the accepted Station operating
-procedures and updates paired-runtime names from the current naming
-source candidate. Historical evidence remains in the original manual.
-Candidate source commits, MSI signature/hash and exact installed
-acceptance must be finalized separately; no current signing receipt or
-installed-domain proof is implied by rendering this manual.</p>
+<p>This manual covers the Station service paired with Windows MSI 1.7.0.1. The <a href="https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/ACCEPTANCE-Windows-1.7.0.1.md">Windows acceptance summary</a> records the tested Meetings, Station and Records handoff.</p>
 <h3 id="workflow-subject-index">Workflow subject index</h3>
 <ul>
 <li><p><strong>Capture and stop</strong> — <a href="#workflow-4">Daily
@@ -1379,7 +1363,7 @@ canonical recording remains private and byte-identical for the existing
 Records handoff. The YouTube visibility is separate from local
 playback/disclosure approval.</p>
 <h3 id="architecture-1">Architecture</h3>
-<p><img class="flow" src="docs/beta-1/assets/station-delivery-architecture.svg" alt="Station live feed to separate CivicCast and completed recording upload to YouTube"></p>
+<p><img class="flow" src="../assets/station-delivery-architecture.svg" alt="Station live feed to separate CivicCast and completed recording upload to YouTube"></p>
 <p>The sender has bounded, leaky buffers and follows the live edge after
 congestion. Its network sink shares no pipeline with the recorder. A
 late join or connection loss can leave a live coverage gap, while the
