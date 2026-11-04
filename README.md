@@ -1,3 +1,10 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand/svg/townlight-hall-lockup-tagline-reversed.svg">
+    <img alt="Townlight — Municipal software cities can actually own." src="brand/svg/townlight-hall-lockup-tagline.svg" width="600">
+  </picture>
+</p>
+
 # Townlight — Townlight Beta 1
 
 Municipal products: Core, Records, Meetings, Code, Access, Notice, Zoning,
@@ -51,3 +58,6 @@ first keyboard skip link, visible focus, reduced-motion behavior, image loading,
 console errors and desktop/mobile overflow. Preserve the accepted companion ZIP
 and its hash; publication banners describe the distribution change separately.
 Publishing this site does not install an application or provision a city portal.
+
+
+[Open Hall brand package and usage guide](https://townlight.github.io/brand/).
