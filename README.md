@@ -5,6 +5,10 @@
   </picture>
 </p>
 
+[Download Windows beta 1.7.0.1](https://github.com/townlight/townlight/releases/download/townlight-beta-1-windows-1.7.0.1/Townlight-Candidate-Windows-x64.msi) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
+
+Fresh installation/profile only; this MSI does not upgrade an existing legacy profile.
+
 # Townlight — Townlight Beta 1
 
 Municipal products: Core, Records, Meetings, Code, Access, Notice, Zoning,
