@@ -5,9 +5,9 @@
   </picture>
 </p>
 
-[Download Windows beta 1.7.1.1](https://github.com/townlight/townlight/releases/download/townlight-v1.7.1-beta.1/Townlight-Windows-x64-1.7.1.1.msi) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
+[Download Windows beta 1.7.2.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.7.2.1/Townlight-Windows-x64-1.7.2.1.msi) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
 
-Fresh installation/profile only; this MSI does not upgrade an existing legacy profile.
+New installations use a fresh profile. Upgrade from 1.7.1.1 retains saved settings and data; older legacy-profile migration is not established.
 
 # Townlight — Townlight Beta 1
 
@@ -15,12 +15,12 @@ Municipal products: Core, Records, Meetings, Code, Access, Notice, Zoning,
 Planning, Permitting, Inspections and Station.
 
 [Townlight website](https://townlight.github.io/) · [Suite manual](https://townlight.github.io/manuals/suite.html) ·
-[Signed Windows x64 beta 1.7.1.1](https://github.com/townlight/townlight/releases/tag/townlight-v1.7.1-beta.1) ·
+[Signed Windows x64 beta 1.7.2.1](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.7.2.1) ·
 [Versions, provenance and limits](https://townlight.github.io/versions.html)
 
-The signed Windows x64 beta 1.7.1.1 passed fresh Windows Sandbox acceptance
+The signed Windows x64 beta 1.7.2.1 passed fresh Windows Sandbox acceptance
 with synthetic data. The release includes the MSI, matching source, checksums
-and an [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-v1.7.1-beta.1/ACCEPTANCE-Windows-1.7.1.1.md).
+and an [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.7.2.1/ACCEPTANCE-Windows-1.7.2.1.md).
 Earlier releases retain their original identities and acceptance evidence. City-specific policies, staff and equipment still
 require commissioning. Station uses a pinned CivicCast media implementation;
 standalone CivicCast remains a separate product. Current owned code and manuals
