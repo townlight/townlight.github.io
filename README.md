@@ -18,27 +18,28 @@ Planning, Permitting, Inspections and Station.
 [Signed Windows x64 beta 1.7.2.1](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.7.2.1) ·
 [Versions, provenance and limits](https://townlight.github.io/versions.html)
 
-The signed Windows x64 beta 1.7.2.1 passed fresh Windows Sandbox acceptance
-with synthetic data. The release includes the MSI, matching source, checksums
-and an [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.7.2.1/ACCEPTANCE-Windows-1.7.2.1.md).
+The signed Windows x64 beta 1.7.2.1 passed upgrade and uninstall acceptance
+with synthetic data. The application payload and its fresh-install evidence
+carry forward from 1.7.1.1. The release includes the MSI, matching source,
+checksums and an [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.7.2.1/ACCEPTANCE-Windows-1.7.2.1.md).
 Earlier releases retain their original identities and acceptance evidence. City-specific policies, staff and equipment still
 require commissioning. Station uses a pinned CivicCast media implementation;
 standalone CivicCast remains a separate product. Current owned code and manuals
 are AGPL-3.0-only, with retained historical grants and vendor notices.
 
-| Product | Manual | Source |
+| Product landing page | Manual | Source |
 |---|---|---|
-| Core | [Manual](https://townlight.github.io/manuals/core.html) | [Repository](https://github.com/townlight/core) |
-| Records | [Manual](https://townlight.github.io/manuals/records.html) | [Repository](https://github.com/townlight/sunshine) |
-| Meetings | [Manual](https://townlight.github.io/manuals/meetings.html) | [Repository](https://github.com/townlight/meetings) |
-| Code | [Manual](https://townlight.github.io/manuals/code.html) | [Repository](https://github.com/townlight/ordinances) |
-| Access | [Manual](https://townlight.github.io/manuals/access.html) | [Repository](https://github.com/townlight/access) |
-| Notice | [Manual](https://townlight.github.io/manuals/notice.html) | [Repository](https://github.com/townlight/notice) |
-| Zoning | [Manual](https://townlight.github.io/manuals/zoning.html) | [Repository](https://github.com/townlight/zone) |
-| Planning | [Manual](https://townlight.github.io/manuals/planning.html) | [Repository](https://github.com/townlight/plan) |
-| Permitting | [Manual](https://townlight.github.io/manuals/permitting.html) | [Repository](https://github.com/townlight/permit) |
-| Inspections | [Manual](https://townlight.github.io/manuals/inspections.html) | [Repository](https://github.com/townlight/inspect) |
-| Station | [Manual](https://townlight.github.io/manuals/station.html) | [Repository](https://github.com/townlight/station) |
+| [Core](https://townlight.github.io/products/core/) | [Manual](https://townlight.github.io/manuals/core.html) | [Repository](https://github.com/townlight/core) |
+| [Records](https://townlight.github.io/products/records/) | [Manual](https://townlight.github.io/manuals/records.html) | [Repository](https://github.com/townlight/sunshine) |
+| [Meetings](https://townlight.github.io/products/meetings/) | [Manual](https://townlight.github.io/manuals/meetings.html) | [Repository](https://github.com/townlight/meetings) |
+| [Code](https://townlight.github.io/products/code/) | [Manual](https://townlight.github.io/manuals/code.html) | [Repository](https://github.com/townlight/ordinances) |
+| [Access](https://townlight.github.io/products/access/) | [Manual](https://townlight.github.io/manuals/access.html) | [Repository](https://github.com/townlight/access) |
+| [Notice](https://townlight.github.io/products/notice/) | [Manual](https://townlight.github.io/manuals/notice.html) | [Repository](https://github.com/townlight/notice) |
+| [Zoning](https://townlight.github.io/products/zoning/) | [Manual](https://townlight.github.io/manuals/zoning.html) | [Repository](https://github.com/townlight/zone) |
+| [Planning](https://townlight.github.io/products/planning/) | [Manual](https://townlight.github.io/manuals/planning.html) | [Repository](https://github.com/townlight/plan) |
+| [Permitting](https://townlight.github.io/products/permitting/) | [Manual](https://townlight.github.io/manuals/permitting.html) | [Repository](https://github.com/townlight/permit) |
+| [Inspections](https://townlight.github.io/products/inspections/) | [Manual](https://townlight.github.io/manuals/inspections.html) | [Repository](https://github.com/townlight/inspect) |
+| [Station](https://townlight.github.io/products/station/) | [Manual](https://townlight.github.io/manuals/station.html) | [Repository](https://github.com/townlight/station) |
 
 
 The current Windows acceptance covers the paired-loopback Meetings → Station → Records handoff using a synthetic recorded file. Historical Station delivery evidence does not establish live broadcast, external upload or city deployment acceptance for this MSI.
@@ -65,3 +66,23 @@ Publishing this site does not install an application or provision a city portal.
 
 
 [Open Hall brand package and usage guide](https://townlight.github.io/brand/).
+
+## Maintain the landing pages
+
+Edit the product copy in `landing/content.py` and the shared layout in
+`landing/build.py`. The renderer uses the published source pins in
+`reference/windows-1.7.2.1-source-pins.json`. The page style extends the
+Open Hall palette and the site's existing tokens in `assets/site.css`.
+
+From the site root:
+
+```powershell
+python -B landing/build.py
+python -B landing/build.py --check
+python -m http.server 8767 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:8767/` to preview the generated site. You can render
+one page with `python -B landing/build.py records`. Commit source and generated
+HTML together. Merge to `main` to publish through the existing GitHub Pages
+deployment from the repository root.
