@@ -8,7 +8,7 @@ from pathlib import Path
 from content import GROUPS, PRODUCTS
 
 SITE = Path(__file__).resolve().parent.parent
-VERSION = "1.7.2.1"
+VERSION = "1.8.0.1"
 TAG = f"townlight-windows-v{VERSION}"
 RELEASE = f"https://github.com/townlight/townlight/releases/tag/{TAG}"
 ASSETS = f"https://github.com/townlight/townlight/releases/download/{TAG}"
@@ -126,7 +126,8 @@ def capabilities(features, heading, eyebrow):
 
 def product_page(slug):
     p = PRODUCTS[slug]
-    guide = f"/manuals/{slug}.html"
+    guide = p.get("guide", f"/manuals/{slug}.html")
+    api = p.get("api", f"/api/{slug}.html")
     repository = f"https://github.com/townlight/{p['repo']}"
     pin = PINS["repositories"][p["repo"]]["commit"]
     status = p.get("status", "Windows public beta")
@@ -166,7 +167,7 @@ def product_page(slug):
       <div class="eyebrow">For technical teams</div>
       <h2 id="technical">Inspect the implementation.</h2>
       <p class="section-intro">Trace the workflow to the component source pinned by the Windows release. Use the reference for integration details and the repository to report an issue or contribute a change.</p>
-      {links([("Released component source", f"{repository}/tree/{pin}"), ("API reference", f"/api/{slug}.html"), ("Repository and contributions", repository)])}
+      {links([("Released component source", f"{repository}/tree/{pin}"), ("API reference", api), ("Repository and contributions", repository)])}
 {diagram}
     </div>
   </section>"""
@@ -218,6 +219,7 @@ def home_page():
       <h2 id="product-title">Workspaces built around city work.</h2>
       <p class="section-intro">Explore the shipped workflows, operating guides and source for each component of the Windows beta.</p>
       {directory()}
+      <p>New in this beta: <a href="/manuals/windows-staff-workflows.html">Boards &amp; Commissions, Contracts, and Procurement</a>.</p>
     </div>
   </section>
   <div class="landing-band">
@@ -233,7 +235,7 @@ def home_page():
       </div>
       <div class="landing-panel">
         <h3>Release identity and evidence</h3>
-        <p>Windows {VERSION} updates the installer name and metadata. Its application payload is identical to 1.7.1.1. The release records the verified upgrade from 1.7.1.1, along with the scope of reused functional evidence.</p>
+        <p>Windows 1.8.0.1 adds Boards &amp; Commissions, Contracts, and Procurement to the full Windows profile. The signed Windows Sandbox checks cover a fresh installation, the three staff workflows, role boundaries, record persistence, and upgrade from 1.7.2.1 with retained city data and settings. Station continues to use its separately configured local service.</p>
         {links([("Release, source and checksums", RELEASE), ("Acceptance and limits", ACCEPTANCE), ("Suite API", "/api/suite.html")])}
       </div>
     </div>

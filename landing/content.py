@@ -221,9 +221,75 @@ PRODUCTS = {
     },
 }
 
+STAFF_GUIDE = "/manuals/windows-staff-workflows.html"
+STAFF_API = "/reference/native.html#municipal-staff"
+PRODUCTS.update({
+    "boards": {
+        "name": "Boards & Commissions", "repo": "boards", "category": "Clerk operations",
+        "headline": "Keep a current roster and attendance record.",
+        "intro": "Track seats, vacancies and terms, then link attendance to an existing Townlight meeting.",
+        "workflow": "A board roster through attendance",
+        "steps": [
+            ("Create the board", "Record its name and staff liaison."),
+            ("Record the seats", "Enter an appointment and term dates, or record a vacancy."),
+            ("Link attendance", "Select the member and meeting, then open the linked Meetings record."),
+        ],
+        "features": [
+            ("Roster and vacancies", "Keep occupied and vacant seats visible together."),
+            ("Term visibility", "Review expired terms and those ending within 90 days."),
+            ("Meeting link", "Open the original meeting from the attendance history."),
+        ],
+        "setup": "Install the full Windows profile and sign in as a clerk, city staff member, or Townlight administrator.",
+        "limits": "Staff enter appointments and attendance. The workspace preserves the linked meeting without changing it.",
+        "short": "Rosters, vacancies, terms and meeting-linked attendance.",
+        "guide": STAFF_GUIDE + "#boards", "api": STAFF_API,
+    },
+    "contracts": {
+        "name": "Contracts", "repo": "contracts", "category": "City administration",
+        "headline": "Find the agreement and its next renewal.",
+        "intro": "Keep signed PDFs, vendor details, staff ownership and renewal dates in one local register.",
+        "workflow": "An agreement from registration to renewal review",
+        "steps": [
+            ("Register the agreement", "Enter its vendor, owner and dates."),
+            ("Save the signed PDF", "Attach the executed agreement or finalize a linked Procurement draft."),
+            ("Review the renewal queue", "Search by agreement, vendor, owner or status."),
+        ],
+        "features": [
+            ("Signed file retrieval", "Download the original PDF stored with the register entry."),
+            ("Deadline tracking", "Use renewal dates supplied by staff."),
+            ("Source procurement", "Open the solicitation linked to a draft agreement."),
+        ],
+        "setup": "Select the full Windows profile and sign in as city staff or a Townlight administrator.",
+        "limits": "Staff sign and approve agreements outside Townlight. The register stores executed PDFs up to 8 MiB.",
+        "short": "Signed agreements, renewals and linked procurement records.",
+        "guide": STAFF_GUIDE + "#contracts", "api": STAFF_API,
+    },
+    "procurement": {
+        "name": "Procurement", "repo": "procure", "category": "City administration",
+        "headline": "Keep proposals and the recorded award together.",
+        "intro": "Draft RFP workpapers, compare staff-entered scores and exceptions, and connect the recorded award to a contract draft.",
+        "workflow": "From RFP workpaper to contract draft",
+        "steps": [
+            ("Draft the RFP", "Describe the purchase and the city need."),
+            ("Compare proposals", "Record proposal summaries, staff scores and exceptions."),
+            ("Record the city's award", "An administrator records the decision and creates a linked contract draft."),
+        ],
+        "features": [
+            ("Staff workpapers", "Keep solicitation details and proposals together."),
+            ("Decision reference", "Record where the city made the award decision."),
+            ("Linked contract", "Open the same contract draft even if the handoff is retried."),
+        ],
+        "setup": "Use the full Windows profile. City staff prepare workpapers. The Townlight administrator records awards and creates linked drafts.",
+        "limits": "The city makes award decisions and manages submissions through its own process.",
+        "short": "RFP drafts, proposal comparison and award-to-contract handoff.",
+        "guide": STAFF_GUIDE + "#procurement", "api": STAFF_API,
+    },
+})
+
 GROUPS = [
     ("Clerk and records", ("records", "meetings", "code", "notice")),
     ("Planning and development", ("zoning", "planning", "permitting", "inspections")),
     ("Publication and media", ("access", "station")),
+    ("City administration", ("boards", "contracts", "procurement")),
     ("Platform", ("core",)),
 ]
