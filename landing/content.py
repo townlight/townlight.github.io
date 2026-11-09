@@ -116,7 +116,7 @@ PRODUCTS = {
             ("Preserve the review", "Export a review record for filing and keep the named staff action in the audit history."),
         ],
         "setup": "Enable Access in the Windows suite. Start with an example document and use the publishing checklist. Configure a local model for generated drafts.",
-        "limits": "Advice is advisory. Staff verify accessibility, readability and translation quality before publication.",
+        "limits": "Staff verify accessibility, readability and translation quality before publication.",
         "short": "Accessibility checks, draft support and review records.",
     },
     "zoning": {
