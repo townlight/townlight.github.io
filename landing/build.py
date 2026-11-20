@@ -5,7 +5,7 @@ import json
 from html import escape
 from pathlib import Path
 
-from content import GROUPS, PRODUCTS
+from content import GROUPS, PARKED, PRODUCTS
 
 SITE = Path(__file__).resolve().parent.parent
 VERSION = "1.8.0.1"
@@ -33,7 +33,9 @@ def actions(primary, secondary):
     return '<div class="actions">' + link(*primary, "button primary") + link(*secondary, "button") + "</div>"
 
 
-def page(title, description, route, guide, repository, main):
+def page(title, description, route, guide, repository, main, nav=None):
+    nav = nav or [("Products", "/#products"), ("Guide", guide), ("Download", RELEASE), ("Source", repository)]
+    nav_html = "\n        ".join(link(label, url) for label, url in nav)
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -58,10 +60,7 @@ def page(title, description, route, guide, repository, main):
         <img src="/brand/svg/townlight-hall-lockup.svg" alt="Townlight" width="161" height="34">
       </a>
       <nav aria-label="Main navigation">
-        {link("Products", "/#products")}
-        {link("Guide", guide)}
-        {link("Download", RELEASE)}
-        {link("Source", repository)}
+        {nav_html}
       </nav>
     </div>
   </header>
@@ -174,6 +173,59 @@ def product_page(slug):
     return page(product, p["intro"], f"/products/{slug}/", guide, repository, body)
 
 
+def parked_page(slug):
+    p = PARKED[slug]
+    repository = f"https://github.com/townlight/{p['repo']}"
+    suite = "/versions.html"
+    product = f"Townlight {p['name']}"
+    status = """<figure class="workflow-sheet">
+      <figcaption><span class="eyebrow">Status</span>Parked foundation</figcaption>
+      <ol>
+        <li><strong>Not a completed product</strong><span>The repository holds exploratory and support code.</span></li>
+        <li><strong>Outside the Windows suite</strong><span>The Townlight Windows installer does not install or support it.</span></li>
+        <li><strong>Open for review</strong><span>The source stays public under its open source license.</span></li>
+      </ol>
+      <p class="sheet-note">Status taken from the notice in the repository README</p>
+    </figure>"""
+    body = f"""  <section class="landing-hero" aria-labelledby="title">
+    <div class="landing-wrap hero-layout">
+      <div>
+        <div class="eyebrow">{escape(product)} / {escape(p['category'])}</div>
+        <h1 id="title">{escape(p['headline'])}</h1>
+        <p class="hero-copy">{escape(p['intro'])}</p>
+        {actions(("View the source", repository), ("See the released Windows suite", suite))}
+        <p class="release-line">Parked foundation · Not in the Windows release · AGPL-3.0</p>
+      </div>
+      {status}
+    </div>
+  </section>
+{capabilities(p["features"], f"What the {p['name']} foundation contains", "Inside the repository")}
+  <section class="landing-section landing-band" aria-labelledby="status">
+    <div class="landing-wrap landing-split">
+      <div>
+        <div class="eyebrow">Current status</div>
+        <h2 id="status">Parked, and outside the released suite.</h2>
+        <p>{escape(product)} is a parked foundation. It is not a completed Townlight product, and the Townlight Windows release does not install or support it. Examples and package names in the repository describe the foundation. Do not use them as suite installation instructions.</p>
+        {links([("Released Windows suite, current modules and limits", suite), ("Current Townlight products", "/#products")])}
+      </div>
+      <div class="landing-panel">
+        <h3>What it does not do</h3>
+        <p>{escape(p['limits'])}</p>
+      </div>
+    </div>
+  </section>
+  <section class="landing-section" aria-labelledby="technical">
+    <div class="landing-wrap">
+      <div class="eyebrow">For technical teams</div>
+      <h2 id="technical">Inspect the foundation.</h2>
+      <p class="section-intro">Read the source and the parked notice in the repository. Code is AGPL-3.0. Documentation is CC BY 4.0.</p>
+      {links([("Repository", repository), ("README and parked notice", f"{repository}#readme")])}
+    </div>
+  </section>"""
+    nav = [("Products", "/#products"), ("Released suite", suite), ("Source", repository)]
+    return page(f"{product} (parked foundation)", p["intro"], f"/products/{slug}/", suite, repository, body, nav)
+
+
 def directory():
     groups = []
     for label, slugs in GROUPS:
@@ -256,11 +308,13 @@ def main():
     parser.add_argument("pages", nargs="*", help="home or product slugs. Default: all.")
     parser.add_argument("--check", action="store_true", help="Check that generated files match source.")
     args = parser.parse_args()
-    for slug in args.pages or ["home", *PRODUCTS]:
+    for slug in args.pages or ["home", *PRODUCTS, *PARKED]:
         if slug == "home":
             path, html = SITE / "index.html", home_page()
         elif slug in PRODUCTS:
             path, html = SITE / "products" / slug / "index.html", product_page(slug)
+        elif slug in PARKED:
+            path, html = SITE / "products" / slug / "index.html", parked_page(slug)
         else:
             parser.error(f"Unknown landing page: {slug}")
         if args.check:

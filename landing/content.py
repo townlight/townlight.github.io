@@ -293,3 +293,151 @@ GROUPS = [
     ("City administration", ("boards", "contracts", "procurement")),
     ("Platform", ("core",)),
 ]
+
+# Parked foundations. These repositories are outside the released Windows suite.
+# Copy is grounded in each repository's README notice and docs/index.html.
+PARKED = {
+    "311": {
+        "name": "311", "repo": "311", "category": "Resident services",
+        "headline": "Resident requests routed without black-box dispatch.",
+        "intro": "A parked foundation for service request intake, triage suggestions, duplicate checks and department routing checklists.",
+        "features": [
+            ("Sample request intake", "Take a sample resident request and return deterministic triage suggestions."),
+            ("Duplicate and routing review", "Check for duplicate candidates and prepare a department routing checklist."),
+            ("Open311-compatible export", "Use the export helper and the optional database-backed request records."),
+        ],
+        "limits": "It does not dispatch crews, create official work orders, handle emergencies, provide legal advice, call live language models, write back to 311 systems, or replace a 311 system of record.",
+    },
+    "budget": {
+        "name": "Budget", "repo": "budget", "category": "Finance",
+        "headline": "Budget narrative support without replacing the ERP.",
+        "intro": "A parked foundation that helps finance staff draft variance notes, department narratives, memos and resident summaries.",
+        "features": [
+            ("Drafting helpers", "Prepare line-item variance notes, department narratives and council-facing memos."),
+            ("Hearing and resident material", "Build hearing packet checklists and plain-English resident summaries."),
+            ("Optional workpapers", "Save workpaper records in an optional local database, with role-protected retrieval."),
+        ],
+        "limits": "Finance staff approve every number, narrative, public summary and packet item. It provides no ERP, accounting, payroll, budget adoption, official approvals, live language model calls or live finance connector.",
+    },
+    "comms": {
+        "name": "Communications", "repo": "comms", "category": "Public communications",
+        "headline": "Explain city work without losing the source trail.",
+        "intro": "A parked foundation for source-readiness review and draft outlines for meeting summaries, ordinance explainers and newsletters.",
+        "features": [
+            ("Source-readiness checks", "Review whether the source material supports a draft before writing begins."),
+            ("Draft outlines", "Prepare meeting summary outlines, ordinance explainers, and newsletter and FAQ scaffolds."),
+            ("Audience variants", "Draft variants for different audiences and keep optional draft records."),
+        ],
+        "limits": "It does not publish autonomously, create campaign or advocacy content, provide legal advice, certify translations, call live language models, post to social media, or replace a communications system of record.",
+    },
+    "court": {
+        "name": "Courts", "repo": "court", "category": "Municipal court",
+        "headline": "Court clerk support that respects sealed-record boundaries.",
+        "intro": "A parked foundation that helps municipal court clerks draft cited procedure answers, forms and hearing checklists.",
+        "features": [
+            ("Clerk drafts", "Draft procedure answers, forms and hearing preparation checklists that a clerk verifies before use."),
+            ("Restricted-record boundary", "Restricted records are hidden in the sample search, and sealed or juvenile matters are not exposed."),
+            ("Optional workpapers", "Save local workpapers in an optional database. Retrieval requires an allowed role."),
+        ],
+        "limits": "It does not replace court case management, issue warrants, file documents, decide cases, provide legal advice, call live language models, or integrate with court case management systems.",
+    },
+    "data": {
+        "name": "Data", "repo": "data", "category": "Open data",
+        "headline": "Prepare a dataset before the city publishes it.",
+        "intro": "A parked foundation for open-data preparation: field normalization, draft data dictionaries, CKAN metadata and review checklists.",
+        "features": [
+            ("Dataset preparation", "Normalize fields and draft a data dictionary for staff review."),
+            ("Publication metadata", "Prepare CKAN metadata and keep optional publication workpapers."),
+            ("Review flags", "Flag redaction review and assemble a retention-aware archive checklist."),
+        ],
+        "limits": "Every dataset still needs human review, license confirmation, redaction or exemption clearance, and retention checks. It provides no live CKAN publication, dashboard, data warehouse, autonomous redaction or connector.",
+    },
+    "elections": {
+        "name": "Elections", "repo": "elections", "category": "Clerk operations",
+        "headline": "Election support without touching voting systems.",
+        "intro": "A parked foundation that helps clerks prepare voter guidance, filing checklists, training answers and canvass checklists.",
+        "features": [
+            ("Clerk preparation", "Prepare voter guidance, filing checklists and training answers."),
+            ("Draft summaries", "Draft ballot summaries and campaign-finance summaries for official review."),
+            ("Canvass and accessibility", "Use canvass checklists, accessibility reviews and optional saved workpapers."),
+        ],
+        "limits": "Election officials approve all public election information. It provides no voter registration, ballot marking, tabulation, election conduct automation, official certification, live language model calls or election-system connector.",
+    },
+    "grants": {
+        "name": "Grants", "repo": "grants", "category": "Finance",
+        "headline": "Grant files that survive the audit.",
+        "intro": "A parked foundation for grant opportunity triage, eligibility factors, application outlines and compliance calendars.",
+        "features": [
+            ("Opportunity triage", "Triage a sample opportunity and match eligibility factors."),
+            ("Application and compliance", "Outline an application and build a compliance calendar."),
+            ("Staff review and export", "Use protected staff review queues, optional grant records and an audit-ready export checklist."),
+        ],
+        "limits": "It does not determine official eligibility, submit applications, accept awards, provide legal advice, call live language models, use live funder feeds, or replace the grant system of record.",
+    },
+    "hr": {
+        "name": "HR", "repo": "hr", "category": "Human resources",
+        "headline": "HR policy drafts from sources HR approved.",
+        "intro": "A parked foundation for policy lookup outlines, handbook summaries, job-description drafts and onboarding checklists.",
+        "features": [
+            ("Policy and handbook", "Prepare policy lookup outlines and handbook summaries from HR-approved sources."),
+            ("Job and onboarding drafts", "Draft job descriptions, and onboarding and training checklists."),
+            ("Sensitive-topic preflight", "Check a request for sensitive topics before drafting, and keep optional workpapers."),
+        ],
+        "limits": "HR and counsel decide and approve. It provides no HRIS, payroll, benefits administration, personnel records management, employment-law advice, personnel-file ingestion or live language model calls.",
+    },
+    "legal": {
+        "name": "Legal", "repo": "legal", "category": "City attorney",
+        "headline": "Legal record support without automating legal judgment.",
+        "intro": "A parked foundation that helps authorized legal staff search city records with citations and prepare attorney-reviewed drafts.",
+        "features": [
+            ("Cited record search", "Search city records with citations and look up prior actions, with privilege-aware filtering."),
+            ("Attorney-reviewed drafts", "Draft memo scaffolds and compare ordinance drafts."),
+            ("Hold candidates", "Flag litigation-hold candidates and keep optional memo and hold workpapers."),
+        ],
+        "limits": "City attorneys control the source tiers, review drafts and make every legal judgment. It provides no legal advice, legal research service replacement, autonomous legal conclusions, court filing, live language model calls or legal-system connector.",
+    },
+    "library": {
+        "name": "Library", "repo": "library", "category": "Public library",
+        "headline": "Library support that protects patron privacy.",
+        "intro": "A parked foundation that helps library staff draft cited policy answers, program replies and collection guidance.",
+        "features": [
+            ("Staff drafts", "Draft policy answers, program replies and reference suggestions that librarians verify before use."),
+            ("Collection metadata", "Search collection metadata and prepare collection-development guidance without patron records."),
+            ("Optional workpapers", "Save program and collection workpapers in an optional local database."),
+        ],
+        "limits": "Patron records are out of scope. It does not integrate with a library system, replace professional reference service, provide legal advice or call live language models.",
+    },
+    "parks": {
+        "name": "Parks", "repo": "parks", "category": "Parks and recreation",
+        "headline": "Parks help that keeps registration systems authoritative.",
+        "intro": "A parked foundation that helps staff draft cited park-rule answers, explain programs and triage maintenance requests.",
+        "features": [
+            ("Staff drafts", "Draft park-rule answers and program and facility explanations that staff verify before use."),
+            ("Registration guidance", "Link residents to the city's existing registration system."),
+            ("Maintenance triage", "Sort maintenance requests into categories for staff review, with optional workpapers."),
+        ],
+        "limits": "It does not process payments, enroll participants, manage participant records, reserve facilities, dispatch crews or call live language models.",
+    },
+    "safety": {
+        "name": "Safety", "repo": "safety", "category": "Public safety administration",
+        "headline": "Public-safety admin support that stays outside CJI.",
+        "intro": "A parked foundation that helps administrative staff answer procedure questions with citations and prepare training checklists.",
+        "features": [
+            ("Administrative drafts", "Draft cited procedure answers, training checklists and public information updates for supervisor review."),
+            ("Aggregate statistics", "Summarize aggregate public statistics."),
+            ("Criminal justice information blocked", "Inputs marked as criminal justice information (CJI) are blocked."),
+        ],
+        "limits": "It does not ingest criminal justice information, integrate with dispatch or records management systems, support dispatch, drive enforcement, investigate cases, manage evidence, provide legal advice or call live language models.",
+    },
+    "utility": {
+        "name": "Utilities", "repo": "utility", "category": "Utility customer service",
+        "headline": "Utility customer service, kept safely above the billing system.",
+        "intro": "A parked foundation that helps customer service staff answer cited billing-policy questions and prepare service-request handoffs.",
+        "features": [
+            ("Policy answers", "Draft cited billing-policy answers and payment-arrangement language that a person reviews before use."),
+            ("Resident explanations", "Explain policy, payment options, conservation guidance and next steps for a service request."),
+            ("Handoffs and workpapers", "Prepare service-request handoffs and keep optional workpapers for review."),
+        ],
+        "limits": "It does not process payments, approve arrangements, modify accounts, decide shutoffs or reconnects, dispatch crews, call live language models, or write back to billing systems.",
+    },
+}
