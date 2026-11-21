@@ -8,7 +8,7 @@ from pathlib import Path
 from content import GROUPS, PARKED, PRODUCTS
 
 SITE = Path(__file__).resolve().parent.parent
-VERSION = "1.8.0.1"
+VERSION = "1.9.1.1"
 TAG = f"townlight-windows-v{VERSION}"
 RELEASE = f"https://github.com/townlight/townlight/releases/tag/{TAG}"
 ASSETS = f"https://github.com/townlight/townlight/releases/download/{TAG}"
@@ -36,6 +36,12 @@ def actions(primary, secondary):
 def page(title, description, route, guide, repository, main, nav=None):
     nav = nav or [("Products", "/#products"), ("Guide", guide), ("Download", RELEASE), ("Source", repository)]
     nav_html = "\n        ".join(link(label, url) for label, url in nav)
+    release_notice = "" if any(route == f"/products/{slug}/" for slug in PARKED) else (
+        f'<aside class="release-note" aria-label="Current release"><p><strong>Current release:</strong> '
+        f'Townlight for Windows {VERSION}, a signed public beta. See acceptance for the hardware test and earlier installed evidence. '
+        f'{link("Downloads", RELEASE)} · {link("Release notes and installation", "/announcement.html")} · '
+        f'{link("Versions and limits", "/versions.html")}</p></aside>\n'
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -67,7 +73,7 @@ def page(title, description, route, guide, repository, main, nav=None):
   <main id="main">
 {main}
   </main>
-  <footer class="landing-footer">
+{release_notice}  <footer class="landing-footer">
     <div class="landing-wrap">
       <span>Townlight · Open source municipal software</span>
       {links([("Support", "/support.html"), ("Versions", "/versions.html"), ("Brand", "/brand/"), ("Terms and license", "/terms.html")])}
@@ -92,14 +98,17 @@ def workflow(title, steps):
     </figure>"""
 
 
-def hero(eyebrow, headline, intro, primary, secondary, workflow_title, steps, release_line):
+def hero(eyebrow, headline, intro, primary, secondary, workflow_title, steps, release_line, extra_action=None):
+    hero_actions = actions(primary, secondary)
+    if extra_action:
+        hero_actions = hero_actions.removesuffix('</div>') + link(*extra_action, 'button') + '</div>'
     return f"""  <section class="landing-hero" aria-labelledby="title">
     <div class="landing-wrap hero-layout">
       <div>
         <div class="eyebrow">{escape(eyebrow)}</div>
         <h1 id="title">{escape(headline)}</h1>
         <p class="hero-copy">{escape(intro)}</p>
-        {actions(primary, secondary)}
+        {hero_actions}
         <p class="release-line">{escape(release_line)}</p>
       </div>
       {workflow(workflow_title, steps)}
@@ -258,6 +267,7 @@ def home_page():
             ("Station → Records", "Preserve the original recording with a verifiable file identity."),
         ],
         "Signed Windows x64 installer · AGPL-3.0-only · Public beta",
+        ("Start a records request", "/manuals/records.html#daily-workflow"),
     )
     features = [
         ("Keep original evidence", "Use source links and original files to make the basis for a decision available for review."),
@@ -287,7 +297,7 @@ def home_page():
       </div>
       <div class="landing-panel">
         <h3>Release identity and evidence</h3>
-        <p>Windows 1.8.0.1 adds Boards &amp; Commissions, Contracts, and Procurement to the full Windows profile. The signed Windows Sandbox checks cover a fresh installation, the three staff workflows, role boundaries, record persistence, and upgrade from 1.7.2.1 with retained city data and settings. Station continues to use its separately configured local service.</p>
+        <p>Windows {VERSION} improves clerk workflows in Records, Meetings, and Code, adds Open Hall icons, and fixes the ten-second Station preview. The acceptance summary identifies what passed on the exact signed installer and which results come from earlier builds.</p>
         {links([("Release, source and checksums", RELEASE), ("Acceptance and limits", ACCEPTANCE), ("Suite API", "/api/suite.html")])}
       </div>
     </div>
