@@ -34,7 +34,7 @@ PRODUCTS = {
         "features": [
             ("Prepare for the dais", "Assemble packet documents, create notice workpapers and retain posting proof."),
             ("Record what happened", "Keep motion and vote corrections, action items, and adopted minutes with the meeting."),
-            ("Carry decisions forward", "Link a Code proposal to its adopted decision or pass meeting context to a separately configured Station."),
+            ("Carry decisions forward", "Link a Code proposal to its adopted decision or pass meeting context to Station, which you can set up during Townlight first run."),
         ],
         "setup": "Enable Meetings in the Windows suite. Create a test meeting and walk one agenda item through packet preparation, vote, minutes and archive.",
         "limits": "Clerks review and adopt proceedings. Resident website deployment and Station media configuration each have their own setup.",
@@ -205,8 +205,8 @@ PRODUCTS = {
         "intro": "Give municipal media operators a local service for processing meeting recordings and handing the original to the city’s Records workflow.",
         "workflow": "A meeting recording handoff",
         "steps": [
-            ("Pair the service", "Configure Station’s own database, media storage and desktop authority."),
-            ("Associate the recording", "Connect the meeting context and process the media with the Station worker."),
+            ("Set up Station", "Use Townlight first run with Meetings and Records selected. Choose a camera and microphone, then record and play the ten-second test clip."),
+            ("Record the meeting", "Select the meeting and start recording. Reconnect from Townlight if you close the operator tab."),
             ("Hand off and review", "Preserve the original for Records and review any separate delivery copy."),
         ],
         "features": [
@@ -214,10 +214,10 @@ PRODUCTS = {
             ("Preserve the canonical media", "Hand a private recording to Records with a verifiable identity."),
             ("Configure delivery separately", "Station includes paths for configured CivicCast SRT coverage and staff-approved completed YouTube uploads."),
         ],
-        "setup": "Use the Station guide to provision the database, media store and paired authority separately from desktop module selection.",
-        "limits": "The Windows acceptance exercises a synthetic recorded-file handoff. Live broadcast, physical equipment and external uploads require separate configuration and commissioning.",
+        "setup": "Follow Townlight first run to provision Station. On an existing installation, use Settings → Modules → Townlight Station → Set up meeting recording.",
+        "limits": "Windows 1.9.1.1 passed camera and microphone preview, recording, and playback on a Logitech C920. Earlier signed acceptance covers synthetic live recording and a verified Records transfer over 2 GiB. Test your own inputs before a meeting. External delivery requires separate configuration.",
         "short": "Recording processing, media provenance and Records handoff.",
-        "status": "Separate setup", "diagram": "station",
+        "status": "Integrated setup", "diagram": "station",
     },
 }
 

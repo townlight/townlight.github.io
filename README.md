@@ -5,9 +5,9 @@
   </picture>
 </p>
 
-[Download Windows beta 1.9.0.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.0.1/Townlight-Windows-x64-1.9.0.1.msi) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
+[Download Windows beta 1.9.1.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.1.1/Townlight-Windows-x64-1.9.1.1.msi) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
 
-Windows 1.9.0.1 has signed fresh-install acceptance, including Station recording, Records handoff and recovery. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
+Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
 
 # Townlight — Townlight Beta 1
 
@@ -17,16 +17,16 @@ Windows 1.8.1.1 adds shared meeting imports for 31 source families, with 34 supp
 
 [All 31 sources, formats and handoffs](https://townlight.github.io/manuals/meeting-imports.html) · [Installed acceptance](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.8.1.1/ACCEPTANCE-Windows-1.8.1.1.md).
 
-Windows 1.9.0.1 has signed fresh-install acceptance, including Station recording, Records handoff and recovery. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
+Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
 
-Windows 1.9.0.1 contains Station 0.4.0, Records 1.8.0.dev4, Townlight Runtime 0.3.2 and Meetings 1.0.6. Its current component sources and installed evidence are identified in the maintenance acceptance summary.
+Windows 1.9.1.1 contains Station 0.4.4, Records 1.8.0.dev4, Townlight Runtime 0.3.3 and Meetings 1.0.6. Its current component sources and installed evidence are identified in the maintenance acceptance summary.
 
 
 Kept municipal products: Core, Records, Meetings, Code, Access, Notice, Zoning,
 Planning, Permitting, Inspections, Station, Boards & Commissions, Contracts, and Procurement.
 
 [Townlight website](https://townlight.github.io/) · [Suite manual](https://townlight.github.io/manuals/suite.html) ·
-[Signed Windows x64 beta 1.9.0.1](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.0.1) ·
+[Signed Windows x64 beta 1.9.1.1](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.1.1) ·
 [Versions, provenance and limits](https://townlight.github.io/versions.html)
 
 Windows 1.8.1.1 adds shared meeting imports for 31 source families, with 34 supported source/format pairs. Installed Windows Sandbox checks exercised preview, save and durable readback using public captures and fixtures, plus the documented Townlight handoffs. These checks do not establish automatic discovery on every live portal or a complete retest of every module.
@@ -81,7 +81,7 @@ Publishing this site does not install an application or provision a city portal.
 
 Edit the product copy in `landing/content.py` and the shared layout in
 `landing/build.py`. The renderer uses the published source pins in
-`reference/windows-1.8.0.1-source-pins.json`. The page style extends the
+`reference/windows-1.9.1.1-source-pins.json`. The page style extends the
 Open Hall palette and the site's existing tokens in `assets/site.css`.
 
 From the site root:
@@ -97,10 +97,10 @@ one page with `python -B landing/build.py records`. Commit source and generated
 HTML together. Merge to `main` to publish through the existing GitHub Pages
 deployment from the repository root.
 
-## Windows 1.9.0.1 Station recorder release
+## Windows 1.9.1.1 Station recorder release
 
-Windows 1.9.0.1 integrates Station setup, camera and microphone selection, renewable operator sessions and verified large-recording transfers to Records.
+Windows 1.9.1.1 improves the clerk workflows for Records, Meetings, and Code, adds Open Hall icons, and fixes the ten-second Station preview.
 
-Windows 1.9.0.1 has signed fresh-install acceptance, including Station recording, Records handoff and recovery. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
+Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
 
-[Acceptance and limits](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.0.1/ACCEPTANCE-Windows-1.9.0.1.md).
+[Acceptance and limits](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.1.1/ACCEPTANCE-Windows-1.9.1.1.md).
