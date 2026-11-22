@@ -19,13 +19,13 @@ from zipfile import ZIP_DEFLATED, ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTS = {
     "suite": ("Townlight Suite Manual", "Townlight-Suite-Manual-Beta-1",
-              "The signed Windows 1.9.2.1 candidate adds a city-hosted shared mode", 2),
+              "Windows 1.9.2.1 adds shared Meetings and Records use", 2),
     "meetings": ("Townlight Meetings Manual", "Townlight-Meetings-Manual-Beta-1",
-                 "The signed Suite 1.9.2.1 candidate lets named clerk staff", 1),
+                 "The current Suite release lets named staff use Meetings", 2),
     "records": ("Townlight Records Manual", "Townlight-Records-Manual-Beta-1",
                 "Named Records staff can work from a Windows workstation through the city host", 2),
     "station": ("Townlight Station Manual", "Townlight-Station-Manual-Beta-1",
-                "In the signed Suite 1.9.2.1 candidate, Station capture", 1),
+                "Station capture remains on the city host", 2),
 }
 PORTAL = ("Townlight Portal guide", "Townlight-Portal-Guide-Beta-1")
 HYPERLINK_REL = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
@@ -59,29 +59,23 @@ def product_note(source: str, start: str, expected: int) -> list[str]:
     blocks = markdown_blocks(source)
     index = next((i for i, block in enumerate(blocks) if block.startswith(start)), None)
     if index is None:
-        raise RuntimeError(f"Could not find candidate paragraph starting: {start}")
-    selected: list[str] = []
-    for block in blocks[index:]:
-        if selected and (block.startswith("#") or block.startswith("|")
-                         or block.startswith(("- ", "* ", "1. "))):
-            break
-        selected.append(block)
-        if len(selected) == expected:
-            break
-    if len(selected) != expected:
-        raise RuntimeError(f"Expected {expected} candidate paragraph(s) after: {start}")
-    return selected
+        raise RuntimeError(f"Could not find release paragraph starting: {start}")
+    acceptance = next((block for block in blocks[index + 1:]
+                       if block.startswith("Acceptance used synthetic data and a test portal")), None)
+    if expected != 2 or acceptance is None:
+        raise RuntimeError(f"Could not find the release acceptance paragraph after: {start}")
+    return [blocks[index], acceptance]
 
 
 def portal_note(source: str) -> list[str]:
     match = re.search(
-        r"(?ms)^## Windows shared-host candidate publication\s*$(.*?)(?=^## |\Z)", source
+        r"(?ms)^## Windows 1\.9\.2\.1 published shared-host workflow\s*$(.*?)(?=^## |\Z)", source
     )
     if not match:
-        raise RuntimeError("Could not find the Portal shared-host candidate section")
+        raise RuntimeError("Could not find the Portal Windows 1.9.2.1 release section")
     paragraphs = markdown_blocks(match.group(1))
     if len(paragraphs) != 3:
-        raise RuntimeError(f"Expected 3 Portal candidate paragraphs, found {len(paragraphs)}")
+        raise RuntimeError(f"Expected 3 Portal release paragraphs, found {len(paragraphs)}")
     return paragraphs
 
 
