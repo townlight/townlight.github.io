@@ -5,7 +5,7 @@ PRODUCTS = {
         "name": "Records", "repo": "sunshine", "category": "Public records",
         "headline": "From request to a defensible response.",
         "intro": "Give records officers one place to receive requests, find the right sources, and document exactly what the city approved for release.",
-        "candidate": "The signed Windows 1.9.2.1 candidate lets staff on a workstation share a Records request, attach a private Station source, and approve a specific release copy. Only an explicitly approved copy is eligible for portal publication.",
+        "release": "Windows 1.9.2.1 lets staff on a workstation share a Records request, attach a private Station source, and approve a specific release copy. Only an explicitly approved copy is eligible for portal publication.",
         "workflow": "A public records request",
         "steps": [
             ("Receive and assign", "Record the request, requester, deadline and staff assignment."),
@@ -26,7 +26,7 @@ PRODUCTS = {
         "name": "Meetings", "repo": "meetings", "category": "Clerk operations",
         "headline": "Keep the meeting and its record together.",
         "intro": "Prepare the agenda, assemble the packet, record the decisions and keep the approved proceedings connected to their original material.",
-        "candidate": "The signed Windows 1.9.2.1 candidate lets named staff share council packet revisions between a city host and workstation, reject stale approvals, and send only the reviewed public revision to the portal after explicit approval.",
+        "release": "Windows 1.9.2.1 lets named staff share council packet revisions between a city host and workstation, reject stale approvals, and send only the reviewed public revision to the portal after explicit approval.",
         "workflow": "From agenda to public archive",
         "steps": [
             ("Build the packet", "Attach source documents and organize items for review."),
@@ -67,7 +67,7 @@ PRODUCTS = {
         "name": "Core", "repo": "core", "category": "Shared platform",
         "headline": "One foundation for municipal workflows.",
         "intro": "Core gives Townlight components common services for staff identity, audit events, source ingestion and document discovery.",
-        "candidate": "The signed Windows 1.9.2.1 candidate can share named staff sessions over a private HTTPS gateway between a host and workstation. The host remains the authority for accounts and durable data.",
+        "release": "Windows 1.9.2.1 can share named staff sessions over a private HTTPS gateway between a host and workstation. The host remains the authority for accounts and durable data.",
         "workflow": "How a shared source becomes usable",
         "steps": [
             ("Identify the actor", "Named staff and module permissions give actions context."),
@@ -206,7 +206,7 @@ PRODUCTS = {
         "name": "Station", "repo": "station", "category": "Municipal media",
         "headline": "Keep the recording with the meeting.",
         "intro": "Give municipal media operators a local service for processing meeting recordings and handing the original to the city’s Records workflow.",
-        "candidate": "The signed Windows 1.9.2.1 candidate connects the host's Station recording to the shared meeting and Records request. Portal release still requires Records approval and explicit publication approval.",
+        "release": "Windows 1.9.2.1 connects the host's Station recording to the shared meeting and Records request. Portal release still requires Records approval and explicit publication approval.",
         "workflow": "A meeting recording handoff",
         "steps": [
             ("Set up Station", "Use Townlight first run with Meetings and Records selected. Choose a camera and microphone, then record and play the ten-second test clip."),

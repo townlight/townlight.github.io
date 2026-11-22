@@ -1,56 +1,65 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Signed Windows 1.9.2.1 candidate guide; not publicly distributed.">
-<title>Townlight Windows 1.9.2.1 signed candidate | Townlight</title>
+<meta name="description" content="Windows 1.9.2.1 signed public beta guide, acceptance scope and release links.">
+<title>Townlight Windows 1.9.2.1 signed public beta guide | Townlight</title>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../brand/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="../brand/png/townlight-hall-app-icon-180.png">
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header><a class="brand" href="../index.html"><img src="../brand/svg/townlight-hall-lockup.svg" alt="Townlight" width="217" height="45"></a>
-<span class="edition">Candidate guide · not distributed</span>
+<span class="edition">Release guide · Windows 1.9.2.1</span>
 <nav aria-label="Main"><a href="../index.html#products">Products</a><a href="suite.html">Suite manual</a>
-<a href="../reference/index.html">Technical reference</a><a href="../versions.html">Versions and candidate</a></nav></header>
-<main id="main" class="reading wrap"><p class="edition">Windows 1.9.2.1 signed candidate · not publicly distributed</p>
+<a href="../reference/index.html">Technical reference</a><a href="../versions.html">Versions and release</a></nav></header>
+<main id="main" class="reading wrap"><p class="edition">Windows 1.9.2.1 signed public beta</p>
 <p class="docmeta"><a href="../pdf/Townlight-Windows-1.9.2.1-Candidate.pdf">Printable PDF</a> · <a href="../docx/Townlight-Windows-1.9.2.1-Candidate.docx">Editable Word</a></p>
+<p class="docmeta"><a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-x64-1.9.2.1.msi">Download signed MSI</a> · <a href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.2.1">Release catalog and source</a> · <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/SHA256SUMS-Windows-1.9.2.1.txt">SHA-256 checksums</a> · <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md">Acceptance and limits</a></p>
 <article class="docbody">
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#windows-1.9.2.1-signed-candidate"
-id="toc-windows-1.9.2.1-signed-candidate">Windows 1.9.2.1 signed
-candidate</a>
+<li><a href="#townlight-windows-1.9.2.1-signed-public-beta"
+id="toc-windows-1.9.2.1-signed-candidate">Townlight Windows
+1.9.2.1 signed public beta</a>
 <ul>
-<li><a href="#what-the-candidate-adds"
-id="toc-what-the-candidate-adds">What the candidate adds</a></li>
+<li><a href="#what-windows-1.9.2.1-adds"
+id="toc-what-the-candidate-adds">What Windows 1.9.2.1 adds</a></li>
 <li><a href="#approved-portal-publishing"
 id="toc-approved-portal-publishing">Approved portal publishing</a></li>
-<li><a href="#setup-and-technical-references"
-id="toc-setup-and-technical-references">Setup and technical
-references</a></li>
+<li><a href="#source-pins-and-implementation"
+id="toc-setup-and-technical-references">Source pins and
+implementation</a></li>
 <li><a href="#acceptance-scope" id="toc-acceptance-scope">Acceptance
 scope</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="windows-1.9.2.1-signed-candidate">Windows 1.9.2.1 signed
-candidate</h1>
-<p><strong>Status: not publicly distributed.</strong> The signed Windows
-1.9.2.1 candidate passed its identified installed acceptance. No 1.9.2.1
-installer download is published. The current public Windows download
-remains <a
-href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.1.1">Townlight
-Windows 1.9.1.1</a>.</p>
-<p>The candidate MSI SHA-256 is
+<p><a id="windows-1.9.2.1-signed-candidate"></a></p>
+<h1 id="townlight-windows-1.9.2.1-signed-public-beta">Townlight Windows
+1.9.2.1 signed public beta</h1>
+<p>Windows 1.9.2.1 is the current signed public beta. The release adds
+revisioned council packets, shared Meetings and Records work between a
+city host and workstation, and unattended portal delivery for materials
+staff have explicitly approved.</p>
+<p><a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-x64-1.9.2.1.msi">Download
+the signed Windows x64 MSI</a> Â· <a
+href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.2.1">Release
+catalog</a> Â· <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/SHA256SUMS-Windows-1.9.2.1.txt">SHA-256
+checksums</a> Â· <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md">Acceptance
+and limits</a></p>
+<p>MSI SHA-256:
 <code>3242792ad6c825a5057d96c5e1d9d45fb5726ccbfba7ab24a2b428a54e63b0bf</code>.
-The signature and Microsoft timestamp were independently verified. The
-code is merged in <a
-href="https://github.com/townlight/townlight/tree/main">Suite main</a>
-through <a href="https://github.com/townlight/townlight/pull/339">PR
-#339</a>. See the <a
-href="https://github.com/townlight/townlight/blob/main/release/CANDIDATE-Windows-1.9.2.1.md">candidate
-acceptance summary</a> for exact identity, evidence and limits.</p>
-<h2 id="what-the-candidate-adds">What the candidate adds</h2>
-<p>The candidate adds shared Windows staff work across a city host and
+The corresponding-source archive is <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-1.9.2.1-Corresponding-Source.zip">available
+from the release</a>; its SHA-256 is
+<code>1b9cebd0fec34b06118f9b07cd85c4de3b5af69fba6ab9301cbf402ab67e0a88</code>.
+The desktop source commit is
+<code>1bc45be5a14aa969e53b87b1cef1f278dadc79a4</code>.</p>
+<p><a id="what-the-candidate-adds"></a></p>
+<h2 id="what-windows-1.9.2.1-adds">What Windows 1.9.2.1 adds</h2>
+<p>The release adds shared Windows staff work across a city host and
 workstation. The host owns the database, managed files, staff accounts
 and Station recording hardware. Workstations use the same signed
 installer and connect through a private, certificate-validated HTTPS
@@ -85,8 +94,10 @@ href="https://townlight.github.io/manuals/portal.html">portal guide</a>
 and the maintained <a
 href="https://github.com/townlight/townlight/blob/1bc45be5a14aa969e53b87b1cef1f278dadc79a4/docs/portal/guide.md">portal
 source guide at the signed commit</a>.</p>
-<h2 id="setup-and-technical-references">Setup and technical
-references</h2>
+<p><a id="for-the-candidate-implementation"></a>
+<a id="setup-and-technical-references"></a></p>
+<h2 id="source-pins-and-implementation">Source pins and
+implementation</h2>
 <p>Follow the <a
 href="https://github.com/townlight/townlight/blob/1bc45be5a14aa969e53b87b1cef1f278dadc79a4/docs/installer/windows-shared-staff.md">shared
 Windows staff guide at the signed commit</a> for host and workstation
@@ -94,7 +105,9 @@ configuration, roles, TLS, restart behavior and recovery. It covers the
 supported <code>/staff/v1/*</code> path and the environment settings. Do
 not expose the staff service or place its credentials on the public
 portal.</p>
-<p>For the candidate implementation, see the <a
+<p>The <a href="../reference/windows-1.9.2.1-source-pins.json">versioned
+source-pin record</a> lists the releaseâ€™s exact repository commits,
+component archive hashes and installer identity. The <a
 href="https://github.com/townlight/townlight/blob/1bc45be5a14aa969e53b87b1cef1f278dadc79a4/desktop/src-tauri/src/shared_staff.rs">native
 shared-staff client</a>, <a
 href="https://github.com/townlight/townlight/blob/1bc45be5a14aa969e53b87b1cef1f278dadc79a4/desktop/src-tauri/src/council_packet_client.rs">council
@@ -104,31 +117,34 @@ gateway</a>, <a
 href="https://github.com/townlight/townlight/blob/1bc45be5a14aa969e53b87b1cef1f278dadc79a4/desktop/runtime/python-services/townlight_runtime/council_packet.py">packet
 contract</a>, and <a
 href="https://github.com/townlight/townlight/blob/1bc45be5a14aa969e53b87b1cef1f278dadc79a4/desktop/runtime/python-services/townlight_runtime/portal_publication.py">portal
-publication contract</a>. Existing released API snapshots and source
-pins retain their historical identities.</p>
+publication contract</a> are pinned to the canonical source commit.</p>
 <h2 id="acceptance-scope">Acceptance scope</h2>
-<p>On the physical Windows host, the exact signed MSI was
-administratively extracted to verify the embedded executable and
-signatures. The MSI was installed in the isolated Windows Sandbox guest.
-Synthetic tests checked named-role access, shared packet readback,
-verified preview and approved downloads, exclusion of a restricted file
-from public PDF and HTML, stale-approval rejection, Station-to-Records
-file identity, queued publication after outage and restart, idempotent
-retry, correction and separate withdrawal. Cold recovery used a fresh
-Townlight profile at the same absolute paths under the original Windows
-host account; it did not exercise a physically separate replacement
-computer.</p>
-<p>This evidence covers separate Windows environments on one physical
-machine; it does not establish a two-physical-PC installation or
-acceptance in a live city network or portal. The portal and staff
-workflow checks used synthetic data. City IT must configure its own
-host, trusted TLS certificate, staff accounts, backups and separately
-deployed portal before operational use.</p>
-<p>The signed candidate is not an available public download. Use the <a
+<p>The exact signed MSI was administratively extracted and run on a
+physical Windows host with an isolated profile, then installed in a
+separate clean Windows Sandbox guest on the same machine. The host and
+guest verified the MSI and contained executable signatures. The guest
+used the existing named staff roles over private HTTPS. Synthetic checks
+covered council packet revision approvals, preview and approved
+downloads, exclusion of restricted material from public PDF and HTML,
+Station-to-Records file identity, stale-approval rejection, account
+revocation, queued publication after an outage and host restart,
+idempotent retry, packet correction, independent withdrawal, and cold
+recovery into a fresh profile at the same paths on the original host and
+account.</p>
+<p>Acceptance used synthetic data and a test portal. It does not
+establish deployment on two physical PCs, recovery onto a different
+physical computer or Windows account, testing against a production
+portal or city network, direct MSI upgrade from an earlier version, or
+new hardware and broadcast acceptance. The public council packet PDF was
+printable and searchable; PDF/UA tagging and a full assistive-technology
+review of that packet PDF were not verified. See the <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md">release
+acceptance summary</a> for exact results and limits.</p>
+<p>The earlier <a
 href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.1.1">Windows
-1.9.1.1 release</a> for the current public installer and its
+1.9.1.1 release</a> remains available with its own checksums and
 version-specific acceptance evidence.</p>
 </article></main>
-<aside class="release-note" aria-label="Current release"><p><strong>Current release:</strong> Townlight for Windows 1.9.1.1, a signed public beta. <a href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.1.1">Downloads</a> · <a href="../versions.html">Versions and limits</a></p></aside>
-<footer>Townlight · Candidate evidence applies only to its identified artifacts.<span><a href="../announcement.html">Announcement</a> · <a href="../support.html">Support</a></span></footer>
+<aside class="release-note" aria-label="Current release"><p><strong>Current release:</strong> Townlight for Windows 1.9.2.1. The acceptance used synthetic data on a physical Windows host and clean Sandbox guest on the same machine; direct upgrades were not tested. <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-x64-1.9.2.1.msi">Download MSI</a> · <a href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.2.1">Release catalog</a> · <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md">Acceptance</a></p></aside>
+<footer>Townlight · Acceptance evidence applies only to its identified artifacts.<span><a href="../announcement.html">Announcement</a> · <a href="../support.html">Support</a></span></footer>
 </body></html>

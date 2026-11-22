@@ -5,13 +5,13 @@
   </picture>
 </p>
 
-[Download Windows beta 1.9.1.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.1.1/Townlight-Windows-x64-1.9.1.1.msi) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
+[Download signed Windows beta 1.9.2.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-x64-1.9.2.1.msi) · [Release catalog](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.2.1) · [SHA-256 checksums](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/SHA256SUMS-Windows-1.9.2.1.txt) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
 
-Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
+Windows 1.9.2.1 is the current signed public beta. Its [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md) covers revisioned council packets, shared work between Windows environments, and delivery of explicitly approved material to a separately configured portal. Direct upgrades from earlier releases were not tested.
 
-## Windows 1.9.2.1 signed candidate · not distributed
+## Windows 1.9.2.1 release
 
-The signed Windows 1.9.2.1 candidate passed its identified installed acceptance for shared council packets, host-and-workstation use and explicitly approved portal delivery. It has not been publicly distributed. The Windows 1.9.1.1 MSI remains the current public download. Read the [candidate guide](https://townlight.github.io/manuals/windows-1.9.2.1-candidate.html) and [candidate acceptance summary](https://github.com/townlight/townlight/blob/main/release/CANDIDATE-Windows-1.9.2.1.md). The guide links the exact Suite changes in [main](https://github.com/townlight/townlight/tree/main) and [PR #339](https://github.com/townlight/townlight/pull/339).
+The accepted MSI was tested on a physical Windows host and a clean Windows Sandbox guest on the same computer using synthetic data and a test portal. This does not establish direct-upgrade, two-physical-PC, replacement-computer or live city-network acceptance. Read the [release guide](https://townlight.github.io/manuals/windows-1.9.2.1-candidate.html), [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md) and [corresponding-source archive](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-1.9.2.1-Corresponding-Source.zip).
 
 # Townlight — Townlight Beta 1
 
@@ -21,9 +21,9 @@ Windows 1.8.1.1 adds shared meeting imports for 31 source families, with 34 supp
 
 [All 31 sources, formats and handoffs](https://townlight.github.io/manuals/meeting-imports.html) · [Installed acceptance](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.8.1.1/ACCEPTANCE-Windows-1.8.1.1.md).
 
-Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
+Windows 1.9.1.1 was the previous signed public beta. Its release and version-specific acceptance remain available with the original artifact identities.
 
-Windows 1.9.1.1 contains Station 0.4.4, Records 1.8.0.dev4, Townlight Runtime 0.3.3 and Meetings 1.0.6. Its current component sources and installed evidence are identified in the maintenance acceptance summary.
+Windows 1.9.1.1 included Townlight Runtime 0.3.3; Windows 1.9.2.1 includes Runtime 0.3.4. The 1.9.2.1 release's exact component sources and archive hashes are listed in `reference/windows-1.9.2.1-source-pins.json`.
 
 
 Kept municipal products: Core, Records, Meetings, Code, Access, Notice, Zoning,
@@ -78,15 +78,15 @@ console errors and desktop/mobile overflow. Preserve the accepted companion ZIP
 and its hash; publication banners describe the distribution change separately.
 Publishing this site does not install an application or provision a city portal.
 
-The Windows 1.9.2.1 signed-candidate guide is maintained in
+The Windows 1.9.2.1 release guide is maintained in
 `manuals/windows-1.9.2.1-candidate.md`. Its HTML, PDF and Word editions are
 prepared from that source with `python -B scripts/build-candidate-guide.py`.
-The guide records a candidate that has not been publicly distributed; the
-current public Windows download remains 1.9.1.1.
+The file names keep the existing candidate-guide URLs so earlier links continue
+to resolve; the editions describe the published 1.9.2.1 release.
 
 The maintained Suite, Meetings, Records and Station manuals are sourced from
 their owning repositories' `USER-MANUAL.md` files; the portal guide is sourced
-from the Suite repository's `docs/portal/guide.md`. Insert their candidate
+from the Suite repository's `docs/portal/guide.md`. Insert their release
 notes with `scripts/export-owner-manuals.py`, passing `--suite`, `--meetings`,
 `--records`, `--station` and `--portal` with the respective file paths. The
 exporter preserves the existing site HTML, section anchors and Word artwork,
@@ -100,7 +100,7 @@ Staff Workflows release files keep their original identities and contents.
 
 Edit the product copy in `landing/content.py` and the shared layout in
 `landing/build.py`. The renderer uses the published source pins in
-`reference/windows-1.9.1.1-source-pins.json`. The page style extends the
+`reference/windows-1.9.2.1-source-pins.json`. The page style extends the
 Open Hall palette and the site's existing tokens in `assets/site.css`.
 
 From the site root:
@@ -116,10 +116,10 @@ one page with `python -B landing/build.py records`. Commit source and generated
 HTML together. Merge to `main` to publish through the existing GitHub Pages
 deployment from the repository root.
 
-## Windows 1.9.1.1 Station recorder release
+## Previous release · Windows 1.9.1.1 Station recorder
 
 Windows 1.9.1.1 improves the clerk workflows for Records, Meetings, and Code, adds Open Hall icons, and fixes the ten-second Station preview.
 
-Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
+Windows 1.9.1.1 remains available as a historical release. Its acceptance and artifact identities remain scoped to that version.
 
 [Acceptance and limits](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.1.1/ACCEPTANCE-Windows-1.9.1.1.md).
