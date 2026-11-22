@@ -16,6 +16,8 @@ MSI = f"{ASSETS}/Townlight-Windows-x64-{VERSION}.msi"
 ACCEPTANCE = f"{ASSETS}/ACCEPTANCE-Windows-{VERSION}.md"
 PINS = json.loads((SITE / f"reference/windows-{VERSION}-source-pins.json").read_text(encoding="utf-8"))
 PUBLIC_SITE = "https://townlight.github.io"
+CANDIDATE_GUIDE = "/manuals/windows-1.9.2.1-candidate.html"
+CANDIDATE_REPORT = "https://github.com/townlight/townlight/blob/main/release/CANDIDATE-Windows-1.9.2.1.md"
 
 
 def link(label, url, css_class=None):
@@ -132,6 +134,20 @@ def capabilities(features, heading, eyebrow):
   </section>"""
 
 
+def candidate_notice(slug, summary):
+    if not summary:
+        return ""
+    heading = f"candidate-{slug}"
+    return f"""  <section class="landing-section landing-band" aria-labelledby="{heading}">
+    <div class="landing-wrap">
+      <div class="eyebrow">Signed candidate · not distributed</div>
+      <h2 id="{heading}">Windows 1.9.2.1 candidate</h2>
+      <p class="section-intro">{escape(summary)} The signed candidate passed its identified acceptance, but it has not been publicly distributed. Windows downloads remain at 1.9.1.1.</p>
+      {links([("Candidate guide", CANDIDATE_GUIDE), ("Candidate acceptance and limits", CANDIDATE_REPORT), ("Current public release", "/versions.html")])}
+    </div>
+  </section>"""
+
+
 def product_page(slug):
     p = PRODUCTS[slug]
     guide = p.get("guide", f"/manuals/{slug}.html")
@@ -145,6 +161,8 @@ def product_page(slug):
         ("Read the operating guide", guide), ("View Windows release", RELEASE),
         p["workflow"], p["steps"], f"{status} · Townlight {VERSION} · AGPL-3.0-only",
     )
+    candidate = candidate_notice(slug, p.get("candidate"))
+    candidate_markup = f"\n{candidate}" if candidate else ""
     diagram = ""
     if p.get("diagram"):
         diagram = f"""
@@ -153,7 +171,7 @@ def product_page(slug):
         <img class="landing-diagram" loading="lazy" src="/assets/{p['diagram']}-architecture.svg"
           alt="{escape(product)} architecture. The operating guide describes the services and workflow in text.">
       </details>"""
-    body = f"""{heading}
+    body = f"""{heading}{candidate_markup}
 {capabilities(p["features"], f"What {p['name']} supports", "Inside the workflow")}
   <section class="landing-section landing-band" aria-labelledby="getting-started">
     <div class="landing-wrap landing-split">
@@ -269,12 +287,17 @@ def home_page():
         "Signed Windows x64 installer · AGPL-3.0-only · Public beta",
         ("Start a records request", "/manuals/records.html#daily-workflow"),
     )
+    candidate = candidate_notice(
+        "home",
+        "The signed Windows 1.9.2.1 candidate adds shared council packet revisions, host-and-workstation operation, and approved unattended portal delivery.",
+    )
     features = [
         ("Keep original evidence", "Use source links and original files to make the basis for a decision available for review."),
         ("Give staff the decision", "Use named staff actions, review steps and separate release copies to document what was approved."),
         ("Connect the record", "Carry meeting, ordinance and media context into the next workflow without losing its source."),
     ]
     body = f"""{heading}
+{candidate}
   <section class="landing-section" id="products" aria-labelledby="product-title">
     <div class="landing-wrap">
       <div class="eyebrow">Product directory</div>
@@ -306,8 +329,8 @@ def home_page():
     <div class="landing-wrap">
       <div class="eyebrow">Separate deployment</div>
       <h2 id="portal">A resident-facing portal.</h2>
-      <p class="section-intro">The portal beta provides a city-facing website for published material. Follow its own deployment guide and release instructions.</p>
-      {links([("Portal guide", "/manuals/portal.html"), ("Portal release", "https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal")])}
+      <p class="section-intro">The signed Windows 1.9.2.1 candidate can send explicitly approved packets and eligible Records releases to a separately deployed portal. The portal has its own deployment guide and release; Windows downloads remain at 1.9.1.1.</p>
+      {links([("Windows 1.9.2.1 candidate guide", CANDIDATE_GUIDE), ("Portal guide", "/manuals/portal.html"), ("Portal release", "https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal")])}
     </div>
   </section>"""
     return page("Townlight | Municipal software cities can own", intro, "/", guide, repository, body)
