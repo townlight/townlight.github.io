@@ -85,11 +85,13 @@ The guide records a candidate that has not been publicly distributed; the
 current public Windows download remains 1.9.1.1.
 
 The maintained Suite, Meetings, Records and Station manuals are sourced from
-their owning repositories' `USER-MANUAL.md` files. Export their current HTML,
-PDF and Word copies with `scripts/export-owner-manuals.py`, passing the
-`--suite`, `--meetings`, `--records` and `--station` options with the respective
-file paths. This updates only those current editions; versioned Windows Staff
-Workflows release files keep their original identities and contents.
+their owning repositories' `USER-MANUAL.md` files; the portal guide is sourced
+from the Suite repository's `docs/portal/guide.md`. Insert their candidate
+notes with `scripts/export-owner-manuals.py`, passing `--suite`, `--meetings`,
+`--records`, `--station` and `--portal` with the respective file paths. The
+exporter preserves the existing site HTML, section anchors and Word artwork,
+then regenerates tagged PDFs from the updated Word editions. Versioned Windows
+Staff Workflows release files keep their original identities and contents.
 
 
 [Open Hall brand package and usage guide](https://townlight.github.io/brand/).
