@@ -9,6 +9,10 @@
 
 Windows 1.9.1.1 is a signed public beta. See the acceptance summary for the verified workflows and artifact identities. Set up Station during Townlight first run. Read the acceptance summary before upgrading.
 
+## Windows 1.9.2.1 signed candidate · not distributed
+
+The signed Windows 1.9.2.1 candidate passed its identified installed acceptance for shared council packets, host-and-workstation use and explicitly approved portal delivery. It has not been publicly distributed. The Windows 1.9.1.1 MSI remains the current public download. Read the [candidate guide](https://townlight.github.io/manuals/windows-1.9.2.1-candidate.html) and [candidate acceptance summary](https://github.com/townlight/townlight/blob/main/release/CANDIDATE-Windows-1.9.2.1.md). The guide links the exact Suite changes in [main](https://github.com/townlight/townlight/tree/main) and [PR #339](https://github.com/townlight/townlight/pull/339).
+
 # Townlight — Townlight Beta 1
 
 ## Shared meeting imports · Windows 1.8.1.1
@@ -73,6 +77,19 @@ first keyboard skip link, visible focus, reduced-motion behavior, image loading,
 console errors and desktop/mobile overflow. Preserve the accepted companion ZIP
 and its hash; publication banners describe the distribution change separately.
 Publishing this site does not install an application or provision a city portal.
+
+The Windows 1.9.2.1 signed-candidate guide is maintained in
+`manuals/windows-1.9.2.1-candidate.md`. Its HTML, PDF and Word editions are
+prepared from that source with `python -B scripts/build-candidate-guide.py`.
+The guide records a candidate that has not been publicly distributed; the
+current public Windows download remains 1.9.1.1.
+
+The maintained Suite, Meetings, Records and Station manuals are sourced from
+their owning repositories' `USER-MANUAL.md` files. Export their current HTML,
+PDF and Word copies with `scripts/export-owner-manuals.py`, passing the
+`--suite`, `--meetings`, `--records` and `--station` options with the respective
+file paths. This updates only those current editions; versioned Windows Staff
+Workflows release files keep their original identities and contents.
 
 
 [Open Hall brand package and usage guide](https://townlight.github.io/brand/).
