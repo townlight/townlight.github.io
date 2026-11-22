@@ -1,7 +1,7 @@
-"""Insert maintained candidate notes into existing owner manual editions.
+"""Insert maintained 1.9.2.1 release notes into existing owner manual editions.
 
 This keeps the accepted site layout, section anchors, Word artwork and links.
-Only the scoped candidate notes and the PDFs rendered from the updated Word
+Only the scoped release notes and the PDFs rendered from the updated Word
 files are changed.
 """
 from __future__ import annotations
@@ -23,7 +23,7 @@ PRODUCTS = {
     "meetings": ("Townlight Meetings Manual", "Townlight-Meetings-Manual-Beta-1",
                  "The signed Suite 1.9.2.1 candidate lets named clerk staff", 1),
     "records": ("Townlight Records Manual", "Townlight-Records-Manual-Beta-1",
-                "The signed Suite 1.9.2.1 candidate lets named Records Staff", 2),
+                "Named Records staff can work from a Windows workstation through the city host", 2),
     "station": ("Townlight Station Manual", "Townlight-Station-Manual-Beta-1",
                 "In the signed Suite 1.9.2.1 candidate, Station capture", 1),
 }
@@ -93,8 +93,8 @@ def add_html_note(path: Path, slug: str, paragraphs: list[str], pandoc: str) -> 
     html_body = markdown_to_html(pandoc, "\n\n".join(paragraphs))
     note = (
         f"<!-- {marker}:begin -->{newline}"
-        f'<aside id="{marker}" class="release-note" aria-label="Windows 1.9.2.1 candidate status">'
-        f'<p><strong>Windows 1.9.2.1 signed candidate · not distributed.</strong></p>'
+        f'<aside id="{marker}" class="release-note" aria-label="Windows 1.9.2.1 release details">'
+        f'<p><strong>Windows 1.9.2.1 signed public beta.</strong></p>'
         f"{html_body}</aside>{newline}<!-- {marker}:end -->"
     )
     region = re.compile(rf"<!-- {re.escape(marker)}:begin -->.*?<!-- {re.escape(marker)}:end -->", re.S)
@@ -113,7 +113,7 @@ def add_portal_html_note(path: Path, paragraphs: list[str], pandoc: str) -> None
     text = raw.decode("utf-8")
     newline = "\r\n" if b"\r\n" in raw else "\n"
     marker = "candidate-note-portal"
-    heading = "## Windows shared-host candidate publication"
+    heading = '<h2 id="windows-shared-host-candidate-publication">Windows shared-host release publication · 1.9.2.1</h2>'
     body = markdown_to_html(pandoc, heading + "\n\n" + "\n\n".join(paragraphs))
     note = f"<!-- {marker}:begin -->{newline}{body}{newline}<!-- {marker}:end -->"
     region = re.compile(rf"<!-- {re.escape(marker)}:begin -->.*?<!-- {re.escape(marker)}:end -->", re.S)
@@ -127,7 +127,7 @@ def add_portal_html_note(path: Path, paragraphs: list[str], pandoc: str) -> None
     toc_anchor = '<li><a href="#for-staff-prepare-and-publish"'
     toc_item = (
         '<li data-candidate-note="portal"><a href="#windows-shared-host-candidate-publication" '
-        'id="toc-windows-shared-host-candidate-publication">Windows shared-host candidate publication</a></li>'
+        'id="toc-windows-shared-host-candidate-publication">Windows shared-host release publication · 1.9.2.1</a></li>'
     )
     text = re.sub(r'<li data-candidate-note="portal">.*?</li>', "", text, count=1, flags=re.S)
     if toc_anchor not in text:
@@ -247,7 +247,7 @@ def patch_docx(path: Path, slug: str, title: str, paragraphs: list[str]) -> dict
     existing_ids = [int(v) for v in re.findall(r'<w:bookmarkStart\b[^>]*\bw:id="(\d+)"', document)]
     bookmark_id = max(existing_ids, default=0) + 1
     paragraphs_xml: list[str] = []
-    label = "Windows 1.9.2.1 signed candidate · not publicly distributed"
+    label = "Windows 1.9.2.1 signed public beta"
     label_xml, rels = note_paragraph(label, rels, bold=True)
     paragraphs_xml.append(label_xml)
     for markdown in paragraphs:
@@ -311,18 +311,26 @@ def render_tagged_pdfs(docx_paths: list[Path]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--suite", type=Path, required=True, help="Owner Suite USER-MANUAL.md")
-    parser.add_argument("--meetings", type=Path, required=True, help="Owner Meetings USER-MANUAL.md")
-    parser.add_argument("--records", type=Path, required=True, help="Owner Records USER-MANUAL.md")
-    parser.add_argument("--station", type=Path, required=True, help="Owner Station beta-1/USER-MANUAL.md")
-    parser.add_argument("--portal", type=Path, required=True, help="Owner Portal docs/portal/guide.md")
+    parser.add_argument("--suite", type=Path, help="Owner Suite USER-MANUAL.md")
+    parser.add_argument("--meetings", type=Path, help="Owner Meetings USER-MANUAL.md")
+    parser.add_argument("--records", type=Path, help="Owner Records USER-MANUAL.md")
+    parser.add_argument("--station", type=Path, help="Owner Station beta-1/USER-MANUAL.md")
+    parser.add_argument("--portal", type=Path, help="Owner Portal docs/portal/guide.md")
+    parser.add_argument("--only", nargs="+", choices=[*PRODUCTS, "portal"],
+                        help="Export only named manual(s); default: all five")
     args = parser.parse_args()
+    selected = args.only or [*PRODUCTS, "portal"]
+    missing = [slug for slug in selected if getattr(args, slug) is None]
+    if missing:
+        parser.error("Missing source path for: " + ", ".join(missing))
     pandoc = shutil.which("pandoc")
     if not pandoc:
-        raise RuntimeError("Pandoc is required to render the candidate HTML notes")
+        raise RuntimeError("Pandoc is required to render the release HTML notes")
 
     paths: list[Path] = []
     for slug, (title, stem, start, count) in PRODUCTS.items():
+        if slug not in selected:
+            continue
         source = getattr(args, slug).resolve()
         if not source.is_file():
             raise RuntimeError(f"Owner source is missing: {source}")
@@ -334,15 +342,16 @@ def main() -> None:
         print(f"Updated manuals/{slug}.html and docx/{stem}.docx; preserved {len(media_hashes)} media file(s)")
         paths.append(docx_path)
 
-    portal_source = args.portal.resolve()
-    if not portal_source.is_file():
-        raise RuntimeError(f"Portal guide source is missing: {portal_source}")
-    paragraphs = portal_note(portal_source.read_text(encoding="utf-8"))
-    add_portal_html_note(ROOT / "manuals/portal.html", paragraphs, pandoc)
-    portal_docx = ROOT / "docx" / f"{PORTAL[1]}.docx"
-    media_hashes = patch_docx(portal_docx, "portal", PORTAL[0], paragraphs)
-    print(f"Updated manuals/portal.html and docx/{PORTAL[1]}.docx; preserved {len(media_hashes)} media file(s)")
-    paths.append(portal_docx)
+    if "portal" in selected:
+        portal_source = args.portal.resolve()
+        if not portal_source.is_file():
+            raise RuntimeError(f"Portal guide source is missing: {portal_source}")
+        paragraphs = portal_note(portal_source.read_text(encoding="utf-8"))
+        add_portal_html_note(ROOT / "manuals/portal.html", paragraphs, pandoc)
+        portal_docx = ROOT / "docx" / f"{PORTAL[1]}.docx"
+        media_hashes = patch_docx(portal_docx, "portal", PORTAL[0], paragraphs)
+        print(f"Updated manuals/portal.html and docx/{PORTAL[1]}.docx; preserved {len(media_hashes)} media file(s)")
+        paths.append(portal_docx)
     render_tagged_pdfs(paths)
 
 
