@@ -223,6 +223,87 @@ PRODUCTS = {
         "short": "Recording processing, media provenance and Records handoff.",
         "status": "Integrated setup", "diagram": "station",
     },
+    'data': {'name': 'Data',
+     'repo': 'data',
+     'category': 'Data and analytics',
+     'headline': 'City data work with a clear lineage.',
+     'intro': 'A public beta workspace for cleaning, joining and publishing municipal data with '
+              'reviewable transformations.',
+     'features': [('Source inventory',
+                   'Record source files, owners and refresh expectations before a dataset is used.'),
+                  ('Reviewable transforms',
+                   'Keep transformation steps and validation checks with the published dataset.'),
+                  ('Synthetic-first evaluation',
+                   'Exercise the workflow with synthetic data before connecting city sources.')],
+     'limits': 'It does not replace a data warehouse, approve open-data publication, or ingest '
+               'confidential data. City data owners review every release.',
+     'setup': 'Begin with a synthetic extract, confirm column meanings and run the validation '
+              'checklist in the operating guide.',
+     'workflow': 'From source extract to reviewed dataset',
+     'steps': [('Inventory sources',
+                'List source files, owners and known limits before transformation.'),
+               ('Transform with review',
+                'Keep each cleaning and join step with the reviewer who accepted it.'),
+               ('Validate and publish',
+                'Run the validation checklist and record the approved dataset release.')],
+     'guide': 'https://github.com/townlight/data/blob/main/USER-MANUAL.md',
+     'api': 'https://github.com/townlight/data/tree/main/docs',
+     'diagram': 'data',
+     'status': 'Windows public beta',
+     'release': 'Windows 1.9.3.1 documents the approved clean hosted Windows synthetic Data workflow. '
+                'See the release acceptance for exact evidence and limits.'},
+    'budget': {'name': 'Budget',
+     'repo': 'budget',
+     'category': 'Finance',
+     'headline': 'Budget review that keeps its supporting record.',
+     'intro': 'A public beta workspace for department requests, scenario review and approved budget '
+              'records with named staff review.',
+     'features': [('Request collection',
+                   'Gather department requests with the assumptions and source worksheets attached.'),
+                  ('Scenario review',
+                   'Compare proposed and current figures with reviewer notes kept beside the numbers.'),
+                  ('Approved record',
+                   'Link the approved budget record to its supporting worksheets and review trail.')],
+     'limits': 'It does not replace the finance system of record, adopt a budget, or make '
+               'appropriation decisions. Finance staff approve every record.',
+     'setup': 'Start with synthetic department requests, enter the current baseline, and follow the '
+              'review checklist in the operating guide.',
+     'workflow': 'From department request to approved budget record',
+     'steps': [('Collect requests', 'Gather department requests with supporting assumptions.'),
+               ('Review scenarios', 'Compare proposed and current figures with named reviewer notes.'),
+               ('Approve the record', 'Link the approved budget record to its source worksheets.')],
+     'guide': 'https://github.com/townlight/budget/blob/main/USER-MANUAL.md',
+     'api': 'https://github.com/townlight/budget/tree/main/docs',
+     'diagram': 'budget',
+     'status': 'Windows public beta',
+     'release': 'Windows 1.9.3.1 documents the approved clean hosted Windows synthetic Budget '
+                'workflow. See the release acceptance for exact evidence and limits.'},
+    'grants': {'name': 'Grants',
+     'repo': 'grants',
+     'category': 'Finance',
+     'headline': 'Grant files that survive review.',
+     'intro': 'A public beta workspace for grant opportunity triage, application outlines and '
+              'compliance calendars with staff review.',
+     'features': [('Opportunity triage',
+                   'Match a sample opportunity against eligibility factors for staff review.'),
+                  ('Application outline',
+                   'Draft an application outline and attach the source material staff approved.'),
+                  ('Compliance calendar',
+                   'Build a compliance calendar and an audit-ready export checklist.')],
+     'limits': 'It does not determine official eligibility, submit applications, accept awards, '
+               'provide legal advice, or replace the grant system of record.',
+     'setup': 'Use a synthetic opportunity, record eligibility factors and walk through the '
+              'application and compliance review in the operating guide.',
+     'workflow': 'From opportunity triage to compliance review',
+     'steps': [('Triage opportunity', 'Match a sample opportunity against eligibility factors.'),
+               ('Outline application', 'Draft an application outline for staff review.'),
+               ('Track compliance', 'Build a compliance calendar and export checklist.')],
+     'guide': 'https://github.com/townlight/grants/blob/main/USER-MANUAL.md',
+     'api': 'https://github.com/townlight/grants/tree/main/docs',
+     'diagram': 'grants',
+     'status': 'Windows public beta',
+     'release': 'Windows 1.9.3.1 documents the approved clean hosted Windows synthetic Grants '
+                'workflow. See the release acceptance for exact evidence and limits.'},
 }
 
 STAFF_GUIDE = "/manuals/windows-staff-workflows.html"
@@ -296,6 +377,7 @@ GROUPS = [
     ("Publication and media", ("access", "station")),
     ("City administration", ("boards", "contracts", "procurement")),
     ("Platform", ("core",)),
+    ('Data, Budget and Grants', ['data', 'budget', 'grants']),
 ]
 
 # Parked foundations. These repositories are outside the released Windows suite.
@@ -445,3 +527,52 @@ PARKED = {
         "limits": "It does not process payments, approve arrangements, modify accounts, decide shutoffs or reconnects, dispatch crews, call live language models, or write back to billing systems.",
     },
 }
+
+# Authoritative product overrides
+_PRODUCT_OVERRIDES = {
+    "data": {
+        "short": "Signed Contracts datasets reviewed before release.",
+        "headline": "City data work with a clear lineage.",
+        "intro": "Data drafts the signed Contracts dataset, rejects private fields, reviews the draft, then sends approved CSV, JSON and a data dictionary. Corrections and withdrawals are recorded.",
+        "workflow": "From signed contract to reviewed data release",
+        "steps": [("Draft from Contracts", "Draft the signed Contracts dataset and reject private fields."), ("Review the draft", "Review the dataset and approve its CSV, JSON and data dictionary release."), ("Record correction or withdrawal", "Keep correction and withdrawal records with the released dataset.")],
+        "features": [("Contracts-backed intake", "Start with the signed Contracts dataset and reject private fields."), ("Reviewed release", "Send approved CSV, JSON and data dictionary only after review."), ("Correction and withdrawal", "Record corrections and withdrawals against the released dataset.")],
+        "setup": "Open the signed Contracts dataset, confirm the private-field rejection list, and follow the review checklist in the user manual.",
+        "limits": "Data does not replace the system of record or accept private fields. Releases require review; corrections and withdrawals are recorded.",
+        "release": "Windows 1.9.3.1 documents the approved hosted Windows Data workflow. See the release acceptance for exact evidence and limits.",
+        "diagram": None,
+        "guide": "https://github.com/townlight/data/blob/main/USER-MANUAL.md",
+        "api": "https://github.com/townlight/data/tree/main/docs",
+    },
+    "budget": {
+        "short": "Budget review with a sealed hearing record.",
+        "headline": "Budget review that keeps its supporting record.",
+        "intro": "Budget imports figures, finance reviews them, seals the public hearing packet and records vote and adoption. Approved data goes through Data.",
+        "workflow": "From imported figures to adopted budget",
+        "steps": [("Import figures", "Import departmental figures for finance review."), ("Seal the public hearing packet", "Finance reviews the packet, seals it, and records the vote and adoption."), ("Send approved data through Data", "Pass approved budget data through Data for reviewed release.")],
+        "features": [("Figure import", "Import figures with their source worksheets."), ("Finance review", "Finance reviews and seals the public hearing packet."), ("Vote and adoption record", "Record the vote and adoption, then send approved data through Data.")],
+        "setup": "Import figures, have finance review the packet, and follow the review checklist in the user manual.",
+        "limits": "Budget does not replace the finance system of record or make appropriation decisions. Finance staff review and seal every record.",
+        "release": "Windows 1.9.3.1 documents the approved hosted Windows Budget workflow. See the release acceptance for exact evidence and limits.",
+        "diagram": None,
+        "guide": "https://github.com/townlight/budget/blob/main/USER-MANUAL.md",
+        "api": "https://github.com/townlight/budget/tree/main/docs",
+    },
+    "grants": {
+        "short": "Award records linked to budget, contract and Records.",
+        "headline": "Grant files that survive review.",
+        "intro": "Grants uses existing staff roles to link the adopted budget, signed contract and Records, assign and review work, record awards and reports, then close with a SHA-256 archive. It does not submit applications or make payments.",
+        "workflow": "From assignment to SHA-256 archive",
+        "steps": [("Link records", "Link the adopted budget, signed contract and Records."), ("Assign, review and record", "Assign work with existing staff roles, review it, and record the award and reports."), ("Close and archive", "Close the grant file and produce a SHA-256 archive.")],
+        "features": [("Existing staff roles", "Use existing staff roles to assign and review grant work."), ("Linked records", "Link the adopted budget, signed contract and Records."), ("Award, report and archive", "Record the award and reports, close the file, and produce a SHA-256 archive.")],
+        "setup": "Use an existing grant file, link the adopted budget, signed contract and Records, and follow the review checklist in the user manual.",
+        "limits": "Grants does not submit applications, accept awards, or make payments. Staff review and record every award, report and closeout.",
+        "release": "Windows 1.9.3.1 documents the approved hosted Windows Grants workflow. See the release acceptance for exact evidence and limits.",
+        "diagram": None,
+        "guide": "https://github.com/townlight/grants/blob/main/USER-MANUAL.md",
+        "api": "https://github.com/townlight/grants/tree/main/docs",
+    },
+}
+for _slug, _overrides in _PRODUCT_OVERRIDES.items():
+    PRODUCTS[_slug].update(_overrides)
+PARKED = {slug: p for slug, p in PARKED.items() if slug not in PRODUCTS}
