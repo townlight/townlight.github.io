@@ -5,11 +5,11 @@
   </picture>
 </p>
 
-[Download signed Windows beta 1.9.2.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-x64-1.9.2.1.msi) · [Release catalog](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.2.1) · [SHA-256 checksums](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/SHA256SUMS-Windows-1.9.2.1.txt) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
+[Download Windows beta 1.9.3.1](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.1/Townlight-Windows-x64-1.9.3.1.msi) · [Release catalog](https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.3.1) · [SHA-256 checksums](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.1/SHA256SUMS-Windows-1.9.3.1.txt) · [Public announcement](https://townlight.github.io/announcement.html) · [Support and feedback](https://townlight.github.io/support.html)
 
-Windows 1.9.2.1 is the current signed public beta. Its [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md) covers revisioned council packets, shared work between Windows environments, and delivery of explicitly approved material to a separately configured portal. Direct upgrades from earlier releases were not tested.
+Windows 1.9.3.1 is the current public beta. The [GitHub release acceptance](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.1/ACCEPTANCE-Windows-1.9.3.1.md) defines the functional scope and limits for 1.9.3.1. This release adds approved Data, Budget and Grants workflows; acceptance does not claim all modules were retested. The previous [Windows 1.9.2.1 acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md) remains historical evidence for that release.
 
-## Windows 1.9.2.1 release
+## Previous Windows 1.9.2.1 release
 
 The accepted MSI was tested on a physical Windows host and a clean Windows Sandbox guest on the same computer using synthetic data and a test portal. This does not establish direct-upgrade, two-physical-PC, replacement-computer or live city-network acceptance. Read the [release guide](https://townlight.github.io/manuals/windows-1.9.2.1-candidate.html), [acceptance summary](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md) and [corresponding-source archive](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/Townlight-Windows-1.9.2.1-Corresponding-Source.zip).
 

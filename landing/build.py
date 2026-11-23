@@ -8,7 +8,7 @@ from pathlib import Path
 from content import GROUPS, PARKED, PRODUCTS
 
 SITE = Path(__file__).resolve().parent.parent
-VERSION = "1.9.2.1"
+VERSION = "1.9.3.1"
 TAG = f"townlight-windows-v{VERSION}"
 RELEASE = f"https://github.com/townlight/townlight/releases/tag/{TAG}"
 ASSETS = f"https://github.com/townlight/townlight/releases/download/{TAG}"
@@ -17,7 +17,7 @@ ACCEPTANCE = f"{ASSETS}/ACCEPTANCE-Windows-{VERSION}.md"
 CHECKSUMS = f"{ASSETS}/SHA256SUMS-Windows-{VERSION}.txt"
 PINS = json.loads((SITE / f"reference/windows-{VERSION}-source-pins.json").read_text(encoding="utf-8"))
 PUBLIC_SITE = "https://townlight.github.io"
-RELEASE_GUIDE = "/manuals/windows-1.9.2.1-candidate.html"
+RELEASE_GUIDE = ACCEPTANCE
 
 
 def link(label, url, css_class=None):
@@ -41,7 +41,7 @@ def page(title, description, route, guide, repository, main, nav=None):
     release_notice = "" if any(route == f"/products/{slug}/" for slug in PARKED) else (
         f'<aside class="release-note" aria-label="Current release"><p><strong>Current release:</strong> '
         f'Townlight for Windows {VERSION}, a signed public beta. Shared staff and portal delivery require explicit setup. '
-        f'Acceptance used synthetic data on a physical Windows host and clean Sandbox guest on the same computer; direct upgrades were not tested. '
+        f'The new Data, Budget and Grants workflows were exercised with synthetic data on clean hosted Windows. '
         f'{link("Download MSI", MSI)} · {link("Release catalog", RELEASE)} · {link("SHA-256 checksums", CHECKSUMS)} · '
         f'{link("Acceptance and limits", ACCEPTANCE)} · {link("Versions", "/versions.html")}</p></aside>\n'
     )
@@ -143,8 +143,8 @@ def release_notice(slug, summary):
     <div class="landing-wrap">
       <div class="eyebrow">Signed public beta · Windows {VERSION}</div>
       <h2 id="{heading}">Windows {VERSION}</h2>
-      <p class="section-intro">{escape(summary)} See the release acceptance for tested workflows and limits. Direct upgrades from earlier Windows releases were not tested.</p>
-      {links([("Windows 1.9.2.1 release guide", RELEASE_GUIDE), ("Release, source and checksums", RELEASE), ("Acceptance and limits", ACCEPTANCE)])}
+      <p class="section-intro">{escape(summary)} See the release acceptance for tested workflows and limits.</p>
+      {links([(f"Windows {VERSION} release guide", RELEASE_GUIDE), ("Release, source and checksums", RELEASE), ("Acceptance and limits", ACCEPTANCE)])}
     </div>
   </section>"""
 
@@ -290,7 +290,7 @@ def home_page():
     )
     release = release_notice(
         "home",
-        "Windows 1.9.2.1 adds revisioned council packets, shared Meetings and Records work from another Windows environment, and unattended delivery of explicitly approved materials to a separately deployed resident portal.",
+        "Windows 1.9.3.1 is the approved public beta for the clean hosted Windows synthetic Data, Budget and Grants workflow. Confirmation details and limits are in the Windows 1.9.3.1 acceptance record.",
     )
     features = [
         ("Keep original evidence", "Use source links and original files to make the basis for a decision available for review."),
@@ -321,7 +321,7 @@ def home_page():
       </div>
       <div class="landing-panel">
         <h3>Release identity and evidence</h3>
-        <p>Windows {VERSION} adds revisioned council packets, shared host-and-workstation use, and approved portal delivery. Acceptance covers the exact signed MSI on a physical Windows host and a clean Sandbox guest on the same machine. Direct upgrades and a separate physical replacement PC were not tested.</p>
+        <p>Windows 1.9.3.1 release scope: Data/Budget/Grants in hosted clean Windows; see the linked release evidence above.</p>
         {links([("Release and source catalog", RELEASE), ("SHA-256 checksums", CHECKSUMS), ("Acceptance and limits", ACCEPTANCE), ("Suite API", "/api/suite.html")])}
       </div>
     </div>
@@ -331,7 +331,7 @@ def home_page():
       <div class="eyebrow">Separate deployment</div>
       <h2 id="portal">A resident-facing portal.</h2>
       <p class="section-intro">Windows {VERSION} can send explicitly approved packets and eligible Records releases to a separately deployed portal. The portal has its own deployment guide and release.</p>
-      {links([("Windows 1.9.2.1 release guide", RELEASE_GUIDE), ("Portal guide", "/manuals/portal.html"), ("Portal release", "https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal")])}
+      {links([(f"Windows {VERSION} release guide", RELEASE_GUIDE), ("Portal guide", "/manuals/portal.html"), ("Portal release", "https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal")])}
     </div>
   </section>"""
     return page("Townlight | Municipal software cities can own", intro, "/", guide, repository, body)
