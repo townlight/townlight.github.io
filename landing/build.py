@@ -2,13 +2,14 @@
 
 import argparse
 import json
+import re
 from html import escape
 from pathlib import Path
 
 from content import GROUPS, PARKED, PRODUCTS
 
 SITE = Path(__file__).resolve().parent.parent
-VERSION = "1.9.3.1"
+VERSION = "1.9.3.2"
 TAG = f"townlight-windows-v{VERSION}"
 RELEASE = f"https://github.com/townlight/townlight/releases/tag/{TAG}"
 ASSETS = f"https://github.com/townlight/townlight/releases/download/{TAG}"
@@ -36,12 +37,12 @@ def actions(primary, secondary):
 
 
 def page(title, description, route, guide, repository, main, nav=None):
-    nav = nav or [("Products", "/#products"), ("Guide", guide), ("Download", RELEASE), ("Source", repository)]
+    nav = nav or [("Products", "/#products"), ("Guide", guide), ("Download", MSI), ("Source", repository)]
     nav_html = "\n        ".join(link(label, url) for label, url in nav)
     release_notice = "" if any(route == f"/products/{slug}/" for slug in PARKED) else (
         f'<aside class="release-note" aria-label="Current release"><p><strong>Current release:</strong> '
-        f'Townlight for Windows {VERSION}, a signed public beta. Shared staff and portal delivery require explicit setup. '
-        f'The new Data, Budget and Grants workflows were exercised with synthetic data on clean hosted Windows. '
+        f'Townlight for Windows {VERSION} is a signed public beta. Private Records staff attachment downloads verify expected file size and SHA-256 before saving; '
+        f'Station operator controls work through session renewal. Release acceptance defines tested workflows and limits; it does not claim every module was retested. '
         f'{link("Download MSI", MSI)} · {link("Release catalog", RELEASE)} · {link("SHA-256 checksums", CHECKSUMS)} · '
         f'{link("Acceptance and limits", ACCEPTANCE)} · {link("Versions", "/versions.html")}</p></aside>\n'
     )
@@ -135,16 +136,74 @@ def capabilities(features, heading, eyebrow):
   </section>"""
 
 
+COMPONENT_VERSIONS = {
+    "core": ("townlight-core", "1.3.0.dev2"),
+    "records": ("townlight-records", "1.8.0.dev4"),
+    "meetings": ("townlight-meetings", "1.0.6"),
+    "code": ("townlight-code", "1.0.9"),
+    "zoning": ("townlight-zoning", "0.2.3"),
+    "planning": ("townlight-planning", "0.4.0.dev2"),
+    "permitting": ("townlight-permitting", "0.3.0+dev.2"),
+    "inspections": ("townlight-inspections", "0.3.0+dev.2"),
+    "station": ("townlight-station", "0.4.4"),
+    "access": ("townlight-access", "0.5.0"),
+    "notice": ("townlight-notice", "0.3.0"),
+    "boards": ("townlight-boards", "0.2.1"),
+    "contracts": ("townlight-contracts", "0.2.1"),
+    "procurement": ("townlight-procurement", "0.3.1"),
+    "data": ("townlight-data", "0.2.0"),
+    "budget": ("townlight-budget", "0.2.0"),
+    "grants": ("townlight-grants", "0.3.0"),
+}
+
+
 def release_notice(slug, summary):
-    if not summary:
-        return ""
-    heading = f"candidate-{slug}"
-    return f"""  <section class="landing-section landing-band" aria-labelledby="{heading}">
+    safe_slug = escape(slug)
+    heading = f"candidate-{safe_slug}"
+    component_identity = '<p class="component-version">Townlight Windows 1.9.3.2 is the current signed public beta.</p>' if slug == "home" else ""
+    edition_label = ""
+    if slug != "home":
+        distribution, component_version = COMPONENT_VERSIONS[slug]
+        edition_label = " · Townlight Beta 1" if slug in {"planning", "permitting", "inspections"} else ""
+        component_identity = (
+            f'<p class="component-version">Townlight {escape(PRODUCTS[slug]["name"])} '
+            f'v{escape(component_version)} is packaged with Windows beta {VERSION}; '
+            f'distribution <code>{escape(distribution)}</code>.</p>'
+        )
+    if slug == "data":
+        component_identity += '<p class="component-version">No live CKAN publication.</p>'
+    if slug == "budget":
+        component_identity = (
+            '<p class="component-version"><strong>v0.2.0 packaged with Windows beta 1.9.3.2.</strong> '
+            f'Townlight Budget v0.2.0 is packaged with Windows beta {VERSION}. Recovery status: '
+            '<a href="https://github.com/townlight/budget/blob/main/docs/release-recovery-status.md">'
+            'release-recovery-status.md</a>. This package statement does not imply production readiness.</p>'
+        )
+    current = f"""  <section class="landing-section landing-band" aria-labelledby="{heading}">
     <div class="landing-wrap">
-      <div class="eyebrow">Signed public beta · Windows {VERSION}</div>
+      <div class="eyebrow">Signed public beta · Windows {VERSION}{edition_label}</div>
       <h2 id="{heading}">Windows {VERSION}</h2>
-      <p class="section-intro">{escape(summary)} See the release acceptance for tested workflows and limits.</p>
-      {links([(f"Windows {VERSION} release guide", RELEASE_GUIDE), ("Release, source and checksums", RELEASE), ("Acceptance and limits", ACCEPTANCE)])}
+      {component_identity}
+      <p class="section-intro">Private Records staff attachment downloads verify expected file size and SHA-256 before saving; Station operator controls work through session renewal. Release acceptance defines the tested workflows and limits; it does not claim every module was retested.</p>
+      {links([(f"Windows {VERSION} installer", MSI), ("Release catalog", RELEASE), ("SHA-256 checksums", CHECKSUMS), ("Acceptance and limits", ACCEPTANCE)])}
+    </div>
+  </section>"""
+    if not summary:
+        return current
+    match = re.search(r"(?<![\d.])(1\.\d+\.\d+\.\d+)(?![\d.])", summary)
+    if not match:
+        raise ValueError("summary must name a historical Windows version")
+    version = match.group(1)
+    hist_release = RELEASE.replace(VERSION, version)
+    hist_acceptance = ACCEPTANCE.replace(VERSION, version)
+    hist_heading = f"previous-{escape(version.replace('.', '-'))}"
+    return current + f"""
+  <section class="landing-section landing-band" aria-labelledby="{hist_heading}">
+    <div class="landing-wrap">
+      <div class="eyebrow">Previous release</div>
+      <h2 id="{hist_heading}">Previous release: Windows {version}</h2>
+      <p class="section-intro">{escape(summary)}</p>
+      {links([(f"Windows {version} acceptance", hist_acceptance), ("Release catalog", hist_release), ("Acceptance and limits", hist_acceptance)])}
     </div>
   </section>"""
 
@@ -172,6 +231,15 @@ def product_page(slug):
         <img class="landing-diagram" loading="lazy" src="/assets/{p['diagram']}-architecture.svg"
           alt="{escape(product)} architecture. The operating guide describes the services and workflow in text.">
       </details>"""
+    technical_links = [
+        ("Released component source", f"{repository}/tree/{pin}"),
+        ("API reference", api),
+    ]
+    if p.get("owner_manual"):
+        technical_links.append(("Owner manual (Markdown)", p["owner_manual"]))
+    if p.get("staff_guide"):
+        technical_links.append(("Windows staff workflow", p["staff_guide"]))
+    technical_links.append(("Repository and contributions", repository))
     body = f"""{heading}{release_markup}
 {capabilities(p["features"], f"What {p['name']} supports", "Inside the workflow")}
   <section class="landing-section landing-band" aria-labelledby="getting-started">
@@ -194,7 +262,7 @@ def product_page(slug):
       <div class="eyebrow">For technical teams</div>
       <h2 id="technical">Inspect the implementation.</h2>
       <p class="section-intro">Trace the workflow to the component source pinned by the Windows release. Use the reference for integration details and the repository to report an issue or contribute a change.</p>
-      {links([("Released component source", f"{repository}/tree/{pin}"), ("API reference", api), ("Repository and contributions", repository)])}
+      {links(technical_links)}
 {diagram}
     </div>
   </section>"""
@@ -288,10 +356,7 @@ def home_page():
         "Signed Windows x64 installer · AGPL-3.0-only · Public beta",
         ("Start a records request", "/manuals/records.html#daily-workflow"),
     )
-    release = release_notice(
-        "home",
-        "Windows 1.9.3.1 is the approved public beta for the clean hosted Windows synthetic Data, Budget and Grants workflow. Confirmation details and limits are in the Windows 1.9.3.1 acceptance record.",
-    )
+    release = release_notice("home", None)
     features = [
         ("Keep original evidence", "Use source links and original files to make the basis for a decision available for review."),
         ("Give staff the decision", "Use named staff actions, review steps and separate release copies to document what was approved."),
@@ -305,7 +370,7 @@ def home_page():
       <h2 id="product-title">Workspaces built around city work.</h2>
       <p class="section-intro">Explore the shipped workflows, operating guides and source for each component of the Windows beta.</p>
       {directory()}
-      <p>New in this beta: <a href="/manuals/windows-staff-workflows.html">Boards &amp; Commissions, Contracts, and Procurement</a>.</p>
+      <p>Module status is tracked in the <a href="/versions.html#candidate-1.9.3.2">Windows 1.9.3.2 module inventory</a>; see the <a href="{ACCEPTANCE}">acceptance record</a>.</p>
     </div>
   </section>
   <div class="landing-band">
@@ -317,12 +382,12 @@ def home_page():
         <div class="eyebrow">Start an evaluation</div>
         <h2 id="evaluate">Try one workflow with your team.</h2>
         <p>Install the signed Windows x64 beta, set up a test profile and choose a workflow from the suite manual. Use synthetic data first and commission city-specific sources, staff roles and equipment separately.</p>
-        {links([("Suite manual", guide), ("PDF manual", "/pdf/Townlight-Suite-Manual-Beta-1.pdf"), ("Word manual", "/docx/Townlight-Suite-Manual-Beta-1.docx"), ("Public announcement", "/announcement.html")])}
+        {links([("Suite manual", guide), ("First run", "/manuals/suite.html#first-run"), ("Technical specifications", "/manuals/suite.html#technical-specifications"), ("Records daily workflow", "/manuals/records.html#daily-workflow"), ("Windows staff access", "/manuals/windows-staff-workflows.html#staff-access"), ("Backup, recovery and maintenance", "/manuals/suite.html#backup-recovery-and-maintenance"), ("Verified workflows and limits", "/manuals/suite.html#verified-workflows-and-limits"), ("PDF manual", "/pdf/Townlight-Suite-Manual-Beta-1.pdf"), ("Word manual", "/docx/Townlight-Suite-Manual-Beta-1.docx"), ("Public announcement", "/announcement.html")])}
       </div>
       <div class="landing-panel">
         <h3>Release identity and evidence</h3>
-        <p>Windows 1.9.3.1 release scope: Data/Budget/Grants in hosted clean Windows; see the linked release evidence above.</p>
-        {links([("Release and source catalog", RELEASE), ("SHA-256 checksums", CHECKSUMS), ("Acceptance and limits", ACCEPTANCE), ("Suite API", "/api/suite.html")])}
+        <p>Windows {VERSION} is the current public beta. See the release, checksums and acceptance record for current scope and limits.</p>
+        {links([("Windows x64 MSI", MSI), ("Release and source catalog", RELEASE), ("SHA-256 checksums", CHECKSUMS), ("Acceptance and limits", ACCEPTANCE), ("Suite API", "/api/suite.html")])}
       </div>
     </div>
   </section>
@@ -330,8 +395,8 @@ def home_page():
     <div class="landing-wrap">
       <div class="eyebrow">Separate deployment</div>
       <h2 id="portal">A resident-facing portal.</h2>
-      <p class="section-intro">Windows {VERSION} can send explicitly approved packets and eligible Records releases to a separately deployed portal. The portal has its own deployment guide and release.</p>
-      {links([(f"Windows {VERSION} release guide", RELEASE_GUIDE), ("Portal guide", "/manuals/portal.html"), ("Portal release", "https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal")])}
+      <p class="section-intro">Windows 1.9.2.1 historically documented sending explicitly approved packets and eligible Records releases to a separately deployed portal. The portal has its own deployment guide and release; see its historical acceptance.</p>
+      {links([("Windows 1.9.2.1 acceptance", "https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.2.1/ACCEPTANCE-Windows-1.9.2.1.md"), ("Portal guide", "/manuals/portal.html"), ("Portal release", "https://github.com/townlight/townlight/releases/tag/townlight-beta-1-resident-portal")])}
     </div>
   </section>"""
     return page("Townlight | Municipal software cities can own", intro, "/", guide, repository, body)

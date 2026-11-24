@@ -86,14 +86,15 @@ prepared from that source with `python -B scripts/build-candidate-guide.py`.
 The file names keep the existing candidate-guide URLs so earlier links continue
 to resolve; the editions describe the published 1.9.2.1 release.
 
-The maintained Suite, Meetings, Records and Station manuals are sourced from
-their owning repositories' `USER-MANUAL.md` files; the portal guide is sourced
-from the Suite repository's `docs/portal/guide.md`. Insert their release
-notes with `scripts/export-owner-manuals.py`, passing `--suite`, `--meetings`,
-`--records`, `--station` and `--portal` with the respective file paths. The
-exporter preserves the existing site HTML, section anchors and Word artwork,
-then regenerates tagged PDFs from the updated Word editions. Versioned Windows
-Staff Workflows release files keep their original identities and contents.
+The current Suite and owner manuals are sourced from the Suite `USER-MANUAL.md`
+and the colocated owner repositories' `USER-MANUAL.md` files; Station uses its
+`beta-1/USER-MANUAL.md` source. Run
+`python scripts/export-owner-manuals.py --suite <Suite USER-MANUAL.md> --owner-root <folder containing colocated owner repos> [--only slugs] [--html-only]`.
+The exporter preserves site HTML structure, section anchors and Word artwork,
+then regenerates tagged PDFs from updated Word editions. Newer manuals may be
+HTML-only. The Portal Guide source is `Suite docs/portal/guide.md` and its
+standalone export flow remains separate. Versioned Windows Staff Workflows
+release files keep their original identities and contents.
 
 
 [Open Hall brand package and usage guide](https://townlight.github.io/brand/).

@@ -5,7 +5,7 @@ PRODUCTS = {
         "name": "Records", "repo": "sunshine", "category": "Public records",
         "headline": "From request to a defensible response.",
         "intro": "Give records officers one place to receive requests, find the right sources, and document exactly what the city approved for release.",
-        "release": "Windows 1.9.2.1 lets staff on a workstation share a Records request, attach a private Station source, and approve a specific release copy. Only an explicitly approved copy is eligible for portal publication.",
+        "release": "Previous Windows release 1.9.2.1: lets staff on a workstation share a Records request, attach a private Station source, and approve a specific release copy. Only an explicitly approved copy is eligible for portal publication.",
         "workflow": "A public records request",
         "steps": [
             ("Receive and assign", "Record the request, requester, deadline and staff assignment."),
@@ -26,7 +26,7 @@ PRODUCTS = {
         "name": "Meetings", "repo": "meetings", "category": "Clerk operations",
         "headline": "Keep the meeting and its record together.",
         "intro": "Prepare the agenda, assemble the packet, record the decisions and keep the approved proceedings connected to their original material.",
-        "release": "Windows 1.9.2.1 lets named staff share council packet revisions between a city host and workstation, reject stale approvals, and send only the reviewed public revision to the portal after explicit approval.",
+        "release": "Previous Windows release 1.9.2.1: lets named staff share council packet revisions between a city host and workstation, reject stale approvals, and send only the reviewed public revision to the portal after explicit approval.",
         "workflow": "From agenda to public archive",
         "steps": [
             ("Build the packet", "Attach source documents and organize items for review."),
@@ -67,7 +67,7 @@ PRODUCTS = {
         "name": "Core", "repo": "core", "category": "Shared platform",
         "headline": "One foundation for municipal workflows.",
         "intro": "Core gives Townlight components common services for staff identity, audit events, source ingestion and document discovery.",
-        "release": "Windows 1.9.2.1 can share named staff sessions over a private HTTPS gateway between a host and workstation. The host remains the authority for accounts and durable data.",
+        "release": "Previous Windows release 1.9.2.1: can share named staff sessions over a private HTTPS gateway between a host and workstation. The host remains the authority for accounts and durable data.",
         "workflow": "How a shared source becomes usable",
         "steps": [
             ("Identify the actor", "Named staff and module permissions give actions context."),
@@ -206,7 +206,7 @@ PRODUCTS = {
         "name": "Station", "repo": "station", "category": "Municipal media",
         "headline": "Keep the recording with the meeting.",
         "intro": "Give municipal media operators a local service for processing meeting recordings and handing the original to the city’s Records workflow.",
-        "release": "Windows 1.9.2.1 connects the host's Station recording to the shared meeting and Records request. Portal release still requires Records approval and explicit publication approval.",
+        "release": "Previous Windows release 1.9.2.1: connects the host's Station recording to the shared meeting and Records request. Portal release still requires Records approval and explicit publication approval.",
         "workflow": "A meeting recording handoff",
         "steps": [
             ("Set up Station", "Use Townlight first run with Meetings and Records selected. Choose a camera and microphone, then record and play the ten-second test clip."),
@@ -246,11 +246,12 @@ PRODUCTS = {
                 'Keep each cleaning and join step with the reviewer who accepted it.'),
                ('Validate and publish',
                 'Run the validation checklist and record the approved dataset release.')],
-     'guide': 'https://github.com/townlight/data/blob/main/USER-MANUAL.md',
+     'guide': '/manuals/data.html',
+     'owner_manual': 'https://github.com/townlight/data/blob/main/USER-MANUAL.md',
      'api': 'https://github.com/townlight/data/tree/main/docs',
      'diagram': 'data',
      'status': 'Windows public beta',
-     'release': 'Windows 1.9.3.1 documents the approved clean hosted Windows synthetic Data workflow. '
+     'release': 'Previous Windows release 1.9.3.1: documents the approved clean hosted Windows synthetic Data workflow. '
                 'See the release acceptance for exact evidence and limits.'},
     'budget': {'name': 'Budget',
      'repo': 'budget',
@@ -272,11 +273,12 @@ PRODUCTS = {
      'steps': [('Collect requests', 'Gather department requests with supporting assumptions.'),
                ('Review scenarios', 'Compare proposed and current figures with named reviewer notes.'),
                ('Approve the record', 'Link the approved budget record to its source worksheets.')],
-     'guide': 'https://github.com/townlight/budget/blob/main/USER-MANUAL.md',
+     'guide': '/manuals/budget.html',
+     'owner_manual': 'https://github.com/townlight/budget/blob/main/USER-MANUAL.md',
      'api': 'https://github.com/townlight/budget/tree/main/docs',
      'diagram': 'budget',
      'status': 'Windows public beta',
-     'release': 'Windows 1.9.3.1 documents the approved clean hosted Windows synthetic Budget '
+     'release': 'Previous Windows release 1.9.3.1: documents the approved clean hosted Windows synthetic Budget '
                 'workflow. See the release acceptance for exact evidence and limits.'},
     'grants': {'name': 'Grants',
      'repo': 'grants',
@@ -298,11 +300,12 @@ PRODUCTS = {
      'steps': [('Triage opportunity', 'Match a sample opportunity against eligibility factors.'),
                ('Outline application', 'Draft an application outline for staff review.'),
                ('Track compliance', 'Build a compliance calendar and export checklist.')],
-     'guide': 'https://github.com/townlight/grants/blob/main/USER-MANUAL.md',
+     'guide': '/manuals/grants.html',
+     'owner_manual': 'https://github.com/townlight/grants/blob/main/USER-MANUAL.md',
      'api': 'https://github.com/townlight/grants/tree/main/docs',
      'diagram': 'grants',
      'status': 'Windows public beta',
-     'release': 'Windows 1.9.3.1 documents the approved clean hosted Windows synthetic Grants '
+     'release': 'Previous Windows release 1.9.3.1: documents the approved clean hosted Windows synthetic Grants '
                 'workflow. See the release acceptance for exact evidence and limits.'},
 }
 
@@ -327,7 +330,7 @@ PRODUCTS.update({
         "setup": "Install the full Windows profile and sign in as a clerk, city staff member, or Townlight administrator.",
         "limits": "Staff enter appointments and attendance. The workspace preserves the linked meeting without changing it.",
         "short": "Rosters, vacancies, terms and meeting-linked attendance.",
-        "guide": STAFF_GUIDE + "#boards", "api": STAFF_API,
+        "guide": "/manuals/boards.html", "staff_guide": STAFF_GUIDE + "#boards", "api": STAFF_API,
     },
     "contracts": {
         "name": "Contracts", "repo": "contracts", "category": "City administration",
@@ -347,7 +350,7 @@ PRODUCTS.update({
         "setup": "Select the full Windows profile and sign in as city staff or a Townlight administrator.",
         "limits": "Staff sign and approve agreements outside Townlight. The register stores executed PDFs up to 8 MiB.",
         "short": "Signed agreements, renewals and linked procurement records.",
-        "guide": STAFF_GUIDE + "#contracts", "api": STAFF_API,
+        "guide": "/manuals/contracts.html", "staff_guide": STAFF_GUIDE + "#contracts", "api": STAFF_API,
     },
     "procurement": {
         "name": "Procurement", "repo": "procure", "category": "City administration",
@@ -367,7 +370,7 @@ PRODUCTS.update({
         "setup": "Use the full Windows profile. City staff prepare workpapers. The Townlight administrator records awards and creates linked drafts.",
         "limits": "The city makes award decisions and manages submissions through its own process.",
         "short": "RFP drafts, proposal comparison and award-to-contract handoff.",
-        "guide": STAFF_GUIDE + "#procurement", "api": STAFF_API,
+        "guide": "/manuals/procurement.html", "staff_guide": STAFF_GUIDE + "#procurement", "api": STAFF_API,
     },
 })
 
@@ -539,9 +542,10 @@ _PRODUCT_OVERRIDES = {
         "features": [("Contracts-backed intake", "Start with the signed Contracts dataset and reject private fields."), ("Reviewed release", "Send approved CSV, JSON and data dictionary only after review."), ("Correction and withdrawal", "Record corrections and withdrawals against the released dataset.")],
         "setup": "Open the signed Contracts dataset, confirm the private-field rejection list, and follow the review checklist in the user manual.",
         "limits": "Data does not replace the system of record or accept private fields. Releases require review; corrections and withdrawals are recorded.",
-        "release": "Windows 1.9.3.1 documents the approved hosted Windows Data workflow. See the release acceptance for exact evidence and limits.",
+        "release": "Previous Windows release 1.9.3.1: documents the approved hosted Windows Data workflow. See the release acceptance for exact evidence and limits.",
         "diagram": None,
-        "guide": "https://github.com/townlight/data/blob/main/USER-MANUAL.md",
+        "guide": "/manuals/data.html",
+        "owner_manual": "https://github.com/townlight/data/blob/main/USER-MANUAL.md",
         "api": "https://github.com/townlight/data/tree/main/docs",
     },
     "budget": {
@@ -553,9 +557,10 @@ _PRODUCT_OVERRIDES = {
         "features": [("Figure import", "Import figures with their source worksheets."), ("Finance review", "Finance reviews and seals the public hearing packet."), ("Vote and adoption record", "Record the vote and adoption, then send approved data through Data.")],
         "setup": "Import figures, have finance review the packet, and follow the review checklist in the user manual.",
         "limits": "Budget does not replace the finance system of record or make appropriation decisions. Finance staff review and seal every record.",
-        "release": "Windows 1.9.3.1 documents the approved hosted Windows Budget workflow. See the release acceptance for exact evidence and limits.",
+        "release": "Previous Windows release 1.9.3.1: documents the approved hosted Windows Budget workflow. See the release acceptance for exact evidence and limits.",
         "diagram": None,
-        "guide": "https://github.com/townlight/budget/blob/main/USER-MANUAL.md",
+        "guide": "/manuals/budget.html",
+        "owner_manual": "https://github.com/townlight/budget/blob/main/USER-MANUAL.md",
         "api": "https://github.com/townlight/budget/tree/main/docs",
     },
     "grants": {
@@ -567,9 +572,10 @@ _PRODUCT_OVERRIDES = {
         "features": [("Existing staff roles", "Use existing staff roles to assign and review grant work."), ("Linked records", "Link the adopted budget, signed contract and Records."), ("Award, report and archive", "Record the award and reports, close the file, and produce a SHA-256 archive.")],
         "setup": "Use an existing grant file, link the adopted budget, signed contract and Records, and follow the review checklist in the user manual.",
         "limits": "Grants does not submit applications, accept awards, or make payments. Staff review and record every award, report and closeout.",
-        "release": "Windows 1.9.3.1 documents the approved hosted Windows Grants workflow. See the release acceptance for exact evidence and limits.",
+        "release": "Previous Windows release 1.9.3.1: documents the approved hosted Windows Grants workflow. See the release acceptance for exact evidence and limits.",
         "diagram": None,
-        "guide": "https://github.com/townlight/grants/blob/main/USER-MANUAL.md",
+        "guide": "/manuals/grants.html",
+        "owner_manual": "https://github.com/townlight/grants/blob/main/USER-MANUAL.md",
         "api": "https://github.com/townlight/grants/tree/main/docs",
     },
 }
