@@ -164,7 +164,7 @@ def release_notice(slug, summary):
     edition_label = ""
     if slug != "home":
         distribution, component_version = COMPONENT_VERSIONS[slug]
-        edition_label = " · Townlight Beta 1" if slug in {"code", "meetings", "planning", "permitting", "inspections"} else ""
+        edition_label = " · Townlight Beta 1"
         component_identity = (
             f'<p class="component-version">Townlight {escape(PRODUCTS[slug]["name"])} '
             f'v{escape(component_version)} is packaged with Windows beta {VERSION}; '
