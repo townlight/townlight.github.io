@@ -1,0 +1,149 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Townlight Contracts Manual | Townlight Windows Beta 1</title><style>
+:root{--ink:#1A2330;--muted:#3A4554;--accent:#1A3A52;--paper:#FAF8F3;--wash:#E6EDF3;--line:#E3DCCB;--warm:#B08A2E}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 "Segoe UI",Arial,sans-serif}a{color:var(--accent);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #a25900;outline-offset:4px}.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:white;padding:1rem;z-index:20}header{border-bottom:1px solid var(--line);padding:1.1rem 5vw;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}header .brand{font-size:1.3rem;font-weight:750;letter-spacing:-.04em;text-decoration:none;color:var(--ink)}header nav{margin-left:auto;display:flex;gap:1.25rem;flex-wrap:wrap;font-size:.88rem}.edition{font:700 .72rem/1.5 "Segoe UI",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}.wrap{max-width:1240px;margin:auto;padding:0 4vw}.hero{padding:5rem 0 3.2rem;max-width:950px}.hero h1{font-size:clamp(2.5rem,5vw,4.7rem);line-height:1.08;letter-spacing:-.045em;margin:1rem 0 1.5rem;font-weight:650}.hero .lead{font-size:1.26rem;max-width:780px;color:var(--muted)}.actions{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.8rem 0}.button{display:inline-block;padding:.7rem 1.15rem;border:1px solid var(--accent);border-radius:4px;text-decoration:none;font-weight:650}.button.primary{background:var(--accent);color:#fff}.facts{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}.section{padding:3rem 0;border-top:1px solid var(--line)}h2{font-size:1.8rem;line-height:1.3;letter-spacing:-.025em;margin:2.5rem 0 1rem}h3{font-size:1.18rem;line-height:1.45;margin:1.8rem 0 .7rem}h4{font-size:1rem;margin:1.3rem 0 .6rem}p{margin:.85rem 0 1rem}ul,ol{padding-left:1.6rem}li{margin:.4rem 0}strong{font-weight:650}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem}.product{border-top:3px solid var(--accent);padding:1.4rem 0}.product h3{font-size:1.65rem;margin:.4rem 0}.product p{color:var(--muted)}.number{font-size:.76rem;letter-spacing:.1em}.split{display:grid;grid-template-columns:1fr 1fr;gap:3rem}.flow{width:100%;height:auto;display:block;margin:1.8rem 0}.caption{font-size:.85rem;color:var(--muted)}.reading{max-width:860px}.doclayout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:3rem;max-width:1320px;margin:auto;padding:2rem 4vw}.toc{font-size:.84rem;align-self:start;position:sticky;top:1rem;max-height:90vh;overflow:auto;padding-right:.8rem}.toc ul{list-style:none;padding:0}.toc li{margin:.5rem 0}.toc li li{padding-left:.8rem}.toc a{text-decoration:none}.docbody{min-width:0}.docbody h1{font-size:2.7rem;line-height:1.1;letter-spacing:-.04em}.docbody h2{border-top:1px solid var(--line);padding-top:1.8rem}.docbody img{max-width:100%;height:auto}.docmeta{color:var(--muted);font-size:.9rem}.docbody section{scroll-margin-top:1rem}table{width:100%;border-collapse:collapse;font-size:.87rem;line-height:1.5;margin:1.3rem 0;table-layout:auto}th{text-align:left;background:var(--wash);font-weight:650}th,td{padding:.65rem .7rem;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}thead{display:table-header-group}pre{background:#f2f5f6;padding:1rem;border:1px solid #dfe7e8;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font:13px/1.6 Consolas,monospace}code{font: .85em/1.6 Consolas,monospace;overflow-wrap:anywhere}pre code{font-size:inherit}blockquote{border-left:3px solid var(--accent);padding-left:1rem;margin-left:0;color:var(--muted)}.search{padding:.65rem;border:1px solid #789399;border-radius:4px;width:100%;font:inherit}.search-status{font-size:.8rem;color:var(--muted)}footer{border-top:1px solid var(--line);padding:2rem 5vw;margin-top:3rem;font-size:.85rem;color:var(--muted);display:flex;gap:2rem;justify-content:space-between;flex-wrap:wrap}.small{font-size:.9rem;color:var(--muted)}.api-entry{padding:1.2rem 0;border-top:1px solid var(--line)}.api-entry h3{overflow-wrap:anywhere}.method{font-size:.76rem;font-weight:750;color:var(--accent)}details{margin:1rem 0}summary{cursor:pointer;font-weight:650}.index-columns{columns:2;column-gap:2rem}.index-columns li{break-inside:avoid}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr}.doclayout{grid-template-columns:1fr;gap:1rem}.toc{position:static;max-height:none}.hero{padding-top:3rem}header nav{margin-left:0}.docbody h1{font-size:2.2rem}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.wrap{padding:0 6vw}header{padding:1rem 6vw}.hero h1{font-size:2.6rem}.index-columns{columns:1}table{font-size:.78rem}th,td{padding:.45rem}.doclayout{padding:1rem 6vw}.facts{gap:.5rem}}
+main,.toc a,.hero h1{overflow-wrap:anywhere}
+@page{size:Letter;margin:.7in .65in .75in}
+@media print{html{scroll-behavior:auto}body{font:10.5pt/1.45 Arial,sans-serif;color:#172f39}header,footer,.search-area,.screen-only{display:none}.doclayout{display:block;padding:0;max-width:none}.toc{position:static;max-height:none;overflow:visible;font-size:10pt;break-after:page}.toc>h2{border:0}.toc ul{columns:2;column-gap:.3in}.toc li{break-inside:avoid}.docbody h1{font-size:30pt}.docbody h2{font-size:19pt;break-after:avoid;padding-top:.15in;margin-top:.35in}.docbody h3{font-size:12pt;break-after:avoid}.docbody h4{break-after:avoid}p{orphans:3;widows:3}pre{font-size:8.2pt;line-height:1.4;padding:.1in;break-inside:auto}table{font-size:8.4pt;line-height:1.35}th,td{padding:.06in .07in}tr{break-inside:avoid}.flow{max-height:6in;object-fit:contain;break-inside:avoid}a{color:#172f39;text-decoration:underline}.cover{break-after:page;padding-top:1in}.cover .edition{font-size:11pt}.cover h1{font-size:32pt}.cover .lead{font-size:14pt}.api-entry{break-inside:auto}.api-entry h3{break-after:avoid}.index-columns{columns:2}}
+header .brand{display:inline-flex;align-items:center;max-width:100%;flex-shrink:0}header .brand img{display:block;width:217px;max-width:100%;height:auto}.release-note{max-width:1240px;margin:3rem auto 0;padding:1.2rem 4vw 0;border-top:1px solid var(--line);font-size:.88rem;line-height:1.55;color:var(--muted)}.release-note p{margin:0;max-width:60rem}.release-note+footer{margin-top:1.5rem}@media print{.release-note{display:none}}
+</style><link rel="icon" href="../brand/favicon.svg" type="image/svg+xml"><link rel="icon" href="../brand/favicon.ico" sizes="16x16 32x32 48x48"><link rel="apple-touch-icon" href="../brand/png/townlight-hall-app-icon-180.png"><meta property="og:image" content="https://townlight.github.io/brand/png/townlight-hall-social-preview.png"><meta name="twitter:card" content="summary_large_image"></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header><a class="brand" href="../index.html"><img src="../brand/svg/townlight-hall-lockup.svg" alt="Townlight" width="217" height="45"></a>
+<nav aria-label="Main"><a href="../manuals/suite.html">Suite manual</a>
+<a href="../versions.html">Versions and Windows release</a>
+<a href="../terms.html">Terms and license</a></nav></header>
+<main id="main" class="reading wrap"><h2 id="windows-1.9.3.2-current-release">Windows 1.9.3.2 current
+release</h2>
+<p>Townlight for Windows 1.9.3.2 is the current signed public beta. See
+the <a
+href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.3.2">release
+notes</a> and <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.2/ACCEPTANCE-Windows-1.9.3.2.md">acceptance
+record</a>.</p>
+<p>For an existing city, make and verify a backup, close Townlight, run
+the signed Windows 1.9.3.2 MSI, then reopen Townlight under the same
+Windows account and existing profile. Direct upgrade is tested from
+1.9.3.1; earlier paths have separate prior evidence.</p>
+<h2 id="windows-1.9.1.1-historical-station-recorder-release">Windows
+1.9.1.1 historical Station recorder release</h2>
+<p>Windows 1.9.1.1 improves the clerk workflows for Records, Meetings,
+and Code, adds Open Hall icons, and fixes the ten-second Station
+preview.</p>
+<p><a
+href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.1.1">Release
+and downloads</a> · <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.1.1/ACCEPTANCE-Windows-1.9.1.1.md">Acceptance
+and limits</a>.</p>
+<p><a id="townlight_contracts-user-manual"></a></p>
+<h1 id="townlight-contracts-user-manual">Townlight Contracts User
+Manual</h1>
+<h2 id="shared-meeting-imports-windows-1.8.1.1">Shared meeting imports ·
+Windows 1.8.1.1</h2>
+<p>Windows 1.8.1.1 adds shared meeting imports for 31 source families,
+with 34 supported source/format pairs. Installed Windows Sandbox checks
+exercised preview, save and durable readback using public captures and
+fixtures, plus the documented Townlight handoffs. These checks do not
+establish automatic discovery on every live portal or a complete retest
+of every module.</p>
+<p><a
+href="https://townlight.github.io/manuals/meeting-imports.html">All 31
+sources, formats and handoffs</a> · <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.8.1.1/ACCEPTANCE-Windows-1.8.1.1.md">Installed
+acceptance</a>.</p>
+<p>Windows 1.9.1.1 contains Station 0.4.4, Records 1.8.0.dev4, Townlight
+Runtime 0.3.3 and Meetings 1.0.6. The release acceptance summary
+identifies the verified workflows and the builds that produced the
+evidence.</p>
+<h2 id="for-non-technical-users">For Non-Technical Users</h2>
+<p>Townlight Contracts helps city staff keep contract records, clause
+topics, expiration dates, renewal notes, public-records review notes,
+and export manifests organized. It can create a sample contract registry
+stub, flag clause topics, build expiration reminders, summarize renewal
+visibility, and assemble a public-records export checklist.</p>
+<h2 id="in-the-windows-suite">In the Windows suite</h2>
+<p>Register executed agreements, store their signed PDFs, and track
+staff-entered renewal deadlines. Install the <a
+href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.3.2">signed
+Townlight Windows beta 1.9.3.2</a> and select the full profile. See the
+<a
+href="https://townlight.github.io/manuals/windows-staff-workflows.html#contracts">staff
+operating guide</a>. The package examples below describe the standalone
+development interface.</p>
+<p>Current state: <code>0.2.1</code> contract repository foundation plus
+registry persistence release. Townlight Contracts can optionally save
+contract registry and renewal visibility records when IT configures
+<code>TOWNLIGHT_CONTRACTS_REGISTRY_DB_URL</code>. Townlight Contracts
+does not provide official legal interpretation, legal advice, live
+contract management platforms, live LLM calls, contract execution
+workflows, renewal approvals, or contract system-of-record updates.
+Staff own every decision.</p>
+<h2 id="for-it-and-technical-staff">For IT and Technical Staff</h2>
+<p>Townlight Contracts is a FastAPI Python package pinned to
+<code>townlight-core==1.3.0.dev2</code>. The current runtime
+exposes:</p>
+<ul>
+<li><code>GET /</code></li>
+<li><code>GET /health</code></li>
+<li><code>GET /townlight_contracts</code></li>
+<li><code>POST /api/v1/townlight_contracts/registry</code></li>
+<li><code>GET /api/v1/townlight_contracts/registry/{contract_id}</code></li>
+<li><code>POST /api/v1/townlight_contracts/clauses/lookup</code></li>
+<li><code>POST /api/v1/townlight_contracts/expirations</code></li>
+<li><code>POST /api/v1/townlight_contracts/renewals/summary</code></li>
+<li><code>GET /api/v1/townlight_contracts/renewals/{contract_id}</code></li>
+<li><code>POST /api/v1/townlight_contracts/export</code></li>
+</ul>
+<p>Run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">-e</span> <span class="st">&quot;.[dev]&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pytest <span class="at">-q</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/verify-release.sh</span></code></pre></div>
+<p>Set <code>TOWNLIGHT_CONTRACTS_REGISTRY_DB_URL</code> to enable local
+SQLAlchemy-backed contract registry and renewal visibility records. If
+the variable is not set, Townlight Contracts keeps deterministic
+stateless behavior and retrieval endpoints return actionable
+configuration guidance.</p>
+<h2 id="architecture">Architecture</h2>
+<pre class="mermaid"><code>flowchart LR
+  Staff[&quot;Clerk / legal / finance / department managers&quot;] --&gt; Townlight Contracts[&quot;Townlight Contracts&quot;]
+  Townlight Contracts --&gt; CivicCore[&quot;Townlight Core 1.3.0.dev2&quot;]
+  Townlight Contracts -. future file links .-&gt; CivicRecords[&quot;CivicRecords AI v1.4.0&quot;]
+  Townlight Contracts --&gt; Export[&quot;Public-records export checklist&quot;]</code></pre>
+<p>Townlight Contracts depends on Townlight Core. Townlight Core does
+not depend on Townlight Contracts. Townlight Contracts v0.2.1 uses
+deterministic sample contract data plus optional local registry
+persistence; live contract management platforms, Townlight Records file
+links, staff review queues, and production contract-system integrations
+are future work.</p>
+<h2 id="upgrading-standalone-postgresql-data">Upgrading standalone
+PostgreSQL data</h2>
+<p>Stop the old service and back up its PostgreSQL database. In the same
+database, verify that the old schema exists and the new schema does not.
+As the schema owner, run the following in a transaction, then start the
+upgraded service and check that existing records are present. The
+operation keeps the tables and data in the same database. SQLite files
+require no schema rename.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">BEGIN</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">SCHEMA</span> civiccontracts <span class="kw">RENAME</span> <span class="kw">TO</span> townlight_contracts;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COMMIT</span>;</span></code></pre></div>
+<h2
+id="standalone-staff-api-authentication-unreleased-source-correction">Standalone
+staff API authentication — unreleased source correction</h2>
+<p>The standalone <code>/api/v1/townlight_contracts/</code> endpoints
+require <code>X-Townlight-Contracts-Role: staff</code> and
+<code>X-Townlight-Contracts-Staff-Key: &lt;configured secret&gt;</code>.
+Set <code>TOWNLIGHT_CONTRACTS_STAFF_API_KEY</code> in the service
+environment; never place the secret in URLs or public examples. Missing
+configuration returns 503; missing, invalid or non-staff credentials
+return 403. Health and the deterministic sample page remain public. This
+reuses Core’s staff-key contract and is not individual staff-account
+administration.</p>
+<p>The installed Windows suite uses its existing named staff sessions
+and role checks through <code>municipal_staff.py</code>, rather than
+this standalone API. This source correction is not present in the
+unchanged Windows 1.8.1.1 MSI.</p>
+</main><aside class="release-note" aria-label="Current release"><p><strong>Current release:</strong> Townlight for Windows 1.9.3.2, published 2026-11-24. Signed MSI SHA-256 b00510e0649552b5efd9744513bf9fcaf59cbee5755fd864eb922a5151c96b77; size 1,866,072,064 bytes. Direct-upgrade, lifecycle, and fresh exact-artifact acceptance checks passed. <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.2/Townlight-Windows-x64-1.9.3.2.msi">Download MSI</a> · <a href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.3.2">Release catalog</a> · <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.2/SHA256SUMS-Windows-1.9.3.2.txt">SHA-256 checksums</a> · <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.9.3.2/ACCEPTANCE-Windows-1.9.3.2.md">Acceptance and limits</a>.</p></aside><footer>Townlight · AGPL-3.0-only · Acceptance evidence applies only to its identified artifacts.<span><a href="../brand/">Brand package</a></span><span><a href="../announcement.html">Announcement</a> · <a href="../support.html">Support and feedback</a></span></footer></body></html>
