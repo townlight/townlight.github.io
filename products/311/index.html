@@ -1,93 +1,81 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Townlight 311 (parked foundation)</title>
-  <meta name="description" content="A parked foundation for service request intake, triage suggestions, duplicate checks and department routing checklists.">
-  <link rel="canonical" href="https://townlight.github.io/products/311/">
-  <meta property="og:title" content="Townlight 311 (parked foundation)">
-  <meta property="og:description" content="A parked foundation for service request intake, triage suggestions, duplicate checks and department routing checklists.">
-  <meta property="og:image" content="https://townlight.github.io/brand/png/townlight-hall-social-preview.png">
-  <link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/brand/png/townlight-hall-app-icon-180.png">
-  <link rel="stylesheet" href="/assets/site.css">
-  <link rel="stylesheet" href="/assets/landing.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Townlight 311 - resident service request support for Townlight</title>
+<style>
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:#17202a;padding:12px 16px;border-radius:0 0 12px 0;z-index:100;font-weight:800}.skip:focus{left:0;outline:4px solid #d8ad48}body{margin:0;font-family:"Aptos","Segoe UI",sans-serif;color:#17202a;background:linear-gradient(135deg,#eef8ff,#fff8ed)}main,header,footer{width:min(1080px,calc(100% - 32px));margin:auto}header{padding:56px 0 24px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:#244f73;font-weight:800}h1{font:700 clamp(2.5rem,7vw,5.5rem)/.95 Georgia,serif;margin:.1em 0}.lede{font-size:1.25rem;line-height:1.6;max-width:820px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:rgba(255,255,255,.88);border:1px solid #dac7a4;border-radius:24px;padding:24px;box-shadow:0 18px 36px #26323b18}.badge{display:inline-block;background:#214f7a;color:white;padding:.5rem .8rem;border-radius:999px;font-weight:900}.callout{background:#fff7e6;border:1px solid #d8ad48;border-left:8px solid #d8ad48;border-radius:18px;padding:20px 24px;margin:24px 0;box-shadow:0 12px 24px #26323b12}.callout h2{margin-top:0}a{color:#244f73}:focus-visible{outline:4px solid #d8ad48;outline-offset:3px}@media(max-width:720px){.grid{grid-template-columns:1fr}header{padding-top:34px}}
+</style>
 </head>
-<body class="landing">
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="masthead">
-    <div class="landing-wrap masthead-inner">
-      <a href="/" aria-label="Townlight home">
-        <img src="/brand/svg/townlight-hall-lockup.svg" alt="Townlight" width="161" height="34">
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="/#products">Products</a>
-        <a href="/versions.html">Released suite</a>
-        <a href="https://github.com/townlight/311">Source</a>
-      </nav>
-    </div>
-  </header>
-  <main id="main">
-  <section class="landing-hero" aria-labelledby="title">
-    <div class="landing-wrap hero-layout">
-      <div>
-        <div class="eyebrow">Townlight 311 / Resident services</div>
-        <h1 id="title">Resident requests routed without black-box dispatch.</h1>
-        <p class="hero-copy">A parked foundation for service request intake, triage suggestions, duplicate checks and department routing checklists.</p>
-        <div class="actions"><a href="https://github.com/townlight/311" class="button primary">View the source</a><a href="/versions.html" class="button">See the released Windows suite</a></div>
-        <p class="release-line">Parked foundation · Not in the Windows release · AGPL-3.0</p>
-      </div>
-      <figure class="workflow-sheet">
-      <figcaption><span class="eyebrow">Status</span>Parked foundation</figcaption>
-      <ol>
-        <li><strong>Not a completed product</strong><span>The repository holds exploratory and support code.</span></li>
-        <li><strong>Outside the Windows suite</strong><span>The Townlight Windows installer does not install or support it.</span></li>
-        <li><strong>Open for review</strong><span>The source stays public under its open source license.</span></li>
-      </ol>
-      <p class="sheet-note">Status taken from the notice in the repository README</p>
-    </figure>
-    </div>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <p class="eyebrow">Townlight / Townlight 311</p>
+  <h1>Resident requests routed without black-box dispatch.</h1>
+  <p class="lede">Townlight 311 is the Townlight module for resident service-request intake, privacy-aware tracking, staff workflow, records, notifications, and Open311-compatible interchange. This page describes the full implemented <strong>0.2.0 source candidate</strong> on the current Windows <strong>1.10.0.1</strong> source line: source work under integration, not an installed, signed-off, or shipped build.</p>
+  <p><span class="badge">0.2.0 source candidate &mdash; not in public 1.9.3.2</span></p>
+  <div class="callout" role="note" aria-labelledby="candidate-callout">
+    <h2 id="candidate-callout">Candidate status &mdash; plain</h2>
+    <ul>
+      <li>Townlight 311 is <strong>not included in the public Townlight Suite 1.9.3.2</strong> download.</li>
+      <li><strong>Signed installed acceptance is pending.</strong></li>
+      <li>There is <strong>no public candidate download until approval</strong>.</li>
+    </ul>
+    <p>Nothing on this page is an acceptance result, verification result, or release promise.</p>
+  </div>
+</header>
+<main id="main">
+  <section class="grid" aria-label="Townlight 311 candidate overview">
+    <article class="card">
+      <h2>What the 0.2.0 source candidate implements</h2>
+      <ul>
+        <li>Resident intake with resident photos and privacy-aware tracking; resident-facing tracking does not expose internal detail. The recovery flow is designed so staff never disclose another resident's data.</li>
+        <li>Department queues, assignment and transfer, staff lifecycle, duplicate handling, and reopen.</li>
+        <li>SMTP notifications with a durable outbox and states <code>sent</code>, <code>pending</code>, <code>failed</code>, and <code>uncertain</code>. Delivery is not guaranteed.</li>
+        <li>Open311 authenticated catalogue, read, and create with JSON/XML for the supported subset only. This is <strong>not full Open311 conformance</strong>.</li>
+        <li>CSV/JSON import up to <strong>2 MiB</strong> and <strong>1000 rows</strong>, keyed by stable external IDs plus a source key, with an exact preview hash. Export is capped at <strong>10,000 requests</strong>; an export that would exceed the cap fails rather than truncating.</li>
+        <li>Records/Data output: ZIP archives report the actual bytes written plus the operation history.</li>
+        <li>Parks maintenance in the candidate's maintenance workflow.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h2>Roles and Records/Data receiving</h2>
+      <p>Existing native roles are <code>local-admin</code>, <code>city-staff</code>, and <code>clerk</code>. Clerk gets 311 only. Records/Data receiving requires additional permissions and is not granted automatically by the Clerk role.</p>
+    </article>
+    <article class="card">
+      <h2>Deployment requirements</h2>
+      <p>The resident portal and SMTP must be <strong>separately deployed and configured</strong>. Notification delivery is not guaranteed; <code>uncertain</code> means delivery status is unknown after a send was attempted.</p>
+      <p>A placeholder checklist is not promoted as a workflow. Use the configured portal and SMTP setup for the environment.</p>
+    </article>
+    <article class="card">
+      <h2>Explicit limits</h2>
+      <p>Townlight 311 does not dispatch crews, create official work orders, handle emergencies, provide legal advice, call live LLMs, write back to 311 systems, or replace a 311 system of record. Open311 support is the authenticated supported subset only; it is not full Open311 conformance.</p>
+    </article>
+    <article class="card">
+      <h2>Public Townlight Suite release</h2>
+      <p>Townlight Suite <strong>1.9.3.2</strong> is the current public download. It <strong>does not include Townlight 311</strong>.</p>
+      <p><a href="https://github.com/townlight/townlight/releases/tag/townlight-windows-v1.9.3.2">Download Townlight Suite 1.9.3.2 from GitHub</a></p>
+    </article>
+    <article class="card">
+      <h2>Repository and manual</h2>
+      <p><a href="https://github.com/townlight/311">github.com/townlight/311</a></p>
+      <p><a href="https://github.com/townlight/311/blob/main/README.md">README on GitHub main</a> and <a href="https://github.com/townlight/311/blob/main/USER-MANUAL.md">USER-MANUAL.md on GitHub main</a>.</p>
+    </article>
   </section>
-  <section class="landing-section" aria-labelledby="capabilities">
-    <div class="landing-wrap">
-      <div class="eyebrow">Inside the repository</div>
-      <h2 id="capabilities">What the 311 foundation contains</h2>
-      <div class="capability-columns">
-        <article><h3>Sample request intake</h3><p>Take a sample resident request and return deterministic triage suggestions.</p></article>
-        <article><h3>Duplicate and routing review</h3><p>Check for duplicate candidates and prepare a department routing checklist.</p></article>
-        <article><h3>Open311-compatible export</h3><p>Use the export helper and the optional database-backed request records.</p></article>
-      </div>
-    </div>
+
+  <section class="card" style="margin-top:18px" aria-labelledby="faq-heading">
+    <h2 id="faq-heading">FAQ: What does &ldquo;source candidate&rdquo; mean?</h2>
+    <p><strong>Q: Is this a finished or released product?</strong><br>
+    No. The 0.2.0 source candidate is source work under integration verification. It has not been released, and it has not been tested as an installed Windows build.</p>
+    <p><strong>Q: Can I download the candidate?</strong><br>
+    No public candidate download is available until approval. Signed installed acceptance is pending.</p>
+    <p><strong>Q: What about Townlight Suite 1.9.3.2?</strong><br>
+    That public download remains available and does not contain Townlight 311.</p>
+    <p><strong>Q: Are delivery and integrations guaranteed?</strong><br>
+    No. SMTP notification delivery is not guaranteed. Open311 is limited to the supported subset, and the portal and SMTP require separate deployment and configuration.</p>
   </section>
-  <section class="landing-section landing-band" aria-labelledby="status">
-    <div class="landing-wrap landing-split">
-      <div>
-        <div class="eyebrow">Current status</div>
-        <h2 id="status">Parked, and outside the released suite.</h2>
-        <p>Townlight 311 is a parked foundation. It is not a completed Townlight product, and the Townlight Windows release does not install or support it. Examples and package names in the repository describe the foundation. Do not use them as suite installation instructions.</p>
-        <ul class="landing-link-list"><li><a href="/versions.html">Released Windows suite, current modules and limits</a></li><li><a href="/#products">Current Townlight products</a></li></ul>
-      </div>
-      <div class="landing-panel">
-        <h3>What it does not do</h3>
-        <p>It does not dispatch crews, create official work orders, handle emergencies, provide legal advice, call live language models, write back to 311 systems, or replace a 311 system of record.</p>
-      </div>
-    </div>
-  </section>
-  <section class="landing-section" aria-labelledby="technical">
-    <div class="landing-wrap">
-      <div class="eyebrow">For technical teams</div>
-      <h2 id="technical">Inspect the foundation.</h2>
-      <p class="section-intro">Read the source and the parked notice in the repository. Code is AGPL-3.0. Documentation is CC BY 4.0.</p>
-      <ul class="landing-link-list"><li><a href="https://github.com/townlight/311">Repository</a></li><li><a href="https://github.com/townlight/311#readme">README and parked notice</a></li></ul>
-    </div>
-  </section>
-  </main>
-  <footer class="landing-footer">
-    <div class="landing-wrap">
-      <span>Townlight · Open source municipal software</span>
-      <ul class="landing-link-list"><li><a href="/support.html">Support</a></li><li><a href="/versions.html">Versions</a></li><li><a href="/brand/">Brand</a></li><li><a href="/terms.html">Terms and license</a></li></ul>
-    </div>
-  </footer>
+</main>
+<footer><p>AGPL-3.0 code. CC BY 4.0 docs. 0.2.0 source candidate only; signed installed acceptance pending; no public candidate download until approval.</p></footer>
 </body>
 </html>
