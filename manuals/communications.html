@@ -105,14 +105,12 @@ as completed or released. The existing download at
 https://github.com/townlight/townlight/releases/latest explicitly does
 not include Communications.</p>
 <h2 id="technical-architecture">Technical architecture</h2>
-<pre class="mermaid"><code>flowchart LR
-  UI[&quot;TypeScript staff UI&quot;] --&gt; Native[&quot;Fixed native command&quot;]
-  Native --&gt; API[&quot;Loopback staff API&quot;]
-  API --&gt; DB[(&quot;PostgreSQL durable records&quot;)]
-  DB --&gt; Queue[&quot;Durable queue&quot;]
-  Queue --&gt; Worker[&quot;Host worker with task leases&quot;]
-  Worker --&gt; Portal[&quot;Authenticated portal receiver&quot;]
-  Worker --&gt; SMTP[&quot;City SMTP shared with 311&quot;]</code></pre>
+<figure>
+<img src="../assets/diagrams/community/communications-1.svg"
+alt="Technical architecture — diagram 1" />
+<figcaption aria-hidden="true">Technical architecture — diagram
+1</figcaption>
+</figure>
 <p>The desktop runtime is <code>/desktop/v1/communications</code>,
 protected by native staff authentication. Browser requests use a fixed
 native command allowlist and cannot choose arbitrary URLs. Portal

@@ -176,23 +176,12 @@ session, account state, role, expiry, passcode verifier, and per-install
 session key.</p>
 <hr />
 <h2 id="architecture">2. Architecture</h2>
-<pre class="mermaid"><code>flowchart LR
-  Resident[Resident portal] --&gt;|CSRF and session proof| Inbox[Encrypted command inbox]
-  Staff[Staff shell and TypeScript surfaces] --&gt;|Native staff authentication| Native[Private native runtime 127.0.0.1:15480]
-  Inbox --&gt; Native
-  Native --&gt; DB[(PostgreSQL DATABASE_URL)]
-  Native --&gt; Profile[TOWNLIGHT_PROFILE_ROOT config, secrets, queues]
-  Native --&gt; S311[311 service requests]
-  Native --&gt; Comms[Communications]
-  Native --&gt; Parks[Parks]
-  Native --&gt; Records[Records archive and readback]
-  Native --&gt; Data[Approved aggregate Data export]
-  Native --&gt; Outbox[Email outbox queued items]
-  Outbox --&gt; SMTP[City SMTP]
-  Comms --&gt; PortalPub[Optional authenticated public portal receiver]
-  PortalPub --&gt; Website[Separate configured public website]
-  Parks --&gt; Stripe[Optional hosted Stripe Checkout]
-  Parks --&gt; S311</code></pre>
+<figure>
+<img
+src="../assets/diagrams/community/windows-community-modules-candidate-1.svg"
+alt="2. Architecture — diagram 1" />
+<figcaption aria-hidden="true">2. Architecture — diagram 1</figcaption>
+</figure>
 <p>The native runtime is private and binds to loopback only. The runtime
 host is <code>127.0.0.1</code>; the default runtime port is
 <code>15480</code>.</p>
@@ -209,27 +198,13 @@ website or configure SMTP.</p>
 <h3 id="townlight-311">3.1 Townlight 311</h3>
 <h4 id="resident-flow-to-staff-lifecycle">Resident flow to staff
 lifecycle</h4>
-<pre class="mermaid"><code>sequenceDiagram
-  participant R as Resident
-  participant P as Resident portal
-  participant I as Encrypted inbox
-  participant N as Native runtime
-  participant D as PostgreSQL
-  participant S as Staff
-  participant Rec as Records
-
-  R-&gt;&gt;P: Submit service request with photo
-  P-&gt;&gt;I: Authenticated resident command
-  I-&gt;&gt;N: Outbound host pump applies command
-  N-&gt;&gt;D: Persist request, photo, tracking, workflow
-  N--&gt;&gt;P: Privacy-aware tracking response
-  P--&gt;&gt;R: Tracking information and recovery path
-  S-&gt;&gt;N: Department assignment and lifecycle update
-  N-&gt;&gt;D: Update workflow state
-  S-&gt;&gt;N: Duplicate handling or reopen where configured
-  N-&gt;&gt;D: Preserve operation history
-  S-&gt;&gt;N: Request Records/Data action
-  N-&gt;&gt;Rec: Produce ZIP archive and operation history when authorized</code></pre>
+<figure>
+<img
+src="../assets/diagrams/community/windows-community-modules-candidate-2.svg"
+alt="Resident flow to staff lifecycle — diagram 2" />
+<figcaption aria-hidden="true">Resident flow to staff lifecycle —
+diagram 2</figcaption>
+</figure>
 <p>Normal 311 behavior:</p>
 <ul>
 <li>Residents submit service requests through resident intake.</li>
@@ -294,30 +269,13 @@ or button labels are not invented in this guide.</li>
 id="draft-exact-revision-approval-scheduled-publication-correction-and-withdrawal">Draft,
 exact-revision approval, scheduled publication, correction, and
 withdrawal</h4>
-<pre class="mermaid"><code>sequenceDiagram
-  participant S as Staff UI
-  participant N as Native runtime
-  participant D as PostgreSQL
-  participant Q as Durable queue
-  participant W as Host worker
-  participant P as Portal receiver
-  participant M as SMTP
-  participant Rec as Records
-
-  S-&gt;&gt;N: Create or reopen draft and select sources
-  N-&gt;&gt;D: Save draft and captured source references
-  S-&gt;&gt;N: Run Access check
-  S-&gt;&gt;N: Approve one exact revision
-  N-&gt;&gt;D: Bind approval to the exact public-content hash
-  S-&gt;&gt;N: Schedule website and email for the approved revision
-  N-&gt;&gt;Q: Enqueue approved work
-  W-&gt;&gt;P: Publish exact bytes after staff app closes
-  W-&gt;&gt;M: Send email
-  M--&gt;&gt;W: SMTP accepted or failed or uncertain
-  S-&gt;&gt;N: Archive published revision to Records before edit, correction, or withdrawal
-  N-&gt;&gt;Rec: Store published bytes, sources, attachments, receipts, and real identifier
-  S-&gt;&gt;N: Correct or withdraw after archive
-  N-&gt;&gt;D: Preserve prior revisions and prevent stale restoration</code></pre>
+<figure>
+<img
+src="../assets/diagrams/community/windows-community-modules-candidate-3.svg"
+alt="Draft, exact-revision approval, scheduled publication, correction, and withdrawal — diagram 3" />
+<figcaption aria-hidden="true">Draft, exact-revision approval, scheduled
+publication, correction, and withdrawal — diagram 3</figcaption>
+</figure>
 <p>Normal Communications behavior:</p>
 <ul>
 <li>Create or reopen a draft.</li>
@@ -432,33 +390,13 @@ remains pending.</p>
 <h4
 id="catalogue-booking-payment-roster-and-maintenance-flow">Catalogue,
 booking, payment, roster, and maintenance flow</h4>
-<pre class="mermaid"><code>sequenceDiagram
-  participant R as Resident
-  participant N as Native runtime
-  participant D as PostgreSQL
-  participant L as Append-only ledger
-  participant Pv as Optional Stripe
-  participant S as Staff
-  participant S311 as 311
-
-  R-&gt;&gt;N: Browse catalogue and submit booking or registration
-  N-&gt;&gt;D: Validate timezone, buffers, closures, recurrence, eligibility, capacity
-  alt Conflict, closure, capacity, or eligibility failure
-    N--&gt;&gt;R: Clear error naming the failed constraint
-    R-&gt;&gt;N: Revise and retry
-  else Accepted
-    N-&gt;&gt;D: Commit reservation or registration transaction
-    opt Fee owed
-      S-&gt;&gt;L: Record offline payment or refund with actor and reference
-      N-&gt;&gt;Pv: Create hosted Checkout when configured
-      Pv--&gt;&gt;N: Provider transaction result
-      N-&gt;&gt;N: Verify transaction, amount, currency, obligation identity
-      N-&gt;&gt;L: Append ledger payment only after verification
-    end
-    S-&gt;&gt;D: Manage roster, attendance, waitlist promotion
-    S-&gt;&gt;S311: Create maintenance request with durable idempotency key
-    S311--&gt;&gt;S: Return real 311 request identity
-  end</code></pre>
+<figure>
+<img
+src="../assets/diagrams/community/windows-community-modules-candidate-4.svg"
+alt="Catalogue, booking, payment, roster, and maintenance flow — diagram 4" />
+<figcaption aria-hidden="true">Catalogue, booking, payment, roster, and
+maintenance flow — diagram 4</figcaption>
+</figure>
 <p>Normal Parks behavior:</p>
 <ul>
 <li>Public facility and program catalogue and availability views.</li>
@@ -598,21 +536,13 @@ public website and publication integration</h2>
 configured public portal, TLS, and command inbox/publication
 credentials. The Windows application does not automatically publish a
 website and does not configure SMTP.</p>
-<pre class="mermaid"><code>sequenceDiagram
-  participant Staff as Staff shell
-  participant Host as Windows shared staff host
-  participant Queue as Durable publisher queue
-  participant Portal as Public portal receiver
-  participant Site as Public website
-  participant Records as Records
-
-  Staff-&gt;&gt;Host: Publish or withdraw approved revision
-  Host-&gt;&gt;Records: Confirm eligible approved release
-  Host-&gt;&gt;Queue: Persist queued work and expected hash
-  Queue-&gt;&gt;Portal: Deliver queued bytes after sign-out or restart
-  Portal-&gt;&gt;Site: Update exact public projection
-  Portal--&gt;&gt;Queue: Receipt URL and hash
-  Queue--&gt;&gt;Host: Refresh publication status</code></pre>
+<figure>
+<img
+src="../assets/diagrams/community/windows-community-modules-candidate-5.svg"
+alt="4. Optional public website and publication integration — diagram 5" />
+<figcaption aria-hidden="true">4. Optional public website and
+publication integration — diagram 5</figcaption>
+</figure>
 <p>Rules for the optional website path:</p>
 <ul>
 <li>The public portal is separately deployed. The existing signed
@@ -677,8 +607,8 @@ pointer</h3>
 <p>The portal lookup calls authenticated:</p>
 <p><code>GET /desktop/v1/portal/selections?request_id=&lt;UUID&gt;</code></p>
 <p>It returns:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;selections&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;&lt;public archive title&gt;&quot;</span><span class="fu">,</span><span class="dt">&quot;selection&quot;</span><span class="fu">:{</span><span class="er">...</span><span class="fu">}}</span><span class="ot">]</span><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;selections&quot;</span><span class="fu">:</span><span class="ot">[</span><span class="fu">{</span><span class="dt">&quot;title&quot;</span><span class="fu">:</span><span class="st">&quot;&lt;public archive title&gt;&quot;</span><span class="fu">,</span><span class="dt">&quot;selection&quot;</span><span class="fu">:{</span><span class="er">...</span><span class="fu">}}</span><span class="ot">]</span><span class="fu">}</span></span></code></pre></div>
 <p>Each selection contains all publication fields with
 <code>approve_publication: false</code>. Selecting a choice sends
 <code>request_id</code>, <code>release_copy_id</code>, and

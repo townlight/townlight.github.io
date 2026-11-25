@@ -96,13 +96,12 @@ with JSON/XML for the supported subset only. It is <strong>not full
 Open311 conformance</strong>.</li>
 </ul>
 <h2 id="technical-architecture">Technical Architecture</h2>
-<pre class="mermaid"><code>flowchart LR
-  RP[&quot;Resident portal&quot;] --&gt; EI[&quot;Encrypted inbox&quot;]
-  OHP[&quot;Outbound host pump&quot;] --&gt; EI
-  OHP --&gt; DB[&quot;311 database&quot;]
-  DB --&gt; REC[&quot;Records&quot;]
-  DB --&gt; AD[&quot;Approved data&quot;]
-  DB --&gt; SMTP[&quot;SMTP notifications&quot;]</code></pre>
+<figure>
+<img src="../assets/diagrams/community/311-1.svg"
+alt="Technical Architecture — diagram 1" />
+<figcaption aria-hidden="true">Technical Architecture — diagram
+1</figcaption>
+</figure>
 <p>Residents submit through the resident portal into an encrypted inbox.
 The outbound host pump works with the encrypted inbox and persists into
 the 311 database. Records, approved data, and SMTP notifications are

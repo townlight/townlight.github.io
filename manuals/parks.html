@@ -148,49 +148,23 @@ city staff should use the upcoming Suite candidate.</p>
 <h2 id="architecture">3. Architecture</h2>
 <p>The following describes the source-level architecture. It does not
 assert a deployed topology.</p>
-<pre class="mermaid"><code>flowchart LR
-  Resident[Resident portal] --&gt;|CSRF + session proof| Portal[Portal command handler]
-  Staff[TS staff surface] --&gt;|Authenticated role| Host[Shared host roles: local-admin / city-staff / clerk / records-staff / code-staff]
-  Host --&gt; Inbox[Command inbox]
-  Portal --&gt; Inbox
-  Inbox --&gt; Runtime[Python runtime - townlight_parks]
-  Runtime --&gt; DB[(Database schema townlight_parks)]
-  Runtime --&gt; Files[(Managed files)]
-  Runtime --&gt; Ledger[(Append-only payment ledger)]
-  Runtime --&gt; Outbox[(Notifications outbox - queued)]
-  Outbox -.queued != delivered.-&gt; Delivery[Delivery worker]
-  Runtime --&gt; Stripe[Optional Stripe adapter - when configured]
-  Stripe --&gt; Provider[Hosted Stripe Checkout - no live charge verified]
-  Runtime --&gt; Maint[311 maintenance integration]
-  Runtime --&gt; Comms[Communications source snapshots - approved only]
-  Runtime --&gt; Records[Records archive - separate permission]
-  Runtime --&gt; Data[Data export - approved aggregate only]</code></pre>
+<figure>
+<img src="../assets/diagrams/community/parks-1.svg"
+alt="3. Architecture — diagram 1" />
+<figcaption aria-hidden="true">3. Architecture — diagram 1</figcaption>
+</figure>
 <p>Durable command identities in the inbox prevent replay-driven
 duplication. The host applies queued work only when its preconditions
 hold; a queued notification is not evidence of delivery.</p>
 <hr />
 <h2 id="user-flow-resident-booking-and-registration">4. User flow
 (resident booking and registration)</h2>
-<pre class="mermaid"><code>flowchart TD
-  A[Resident browses catalogue] --&gt; B[Select facility or program slot]
-  B --&gt; C[Submit booking or registration request]
-  C --&gt; D{Host validation}
-  D --&gt;|Conflict, eligibility, or capacity fail| E[Clear error surfaced to resident]
-  E --&gt; B
-  D --&gt;|Accepted| F{Approval required?}
-  F --&gt;|Yes| G[Staff review of request]
-  G --&gt;|Approved| H[Request confirmed]
-  G --&gt;|Rejected| E
-  F --&gt;|No| H
-  H --&gt; I{Fee owed?}
-  I --&gt;|Offline| J[Clerk records payment with actor and reference]
-  I --&gt;|Online and Stripe configured| K[Hosted Checkout session]
-  K --&gt; L[Host retrieves and verifies provider transaction, amount, currency, obligation]
-  L --&gt; M[Host records ledger payment]
-  J --&gt; N[Receipt issued]
-  M --&gt; N
-  N --&gt; O[Roster or attendance record]
-  O --&gt; P[Attendance check-in - idempotent]</code></pre>
+<figure>
+<img src="../assets/diagrams/community/parks-2.svg"
+alt="4. User flow (resident booking and registration) — diagram 2" />
+<figcaption aria-hidden="true">4. User flow (resident booking and
+registration) — diagram 2</figcaption>
+</figure>
 <p>The host is the authority. Provider return URLs are
 <strong>not</strong> payment proof; only a host-side verification of the
 provider transaction, amount, currency and obligation identity leads to

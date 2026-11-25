@@ -9,6 +9,9 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import tempfile
+
+from community_diagrams import prepare_diagrams
 
 ROOT = Path(__file__).resolve().parents[1]
 MANUALS = ROOT / "manuals"
@@ -49,11 +52,12 @@ def run(arguments: list[str]) -> subprocess.CompletedProcess[str]:
 
 
 def render_html(pandoc: str, source: Path, title: str, edition: str,
-                slug: str, docx_name: str, pdf_name: str) -> Path:
+                slug: str, docx_name: str, pdf_name: str,
+                resource_parent: Path | None = None) -> Path:
     result = run([
         pandoc, str(source), "-f", "markdown+raw_html", "-t", "html5",
         "--toc", "--toc-depth=2", "--standalone", "-M", "pagetitle=" + title,
-        "--resource-path", str(source.parent),
+        "--resource-path", str(resource_parent or source.parent),
     ])
     if not result.stdout.strip():
         raise RuntimeError(f"Pandoc returned empty HTML for {source}")
@@ -86,10 +90,10 @@ def render_html(pandoc: str, source: Path, title: str, edition: str,
 
 
 def render_docx(pandoc: str, source: Path, title: str, subtitle: str,
-                destination: Path) -> Path:
+                destination: Path, resource_parent: Path | None = None) -> Path:
     run([
         pandoc, str(source), "-f", "markdown+raw_html", "--standalone", "--toc",
-        "--resource-path", str(source.parent), "--reference-doc", str(WORD_REFERENCE),
+        "--resource-path", str(resource_parent or source.parent), "--reference-doc", str(WORD_REFERENCE),
         "-M", "title=" + title, "-M", "subtitle=" + subtitle, "-o", str(destination),
     ])
     if not destination.is_file() or not destination.stat().st_size:
@@ -113,6 +117,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-root", required=True, type=Path,
                         help="Parent containing suite/, 311/, comms/ and parks/")
+    parser.add_argument("--mermaid-cli", default=shutil.which("mmdc"),
+                        help="Mermaid CLI executable or .js path (default: mmdc on PATH)")
+    parser.add_argument("--mermaid-browser", default=None,
+                        help="Optional browser executable for Mermaid CLI")
     args = parser.parse_args()
     source_root = args.source_root.resolve()
     if not source_root.is_dir():
@@ -120,6 +128,8 @@ def main() -> None:
     pandoc = shutil.which("pandoc")
     if not pandoc:
         raise RuntimeError("Pandoc is required")
+    if not args.mermaid_cli:
+        raise RuntimeError("Mermaid CLI is required; install mmdc or pass --mermaid-cli")
     if not WORD_REFERENCE.is_file():
         raise RuntimeError(f"Word reference template is missing: {WORD_REFERENCE}")
     for folder in (MANUALS, DOCX_DIR, PDF_DIR):
@@ -138,12 +148,32 @@ def main() -> None:
             raise RuntimeError(f"Markdown output is empty: {markdown}")
         docx_path = DOCX_DIR / f"{stem}.docx"
         pdf_name = f"{stem}.pdf"
-        html_path = render_html(pandoc, source, title, edition, slug, docx_path.name, pdf_name)
-        render_docx(pandoc, source, title, subtitle, docx_path)
+        with tempfile.TemporaryDirectory() as temporary_name:
+            temporary = Path(temporary_name)
+            html_markdown, word_markdown, images = prepare_diagrams(
+                source.read_text(encoding="utf-8"), slug,
+                ROOT / "assets/diagrams/community", temporary,
+                args.mermaid_cli, args.mermaid_browser,
+            )
+            for prepared in (html_markdown, word_markdown):
+                if re.search(r"(?m)^```\s*mermaid\b", prepared):
+                    raise RuntimeError(
+                        f"Unclosed Mermaid fence remains in prepared Markdown for {source}"
+                    )
+            html_source = temporary / "prepared-html.md"
+            word_source = temporary / "prepared-word.md"
+            html_source.write_text(html_markdown, encoding="utf-8", newline="\n")
+            word_source.write_text(word_markdown, encoding="utf-8", newline="\n")
+            html_path = render_html(pandoc, html_source, title, edition, slug,
+                                    docx_path.name, pdf_name,
+                                    resource_parent=source.parent)
+            render_docx(pandoc, word_source, title, subtitle, docx_path,
+                        resource_parent=source.parent)
         docx_paths.append(docx_path)
         built.append(markdown)
         built.append(html_path)
         built.append(docx_path)
+        built.extend(images)
 
     load_pdf_renderer()(docx_paths)
     for docx_path in docx_paths:
