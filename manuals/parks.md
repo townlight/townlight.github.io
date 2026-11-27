@@ -1,8 +1,8 @@
-# Townlight Parks 0.2.0 — User Manual (Source Candidate)
+# Townlight Parks 0.2.0 — User Manual
 
-**Status:** This manual documents the `townlight-parks` 0.2.0 **source integration candidate**. It is not an installed build, not a signed installer, and not a download. The existing public Windows release `1.9.3.2` does **not** include Parks. Final signed combined Suite acceptance is still pending.
+Townlight Parks 0.2.0 is included in Townlight for Windows 1.10.0.1. [Download the signed Windows installer](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/Townlight-Windows-x64-1.10.0.1.msi).
 
-Nothing in this manual asserts that a verified signed artifact has been installed, that acceptance testing has passed, or that any live payment has been processed. Where behavior depends on hosted providers, the manual describes the intended verification path and explicitly marks the "no live charge verified" state.
+The Windows acceptance checks covered resident Parks workflows, maintenance and Records archiving. Payment processing through a live Stripe account is outside those checks.
 
 - Package: `townlight-parks==0.2.0`
 - Import: `townlight_parks`
@@ -14,7 +14,7 @@ Nothing in this manual asserts that a verified signed artifact has been installe
 
 ## 1. Scope and status
 
-Townlight Parks is a source-level addition to the Townlight Suite for parks and recreation workflows. In this candidate it provides, at source level:
+Townlight Parks supports the following parks and recreation workflows.
 
 - Public facility and program catalogue and availability views.
 - Booking and registration for residents.
@@ -22,13 +22,12 @@ Townlight Parks is a source-level addition to the Townlight Suite for parks and 
 - Household, participant, and minor data held privately.
 - Fees, deposits, refunds and reconciliation in integer cents with explicit currency.
 - Offline payment and refund recording in an append-only ledger.
-- An optional hosted Stripe Checkout adapter that verifies the provider transaction, amount, currency and obligation identity at the host before any ledger record is created. No Stripe account is configured in this candidate and **no live charge has been verified**.
+- An optional hosted Stripe Checkout adapter that verifies the provider transaction, amount, currency and obligation identity at the host before creating a ledger record.
 - Maintenance links that create real 311 requests with durable idempotency and returned 311 request identity.
 - Explicitly approved Communications source snapshots.
 - Records private ZIP archive/readback and approved aggregate Data export.
 - Notifications are recorded as queued items; **queued is not the same as delivered**.
 
-This manual does not promise PyPI availability, a scheduled release date, or signed-artifact acceptance. The source tree is the object of verification; the installed and signed states are pending.
 
 ---
 
@@ -44,7 +43,7 @@ Existing Suite roles remain in force:
 
 Records archive access is controlled by the Records capability: `local-admin` and `city-staff` have it, while `clerk` does not; `records-staff` has Records access only. Records producer archive handoff requires both the relevant module workflow access and Records access, so use `city-staff` or `local-admin` for that. Records retrieval can also be performed by `records-staff`. Aggregate Data export requires explicit **approval** by `local-admin` as described in §12. Public pages expose catalogue and availability only, and never household, participant, minor, accommodation, contact or private tracking details.
 
-A standalone `main.py` is retained as a foundation/demo entry point. It is not the full Suite authentication path, not a normal installer, and not the ordinary city-staff deployment route. Ordinary city staff should use the upcoming Suite candidate.
+The standalone `main.py` is a demonstration entry point. City staff use the Parks workspace in the installed Windows suite with their normal staff account.
 
 ---
 
@@ -173,7 +172,7 @@ Offline payments and refunds are recorded in an **append-only ledger**. Each ent
 
 ### 9.2 Optional hosted Stripe Checkout (when configured)
 
-The hosted Stripe adapter is optional. In this source candidate **no Stripe account is configured and no live charge has been verified**.
+The hosted Stripe adapter requires a separately configured account. No live charge was tested in release acceptance.
 
 When it is configured by an operator, the intended path is:
 
@@ -228,7 +227,7 @@ The Suite combines TypeScript staff surfaces with a Python runtime, resident por
 
 ### 14.2 Migrations
 
-Production bootstrap is `False`. Tables are created only through explicit, programmatic migrations invoked from the package migrations module: `migrations.upgrade(engine)` followed by `migrations.assert_ready(engine)`. This source candidate does **not** add a migration CLI, and this manual does not invent command-line syntax for migrations. Operators should call the migrations module from their own deployment code and rely on `assert_ready` to fail closed if the schema is not ready.
+Production bootstrap is `False`. Tables are created only through explicit, programmatic migrations invoked from the package migrations module: `migrations.upgrade(engine)` followed by `migrations.assert_ready(engine)`. Operators should call the migrations module from their own deployment code and rely on `assert_ready` to fail closed if the schema is not ready.
 
 ### 14.3 Encrypted keys and portal CSRF
 
@@ -252,17 +251,14 @@ Back up the database, managed files, portal inbox, profile encryption keys and p
 - Provider payment outcomes that are ambiguous are reconciled against the provider before a retry is attempted.
 - Queued notifications and resumed jobs are not confirmed until the host applies them; do not treat queue state as delivery state.
 
-This manual deliberately does not invent command-line syntax, HTTP endpoints, or UI button labels. Operators should use the surfaces shipped with the Suite candidate, once signed and installed, rather than guessed command lines or endpoints.
+Use the Parks workspace in the installed Windows suite for ordinary staff operations.
 
 ---
 
 ## 16. Acceptance status
 
-- The `townlight-parks` 0.2.0 **source tree exists and is the object of verification**.
-- The public Windows release `1.9.3.2` does **not** include Parks.
-- The final signed combined Suite candidate is **pending**.
-- Installed-build and production **acceptance is pending**.
-- The hosted Stripe path is documented as an optional, when-configured adapter; **no live charge has been verified** in this candidate.
-- Notifications are queued, and queued is **not** delivered.
+The [Windows acceptance record](https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md) covers Parks reservations, enrollment, maintenance and private Records archiving.
 
-Operators should treat this document as describing a source integration candidate in the state above, not as an installation, release, or acceptance record.
+
+- The optional hosted Stripe adapter requires configuration. Release acceptance did not use a live charge.
+- Notifications are queued, and queued is **not** delivered.

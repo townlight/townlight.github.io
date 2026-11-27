@@ -7,18 +7,17 @@
 <link rel="apple-touch-icon" href="../brand/png/townlight-hall-app-icon-180.png">
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header><a class="brand" href="../index.html"><img src="../brand/svg/townlight-hall-lockup.svg" alt="Townlight" width="217" height="45"></a>
-<span class="edition">Windows 1.10.0.1 source candidate, installed acceptance pending</span>
+<span class="edition">Windows 1.10.0.1</span>
 <nav aria-label="Main"><a href="../index.html#products">Products</a><a href="suite.html">Suite manual</a>
 <a href="../reference/index.html">Technical reference</a><a href="../versions.html">Versions and release</a></nav></header>
-<main id="main" class="reading wrap"><p class="edition">Windows 1.10.0.1 source candidate, installed acceptance pending</p>
+<main id="main" class="reading wrap"><p class="edition">Windows 1.10.0.1</p>
 <p class="docmeta"><a href="../pdf/Townlight-Parks-Manual-Beta-1.pdf">Printable PDF</a> · <a href="../docx/Townlight-Parks-Manual-Beta-1.docx">Editable Word</a></p>
-<aside class="release-note" aria-label="Release notice"><p><strong>Notice:</strong> Unpublished Windows 1.10.0.1 source candidate; acceptance pending. Public release 1.9.3.2 is unchanged; no public candidate MSI URL exists.</p></aside>
 <article class="docbody">
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#townlight-parks-0.2.0-user-manual-source-candidate"
-id="toc-townlight-parks-0.2.0-user-manual-source-candidate">Townlight
-Parks 0.2.0 — User Manual (Source Candidate)</a>
+<li><a href="#townlight-parks-0.2.0-user-manual"
+id="toc-townlight-parks-0.2.0-user-manual">Townlight Parks 0.2.0 — User
+Manual</a>
 <ul>
 <li><a href="#scope-and-status" id="toc-scope-and-status">1. Scope and
 status</a></li>
@@ -60,19 +59,15 @@ Acceptance status</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="townlight-parks-0.2.0-user-manual-source-candidate">Townlight
-Parks 0.2.0 — User Manual (Source Candidate)</h1>
-<p><strong>Status:</strong> This manual documents the
-<code>townlight-parks</code> 0.2.0 <strong>source integration
-candidate</strong>. It is not an installed build, not a signed
-installer, and not a download. The existing public Windows release
-<code>1.9.3.2</code> does <strong>not</strong> include Parks. Final
-signed combined Suite acceptance is still pending.</p>
-<p>Nothing in this manual asserts that a verified signed artifact has
-been installed, that acceptance testing has passed, or that any live
-payment has been processed. Where behavior depends on hosted providers,
-the manual describes the intended verification path and explicitly marks
-the “no live charge verified” state.</p>
+<h1 id="townlight-parks-0.2.0-user-manual">Townlight Parks 0.2.0 — User
+Manual</h1>
+<p>Townlight Parks 0.2.0 is included in Townlight for Windows 1.10.0.1.
+<a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/Townlight-Windows-x64-1.10.0.1.msi">Download
+the signed Windows installer</a>.</p>
+<p>The Windows acceptance checks covered resident Parks workflows,
+maintenance and Records archiving. Payment processing through a live
+Stripe account is outside those checks.</p>
 <ul>
 <li>Package: <code>townlight-parks==0.2.0</code></li>
 <li>Import: <code>townlight_parks</code></li>
@@ -83,9 +78,8 @@ the “no live charge verified” state.</p>
 </ul>
 <hr />
 <h2 id="scope-and-status">1. Scope and status</h2>
-<p>Townlight Parks is a source-level addition to the Townlight Suite for
-parks and recreation workflows. In this candidate it provides, at source
-level:</p>
+<p>Townlight Parks supports the following parks and recreation
+workflows.</p>
 <ul>
 <li>Public facility and program catalogue and availability views.</li>
 <li>Booking and registration for residents.</li>
@@ -96,9 +90,7 @@ explicit currency.</li>
 <li>Offline payment and refund recording in an append-only ledger.</li>
 <li>An optional hosted Stripe Checkout adapter that verifies the
 provider transaction, amount, currency and obligation identity at the
-host before any ledger record is created. No Stripe account is
-configured in this candidate and <strong>no live charge has been
-verified</strong>.</li>
+host before creating a ledger record.</li>
 <li>Maintenance links that create real 311 requests with durable
 idempotency and returned 311 request identity.</li>
 <li>Explicitly approved Communications source snapshots.</li>
@@ -107,9 +99,6 @@ export.</li>
 <li>Notifications are recorded as queued items; <strong>queued is not
 the same as delivered</strong>.</li>
 </ul>
-<p>This manual does not promise PyPI availability, a scheduled release
-date, or signed-artifact acceptance. The source tree is the object of
-verification; the installed and signed states are pending.</p>
 <hr />
 <h2 id="roles-and-access">2. Roles and access</h2>
 <p>Existing Suite roles remain in force:</p>
@@ -140,57 +129,30 @@ Data export requires explicit <strong>approval</strong> by
 <code>local-admin</code> as described in §12. Public pages expose
 catalogue and availability only, and never household, participant,
 minor, accommodation, contact or private tracking details.</p>
-<p>A standalone <code>main.py</code> is retained as a foundation/demo
-entry point. It is not the full Suite authentication path, not a normal
-installer, and not the ordinary city-staff deployment route. Ordinary
-city staff should use the upcoming Suite candidate.</p>
+<p>The standalone <code>main.py</code> is a demonstration entry point.
+City staff use the Parks workspace in the installed Windows suite with
+their normal staff account.</p>
 <hr />
 <h2 id="architecture">3. Architecture</h2>
 <p>The following describes the source-level architecture. It does not
 assert a deployed topology.</p>
-<pre class="mermaid"><code>flowchart LR
-  Resident[Resident portal] --&gt;|CSRF + session proof| Portal[Portal command handler]
-  Staff[TS staff surface] --&gt;|Authenticated role| Host[Shared host roles: local-admin / city-staff / clerk / records-staff / code-staff]
-  Host --&gt; Inbox[Command inbox]
-  Portal --&gt; Inbox
-  Inbox --&gt; Runtime[Python runtime - townlight_parks]
-  Runtime --&gt; DB[(Database schema townlight_parks)]
-  Runtime --&gt; Files[(Managed files)]
-  Runtime --&gt; Ledger[(Append-only payment ledger)]
-  Runtime --&gt; Outbox[(Notifications outbox - queued)]
-  Outbox -.queued != delivered.-&gt; Delivery[Delivery worker]
-  Runtime --&gt; Stripe[Optional Stripe adapter - when configured]
-  Stripe --&gt; Provider[Hosted Stripe Checkout - no live charge verified]
-  Runtime --&gt; Maint[311 maintenance integration]
-  Runtime --&gt; Comms[Communications source snapshots - approved only]
-  Runtime --&gt; Records[Records archive - separate permission]
-  Runtime --&gt; Data[Data export - approved aggregate only]</code></pre>
+<figure>
+<img src="../assets/diagrams/community/parks-1.svg"
+alt="3. Architecture — diagram 1" />
+<figcaption aria-hidden="true">3. Architecture — diagram 1</figcaption>
+</figure>
 <p>Durable command identities in the inbox prevent replay-driven
 duplication. The host applies queued work only when its preconditions
 hold; a queued notification is not evidence of delivery.</p>
 <hr />
 <h2 id="user-flow-resident-booking-and-registration">4. User flow
 (resident booking and registration)</h2>
-<pre class="mermaid"><code>flowchart TD
-  A[Resident browses catalogue] --&gt; B[Select facility or program slot]
-  B --&gt; C[Submit booking or registration request]
-  C --&gt; D{Host validation}
-  D --&gt;|Conflict, eligibility, or capacity fail| E[Clear error surfaced to resident]
-  E --&gt; B
-  D --&gt;|Accepted| F{Approval required?}
-  F --&gt;|Yes| G[Staff review of request]
-  G --&gt;|Approved| H[Request confirmed]
-  G --&gt;|Rejected| E
-  F --&gt;|No| H
-  H --&gt; I{Fee owed?}
-  I --&gt;|Offline| J[Clerk records payment with actor and reference]
-  I --&gt;|Online and Stripe configured| K[Hosted Checkout session]
-  K --&gt; L[Host retrieves and verifies provider transaction, amount, currency, obligation]
-  L --&gt; M[Host records ledger payment]
-  J --&gt; N[Receipt issued]
-  M --&gt; N
-  N --&gt; O[Roster or attendance record]
-  O --&gt; P[Attendance check-in - idempotent]</code></pre>
+<figure>
+<img src="../assets/diagrams/community/parks-2.svg"
+alt="4. User flow (resident booking and registration) — diagram 2" />
+<figcaption aria-hidden="true">4. User flow (resident booking and
+registration) — diagram 2</figcaption>
+</figure>
 <p>The host is the authority. Provider return URLs are
 <strong>not</strong> payment proof; only a host-side verification of the
 provider transaction, amount, currency and obligation identity leads to
@@ -289,9 +251,8 @@ Corrections are made by adding an opposite entry, not by editing
 history. Receipts are issued from ledger records.</p>
 <h3 id="optional-hosted-stripe-checkout-when-configured">9.2 Optional
 hosted Stripe Checkout (when configured)</h3>
-<p>The hosted Stripe adapter is optional. In this source candidate
-<strong>no Stripe account is configured and no live charge has been
-verified</strong>.</p>
+<p>The hosted Stripe adapter requires a separately configured account.
+No live charge was tested in release acceptance.</p>
 <p>When it is configured by an operator, the intended path is:</p>
 <ol type="1">
 <li>The host creates a Checkout session for a specific obligation.</li>
@@ -383,9 +344,7 @@ Code only. Target platform is Windows with Python
 <p>Production bootstrap is <code>False</code>. Tables are created only
 through explicit, programmatic migrations invoked from the package
 migrations module: <code>migrations.upgrade(engine)</code> followed by
-<code>migrations.assert_ready(engine)</code>. This source candidate does
-<strong>not</strong> add a migration CLI, and this manual does not
-invent command-line syntax for migrations. Operators should call the
+<code>migrations.assert_ready(engine)</code>. Operators should call the
 migrations module from their own deployment code and rely on
 <code>assert_ready</code> to fail closed if the schema is not ready.</p>
 <h3 id="encrypted-keys-and-portal-csrf">14.3 Encrypted keys and portal
@@ -430,30 +389,20 @@ the provider before a retry is attempted.</li>
 <li>Queued notifications and resumed jobs are not confirmed until the
 host applies them; do not treat queue state as delivery state.</li>
 </ul>
-<p>This manual deliberately does not invent command-line syntax, HTTP
-endpoints, or UI button labels. Operators should use the surfaces
-shipped with the Suite candidate, once signed and installed, rather than
-guessed command lines or endpoints.</p>
+<p>Use the Parks workspace in the installed Windows suite for ordinary
+staff operations.</p>
 <hr />
 <h2 id="acceptance-status">16. Acceptance status</h2>
+<p>The <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md">Windows
+acceptance record</a> covers Parks reservations, enrollment, maintenance
+and private Records archiving.</p>
 <ul>
-<li>The <code>townlight-parks</code> 0.2.0 <strong>source tree exists
-and is the object of verification</strong>.</li>
-<li>The public Windows release <code>1.9.3.2</code> does
-<strong>not</strong> include Parks.</li>
-<li>The final signed combined Suite candidate is
-<strong>pending</strong>.</li>
-<li>Installed-build and production <strong>acceptance is
-pending</strong>.</li>
-<li>The hosted Stripe path is documented as an optional, when-configured
-adapter; <strong>no live charge has been verified</strong> in this
-candidate.</li>
+<li>The optional hosted Stripe adapter requires configuration. Release
+acceptance did not use a live charge.</li>
 <li>Notifications are queued, and queued is <strong>not</strong>
 delivered.</li>
 </ul>
-<p>Operators should treat this document as describing a source
-integration candidate in the state above, not as an installation,
-release, or acceptance record.</p>
 </article></main>
 <footer>Townlight · Acceptance evidence applies only to its identified artifacts.<span><a href="../announcement.html">Announcement</a> · <a href="../support.html">Support</a></span></footer>
 </body></html>

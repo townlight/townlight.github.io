@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Townlight Parks 0.2.0 source integration candidate. Not installed, not released, and not a download. Source candidate acceptance is pending.">
-  <title>Townlight Parks 0.2.0 — Source Integration Candidate</title>
+  <meta name="description" content="Townlight Parks manages reservations, enrollments and maintenance in Townlight for Windows 1.10.0.1.">
+  <title>Townlight Parks — Windows 1.10.0.1</title>
   <style>
     :root {
       --navy: #081d30;
@@ -280,21 +280,20 @@
   <header class="hero">
     <div class="wrap">
       <p class="eyebrow">Townlight Suite · Parks</p>
-      <span class="badge">0.2.0 source integration candidate</span>
+      <span class="badge">Windows public beta 1.10.0.1</span>
       <h1>Townlight Parks</h1>
-      <p class="lede">Source integration candidate for parks and recreation workflows. Not installed, not released, and not a download. Source candidate acceptance is pending.</p>
+      <p class="lede">Manage parks facilities, reservations, programs, enrollment and maintenance.</p>
     </div>
   </header>
 
   <main id="main" class="wrap">
     <section class="notice" aria-labelledby="release-status">
       <h2 id="release-status">Release status</h2>
-      <p><strong>The currently published Windows release 1.9.3.2 does not include Parks.</strong> This page describes the <code>townlight-parks</code> 0.2.0 source tree against Townlight Core <code>1.3.0.dev2</code>. It does not assert an installed build, signed installer, publication, or production acceptance.</p>
-      <p>No Parks download button or installer is offered here. The source candidate is for Windows 1.10.0.1, is not included in the public Windows 1.9.3.2 release, and installed acceptance is pending. No public candidate MSI is available. The final signed combined Suite candidate remains pending, so this page makes no new Parks download, installation, publication, or live-charge claim.</p>
+      <p><a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/Townlight-Windows-x64-1.10.0.1.msi">Download the signed Windows 1.10.0.1 installer</a> · <a href="/manuals/parks.html">Parks manual</a> · <a href="/api/candidate-1.10.0.1/parks.html">API reference</a></p>
     </section>
 
     <section aria-labelledby="features">
-      <h2 id="features">What this source candidate implements</h2>
+      <h2 id="features">Parks and recreation workflows</h2>
 
       <div class="grid">
         <article class="card">
@@ -329,7 +328,7 @@
           <ul>
             <li>Fees, deposits, refunds and reconciliation in integer cents with explicit currency.</li>
             <li>Offline payments and refunds are recorded in an append-only ledger with staff actor and reference.</li>
-            <li>Optional hosted Stripe Checkout adapter for online payment. No Stripe account is configured in this candidate, and no live charge has been verified.</li>
+            <li>Optional hosted Stripe Checkout adapter for online payment. A city must configure its own Stripe account, and no live charge has been verified.</li>
             <li>Card data does not enter Townlight. Provider return URLs are not payment proof; the host retrieves and verifies provider transaction, amount, currency and obligation identity before recording a ledger payment.</li>
           </ul>
         </article>
@@ -361,7 +360,7 @@
         <div>
           <h3>Roles and access</h3>
           <p>Existing roles remain <code>local-admin</code>, <code>city-staff</code>, and <code>clerk</code>. Records archive permission is separate. Parks reuses the shared command/session proof and allocation-receipt approach used by 311 and Communications.</p>
-          <p>A standalone <code>main.py</code> is retained as a foundation/demo entry point. It is not the full Suite authentication path, not a normal installer, and not the ordinary city-staff deployment route. Ordinary city staff should use the upcoming Suite candidate.</p>
+          <p>A standalone <code>main.py</code> is retained as a foundation/demo entry point. It is not the full Suite authentication path, not a normal installer, and not the ordinary city-staff deployment route. Ordinary city staff should use the signed Windows suite installer.</p>
         </div>
 
         <div>
@@ -374,7 +373,7 @@
           <h3>Configuration</h3>
           <p>Target Windows, Python <code>&gt;=3.11</code>. Package <code>townlight-parks==0.2.0</code>; import <code>townlight_parks</code>; Core target <code>townlight-core==1.3.0.dev2</code>.</p>
           <p>For development, install Core from the pinned <code>townlight/core</code> git commit <code>2f6ba9be4a95e3772dc47a3682ac780c5283b626</code>. The Core package requirement is not a promise of PyPI availability.</p>
-          <p>Database schema: <code>townlight_parks</code>. Production bootstrap is <code>False</code>; tables are created only through explicit programmatic migrations (<code>migrations.upgrade(engine)</code>, then <code>migrations.assert_ready(engine)</code> via the package migrations module). This source candidate does not add a migration CLI.</p>
+          <p>Database schema: <code>townlight_parks</code>. Production bootstrap is <code>False</code>; tables are created only through explicit programmatic migrations (<code>migrations.upgrade(engine)</code>, then <code>migrations.assert_ready(engine)</code> via the package migrations module). </p>
           <p>Configure database credentials and hosted payment secrets outside source control. Do not place secrets or card details in configuration files, logs, or the repository.</p>
         </div>
       </div>
@@ -395,7 +394,7 @@
 
   <footer>
     <div class="wrap">
-      <p>This page is informational source documentation. It is not a publication, release, installation, or payment announcement. Source integration candidate acceptance and the final signed combined Suite candidate are pending.</p>
+      <p>Townlight Parks is included in the Windows 1.10.0.1 public beta.</p>
     </div>
   </footer>
 </body>
