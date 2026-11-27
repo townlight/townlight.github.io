@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Townlight Communications 1.10.0.1 — Windows source candidate</title>
-<meta name="description" content="Townlight Communications 1.10.0.1 is a Windows source candidate. It is not in the public 1.9.3.2 suite release, installed acceptance is pending, and no candidate MSI is published.">
+<title>Townlight Communications 1.10.0.1 — Windows public beta</title>
+<meta name="description" content="Draft, approve, publish and archive city communications in Townlight for Windows 1.10.0.1.">
 <style>
 :root{color-scheme:light;--ink:#17202a;--muted:#40515f;--navy:#174f6f;--blue:#244f73;--gold:#d8ad48;--paper:#fffdf8;--line:#dac7a4}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Aptos","Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff8ed,#eef8ff);line-height:1.6}main,header,footer{width:min(1080px,calc(100% - 32px));margin:auto}header{padding:56px 0 24px}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--blue);font-weight:800;margin:0 0 .7rem}h1{font:700 clamp(2.5rem,7vw,5.5rem)/.95 Georgia,serif;margin:.1em 0;max-width:12ch}.lede{font-size:1.2rem;max-width:850px}.notice{background:var(--paper);border:1px solid var(--line);border-left:8px solid var(--navy);border-radius:18px;padding:1rem 1.25rem;max-width:900px}.badge{display:inline-block;background:var(--navy);color:#fff;padding:.45rem .8rem;border-radius:999px;font-weight:800;letter-spacing:.02em}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 18px 36px #26323b18}.card h2,.card h3{margin-top:0;line-height:1.2}.card p:last-child,.card ul:last-child{margin-bottom:0}.wide{grid-column:1/-1}.section-head{margin:2.5rem 0 1rem}.section-head h2{font:700 clamp(1.6rem,4vw,2.4rem)/1.1 Georgia,serif;margin:.2rem 0}.section-head p{max-width:760px;margin:.3rem 0 0;color:var(--muted)}a{color:var(--blue);text-underline-offset:.18em;font-weight:650}a:hover{text-decoration-thickness:3px}:focus-visible{outline:4px solid var(--gold);outline-offset:3px;border-radius:4px}.skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--navy);padding:.8rem 1rem;z-index:2}.skip:focus{left:16px;top:16px}code{background:#edf3f7;padding:.1rem .3rem;border-radius:4px;word-break:break-word}.status-list{list-style:none;padding:0;margin:0}.status-list li{padding:.7rem 0;border-top:1px solid var(--line)}.status-list li:first-child{border-top:0;padding-top:0}.label{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--muted)}.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:0;list-style:none;counter-reset:step}.flow li{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem;counter-increment:step}.flow li::before{content:counter(step);display:inline-grid;place-items:center;width:1.8rem;height:1.8rem;margin-bottom:.55rem;border-radius:50%;background:var(--navy);color:#fff;font-weight:800}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:#fff}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;vertical-align:top;padding:.9rem 1rem;border-bottom:1px solid #e8ddc8}th{background:#eef6fb;font-size:.9rem}tr:last-child td{border-bottom:0}nav ul{display:flex;flex-wrap:wrap;gap:.45rem 1.2rem;padding:0;margin:1.2rem 0 0;list-style:none}footer{padding:24px 0 48px;color:var(--muted)}.parks{border-left:8px solid var(--gold);background:#fffaf0}@media(max-width:800px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:720px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}header{padding-top:34px}h1{max-width:14ch}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:#fff}.card,.notice{box-shadow:none}.skip{display:none}}
@@ -17,9 +17,9 @@
   <p class="eyebrow">Townlight / Townlight Communications</p>
   <h1>Source-backed public communications.</h1>
   <p class="lede">Townlight Communications is a Windows suite integration for drafting, reviewing, approving, scheduling, correcting, and archiving city communications while keeping the source trail attached.</p>
-  <p><span class="badge">Windows source candidate 1.10.0.1</span></p>
+  <p><span class="badge">Windows public beta 1.10.0.1</span></p>
   <div class="notice">
-    <p><strong>Not the current release.</strong> This is a Townlight Communications <strong>1.10.0.1</strong> Windows source candidate. It is <strong>not in the public 1.9.3.2</strong> suite release, installed acceptance is <strong>pending</strong>, and <strong>no candidate MSI is published</strong>.</p>
+    <p><a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/Townlight-Windows-x64-1.10.0.1.msi">Download the signed Windows 1.10.0.1 installer</a> · <a href="/manuals/communications.html">Communications manual</a> · <a href="/api/candidate-1.10.0.1/comms.html">API reference</a></p>
   </div>
   <nav aria-label="Page sections">
     <ul>
@@ -29,7 +29,7 @@
       <li><a href="#roles">Roles and handoffs</a></li>
       <li><a href="#it-configuration">IT configuration</a></li>
       <li><a href="#limits">Limits</a></li>
-      <li><a href="#evidence">Source vs installed evidence</a></li>
+      <li><a href="#evidence">Installed verification</a></li>
       <li><a href="#links">Source links</a></li>
     </ul>
   </nav>
@@ -53,9 +53,9 @@
 
   <section aria-labelledby="capabilities">
     <div class="section-head">
-      <p class="eyebrow">Planned product surface</p>
-      <h2 id="capabilities">Capabilities in the 1.10.0.1 source candidate</h2>
-      <p>These are source-under-development capabilities, not a claim that the public 1.9.3.2 suite release contains them.</p>
+      <p class="eyebrow">Staff and resident workflows</p>
+      <h2 id="capabilities">Communications capabilities</h2>
+
     </div>
     <div class="grid">
       <article class="card">
@@ -97,7 +97,7 @@
     <div class="section-head">
       <p class="eyebrow">Interface outline</p>
       <h2 id="screens">Screens, without mock screenshots</h2>
-      <p>A textual inventory is used here. No screenshots or usage metrics are presented because installed acceptance is not complete.</p>
+      <p>The staff workspace and resident portal provide different views of the same publication.</p>
     </div>
     <div class="grid">
       <article class="card">
@@ -138,7 +138,7 @@
           <li><strong>Runtime boundary:</strong> native staff gateway under <code>/desktop/v1/communications</code>; fixed allowlisted browser commands, with no arbitrary URL access.</li>
           <li><strong>Data:</strong> durable Communications domain with immutable revisions, source snapshots, approvals, schedules, delivery state, and Records archive.</li>
           <li><strong>Email:</strong> existing city SMTP transport and encrypted settings, with a separate Communications outbox and visible uncertain-send state.</li>
-          <li><strong>Installation:</strong> delivered through the signed Windows suite candidate. This page does not provide package installation instructions.</li>
+          <li><strong>Installation:</strong> included in the signed Windows suite installer.</li>
         </ul>
       </article>
     </div>
@@ -155,7 +155,7 @@
         <ul>
           <li>No social channels.</li>
           <li>No AI automation.</li>
-          <li>No autonomous publication.</li>
+          <li>Staff approval required before scheduled publication.</li>
           <li>No campaign or advocacy content.</li>
           <li>No legal advice or certified translations.</li>
         </ul>
@@ -166,37 +166,18 @@
       </article>
       <article class="card parks wide">
         <h3>Parks integration</h3>
-        <p>Parks source integration is pending.</p>
+        <p>Staff can select eligible public Parks sources for a Communications draft.</p>
       </article>
     </div>
   </section>
 
-  <section aria-labelledby="evidence">
-    <div class="section-head">
-      <p class="eyebrow">Status</p>
-      <h2 id="evidence">Source versus installed evidence</h2>
-      <p>Source design and source tests are not installed acceptance. The final evidence must come from the combined signed Windows candidate.</p>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <caption class="label">Current evidence status</caption>
-        <thead><tr><th scope="col">Item</th><th scope="col">Status</th><th scope="col">What it proves</th></tr></thead>
-        <tbody>
-          <tr><td>Townlight Communications 1.10.0.1</td><td>Windows source candidate</td><td>Source and design work for Windows suite integration; not a released product.</td></tr>
-          <tr><td>Townlight suite 1.9.3.2</td><td>Current suite release</td><td>Existing released suite does not yet include Communications.</td></tr>
-          <tr><td>Installed Windows acceptance</td><td>Pending</td><td>Must prove staff authoring, approval, scheduling, portal and SMTP delivery, correction, history, Records retrieval, and restart survival.</td></tr>
-          <tr><td>Candidate MSI</td><td>Not published</td><td>No published candidate MSI is available.</td></tr>
-          <tr><td>Parks source connector</td><td>Pending</td><td>Parks source integration is not complete.</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <section aria-labelledby="evidence"><h2 id="evidence">Installed Windows verification</h2><p>After the desktop closed, the scheduled article went live, its email reached the test mailbox, and Records archived the published revision. <a href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md">Release acceptance</a>.</p></section>
 
   <section aria-labelledby="links">
     <div class="section-head">
       <p class="eyebrow">Repository</p>
       <h2 id="links">Source links</h2>
-      <p>Repository documentation is the source of record. This landing page does not publish a release or replace the project manual.</p>
+      <p>Find source code and design details in the module repository.</p>
     </div>
     <div class="grid">
       <article class="card">
@@ -214,7 +195,7 @@
 </main>
 
 <footer>
-  <p>Townlight Communications 1.10.0.1 Windows source candidate. It is not in the public 1.9.3.2 suite release; installed acceptance is pending, and no candidate MSI is published. AGPL-3.0 code; CC BY 4.0 documentation.</p>
+  <p>AGPL-3.0 code; CC BY 4.0 documentation.</p>
 </footer>
 </body>
 </html>
