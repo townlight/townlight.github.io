@@ -22,22 +22,17 @@ EXPORTER = ROOT / "scripts/export-owner-manuals.py"
 
 ENTRIES = (
     (Path("311/USER-MANUAL.md"), "311", "Townlight-311-Manual-Beta-1",
-     "Townlight 311 Manual Beta 1", "Windows 1.10.0.1 source candidate, installed acceptance pending", "Windows 1.10.0.1 source candidate, installed acceptance pending"),
+     "Townlight 311 Manual Beta 1", "Windows 1.10.0.1", "Windows 1.10.0.1"),
     (Path("comms/USER-MANUAL.md"), "communications", "Townlight-Communications-Manual-Beta-1",
-     "Townlight Communications Manual Beta 1", "Windows 1.10.0.1 source candidate, installed acceptance pending", "Windows 1.10.0.1 source candidate, installed acceptance pending"),
+     "Townlight Communications Manual Beta 1", "Windows 1.10.0.1", "Windows 1.10.0.1"),
     (Path("parks/USER-MANUAL.md"), "parks", "Townlight-Parks-Manual-Beta-1",
-     "Townlight Parks Manual Beta 1", "Windows 1.10.0.1 source candidate, installed acceptance pending", "Windows 1.10.0.1 source candidate, installed acceptance pending"),
+     "Townlight Parks Manual Beta 1", "Windows 1.10.0.1", "Windows 1.10.0.1"),
     (Path("suite/docs/windows-311-communications-parks.md"),
      "windows-community-modules-candidate",
      "Townlight-Windows-Community-Modules-Candidate",
-     "Townlight Windows Community Modules Candidate",
-     "Windows community modules candidate",
-     "Windows 1.10.0.1 source candidate"),
-)
-
-NOTICE = (
-    "Unpublished Windows 1.10.0.1 source candidate; acceptance pending. "
-    "Public release 1.9.3.2 is unchanged; no public candidate MSI URL exists."
+     "Townlight Windows Community Modules",
+     "Operator, Administrator and Integration Guide",
+     "Windows 1.10.0.1"),
 )
 
 
@@ -80,7 +75,6 @@ def render_html(pandoc: str, source: Path, title: str, edition: str,
 <a href="../reference/index.html">Technical reference</a><a href="../versions.html">Versions and release</a></nav></header>
 <main id="main" class="reading wrap"><p class="edition">{html.escape(edition)}</p>
 <p class="docmeta"><a href="../pdf/{pdf_name}">Printable PDF</a> · <a href="../docx/{docx_name}">Editable Word</a></p>
-<aside class="release-note" aria-label="Release notice"><p><strong>Notice:</strong> {html.escape(NOTICE)}</p></aside>
 <article class="docbody">{body}</article></main>
 <footer>Townlight · Acceptance evidence applies only to its identified artifacts.<span><a href="../announcement.html">Announcement</a> · <a href="../support.html">Support</a></span></footer>
 </body></html>''', encoding="utf-8", newline="\n")
@@ -115,15 +109,15 @@ def load_pdf_renderer():
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-root", required=True, type=Path,
-                        help="Parent containing suite/, 311/, comms/ and parks/")
+    parser.add_argument("--source-root", type=Path,
+                        help="Import manual sources from suite/, 311/, comms/ and parks/ instead of building the checked-in editions")
     parser.add_argument("--mermaid-cli", default=shutil.which("mmdc"),
                         help="Mermaid CLI executable or .js path (default: mmdc on PATH)")
     parser.add_argument("--mermaid-browser", default=None,
                         help="Optional browser executable for Mermaid CLI")
     args = parser.parse_args()
-    source_root = args.source_root.resolve()
-    if not source_root.is_dir():
+    source_root = args.source_root.resolve() if args.source_root else None
+    if source_root and not source_root.is_dir():
         raise SystemExit(f"Source root is not a directory: {source_root}")
     pandoc = shutil.which("pandoc")
     if not pandoc:
@@ -138,7 +132,7 @@ def main() -> None:
     docx_paths: list[Path] = []
     built: list[Path] = []
     for relative, slug, stem, title, subtitle, edition in ENTRIES:
-        source = source_root / relative
+        source = source_root / relative if source_root else MANUALS / f"{slug}.md"
         if not source.is_file():
             raise RuntimeError(f"Input Markdown is missing: {source}")
         markdown = MANUALS / f"{slug}.md"

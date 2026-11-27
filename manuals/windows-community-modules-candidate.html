@@ -1,18 +1,17 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Townlight Windows Community Modules Candidate | Townlight</title>
+<title>Townlight Windows Community Modules | Townlight</title>
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="icon" href="../brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../brand/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="../brand/png/townlight-hall-app-icon-180.png">
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header><a class="brand" href="../index.html"><img src="../brand/svg/townlight-hall-lockup.svg" alt="Townlight" width="217" height="45"></a>
-<span class="edition">Windows 1.10.0.1 source candidate</span>
+<span class="edition">Windows 1.10.0.1</span>
 <nav aria-label="Main"><a href="../index.html#products">Products</a><a href="suite.html">Suite manual</a>
 <a href="../reference/index.html">Technical reference</a><a href="../versions.html">Versions and release</a></nav></header>
-<main id="main" class="reading wrap"><p class="edition">Windows 1.10.0.1 source candidate</p>
+<main id="main" class="reading wrap"><p class="edition">Windows 1.10.0.1</p>
 <p class="docmeta"><a href="../pdf/Townlight-Windows-Community-Modules-Candidate.pdf">Printable PDF</a> · <a href="../docx/Townlight-Windows-Community-Modules-Candidate.docx">Editable Word</a></p>
-<aside class="release-note" aria-label="Release notice"><p><strong>Notice:</strong> Unpublished Windows 1.10.0.1 source candidate; acceptance pending. Public release 1.9.3.2 is unchanged; no public candidate MSI URL exists.</p></aside>
 <article class="docbody">
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -54,21 +53,17 @@ id="townlight-311-communications-and-parks-operator-admin-and-integration-guide"
 311, Communications, and Parks — Operator, Admin, and Integration
 Guide</h1>
 <h2 id="status-and-scope">Status and scope</h2>
-<p><strong>Candidate identifier:</strong> Windows <code>1.10.0.1</code>,
-runtime <code>0.4.0</code>.</p>
-<p>This guide documents the current candidate for Townlight 311,
-Townlight Communications, and Townlight Parks. It is an operator,
-administrator, and integration reference for the supplied source tree
-and manuals. Target platform: Windows.</p>
+<p><strong>Release</strong> Windows <code>1.10.0.1</code>, runtime
+<code>0.4.0</code>.</p>
+<p>This guide covers setup and daily use of Townlight 311,
+Communications and Parks on Windows.</p>
+<p><a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/Townlight-Windows-x64-1.10.0.1.msi">Download
+the signed Windows installer</a>.</p>
+<p>See the <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md">Windows
+acceptance record</a> for hosted Windows and two-PC results.</p>
 <ul>
-<li>The candidate is unpublished; no public download is available
-yet.</li>
-<li>The public Windows release <code>1.9.3.2</code> does not include
-these candidate modules.</li>
-<li>Source-level checks passed for this candidate. Installed acceptance
-and upgrade evidence remain pending.</li>
-<li>This document is not a release note, acceptance record, or marketing
-claim.</li>
 <li>Existing staff authentication and native session proof remain the
 access model.</li>
 <li>The manuals and source tree are the source of truth. Where a UI
@@ -236,8 +231,8 @@ module error.</li>
 <code>failed</code>, and <code>uncertain</code>. Delivery is not
 guaranteed. <code>uncertain</code> means status is unknown after a send
 was attempted.</li>
-<li>SMTP setup is administrative. It is not implied by installing the
-candidate or enabling the public website.</li>
+<li>SMTP setup is administrative. It is not implied by installing
+Townlight or enabling the public website.</li>
 </ul>
 <p>Admin limits from the 311 manual:</p>
 <ul>
@@ -383,8 +378,6 @@ original identifier, revision digest, title, public URL, SHA-256 digest,
 and <code>eligible: true</code>, plus the captured content. Invalid
 identifiers return <code>422</code>; ineligible sources return
 <code>404</code>; invalid source responses return <code>503</code>.</p>
-<p>Source-level checks passed for this resolver. Installed behavior
-remains pending.</p>
 <hr />
 <h3 id="townlight-parks">3.3 Townlight Parks</h3>
 <h4
@@ -471,8 +464,8 @@ session currency.</li>
 Each entry carries the staff actor and a reference. Corrections are made
 by adding an opposite entry, not by editing history. Receipts are issued
 from ledger records.</li>
-<li>The hosted Stripe adapter is optional. In this source candidate no
-Stripe account is configured and no live charge is verified.</li>
+<li>The optional hosted Stripe adapter requires a separately configured
+account. No live charge was tested.</li>
 <li>When configured by an operator, the host creates a Checkout session
 for a specific obligation, the resident completes Checkout at the hosted
 provider, and the host retrieves the provider transaction and verifies
@@ -525,8 +518,8 @@ not applied.</li>
 <li>Production bootstrap is <code>False</code>. Tables are created only
 through explicit, programmatic migrations from the package migrations
 module. This guide does not invent migration command-line syntax.</li>
-<li>The optional hosted Stripe path is documented as when-configured.
-Live payment processing is not verified in this candidate.</li>
+<li>Configure and verify the optional Stripe integration with your
+payment provider before using it.</li>
 <li>Notifications are queued. Queued is not delivered.</li>
 </ul>
 <hr />
@@ -600,7 +593,7 @@ private.</li>
 <code>TOWNLIGHT_STATIC_ROOT</code>, <code>TOWNLIGHT_MEDIA_ROOT</code>,
 <code>TOWNLIGHT_BRAND</code>, <code>TOWNLIGHT_BASE_URL</code>,
 <code>TOWNLIGHT_RELEASE_ROOT</code>.</p>
-<p>These portal settings are not configured by the Windows candidate
+<p>These portal settings are not configured by the Windows
 installer.</p>
 <h3 id="portal-selection-contract-pointer">Portal selection contract
 pointer</h3>
@@ -918,9 +911,8 @@ until the host re-verifies.</li>
 <li>Ambiguous provider outcomes are reconciled before retry.</li>
 <li>If restoring to an earlier host queue, reconcile its state against
 the website before sending further revisions.</li>
-<li>Upgrade evidence for the candidate is pending. The installed
-candidate has not been validated for upgrade preservation, migration, or
-rollback.</li>
+<li>The signed installer passed the direct upgrade from 1.9.3.2 with the
+existing profile preserved. Back up city data before upgrading.</li>
 </ul>
 <hr />
 <h2 id="troubleshooting">8. Troubleshooting</h2>
@@ -955,7 +947,7 @@ profile.</td>
 <td><code>/health</code> reports <code>degraded</code> with module
 import error</td>
 <td>A required module failed to import. Check that the deployed package
-set matches the candidate and profile.</td>
+set matches the installed release and profile.</td>
 </tr>
 <tr>
 <td><code>/health</code> database status is
@@ -1018,7 +1010,7 @@ repository and email settings shown in source.</td>
 <td>Parks payment stays ambiguous</td>
 <td>Provider return URLs are not payment proof. Verify the provider
 transaction, amount, currency, and obligation identity. Reconcile before
-retry. No live charge is verified in this candidate.</td>
+retry. No live charge is verified by release acceptance.</td>
 </tr>
 <tr>
 <td>Parks waitlist promotion or attendance retried</td>
@@ -1038,41 +1030,34 @@ delivery evidence.</td>
 <h2 id="acceptance-and-factual-notes">9. Acceptance and factual
 notes</h2>
 <ul>
-<li><strong>Installed acceptance is pending.</strong> Source-level
-checks passed; installed behavior remains pending.</li>
-<li><strong>Upgrade evidence is pending.</strong> Upgrade preservation,
-migration, and rollback are not demonstrated for this candidate.</li>
-<li><strong>Public release exclusion:</strong> Windows release
-<code>1.9.3.2</code> does not include these candidate modules.</li>
-<li><strong>No public download yet:</strong> Windows
-<code>1.10.0.1</code> / runtime <code>0.4.0</code> is an unpublished
-candidate.</li>
-<li><strong>No automatic website or SMTP claim:</strong> The Windows
+<li><p>The signed Windows 1.10.0.1 installer passed hosted and two-PC
+acceptance. See the <a
+href="https://github.com/townlight/townlight/releases/download/townlight-windows-v1.10.0.1/ACCEPTANCE-Windows-1.10.0.1.md">Windows
+acceptance record</a>.</p></li>
+<li><p>The tested upgrade preserved the existing profile when upgrading
+from Windows 1.9.3.2.</p></li>
+<li><p><strong>No automatic website or SMTP claim:</strong> The Windows
 application does not automatically publish a website and does not
 configure SMTP. The public portal is a separate configured
-deployment.</li>
-<li><strong>No live Stripe claim:</strong> The hosted Stripe adapter is
-optional and no live charge is verified in this candidate.</li>
-<li><strong>Communications Parks source adapter:</strong> The supplied
-source implements the Parks source resolver. Source-level checks passed;
-installed verification is pending.</li>
-<li><strong>Parks HTTP contract:</strong> A complete Parks HTTP endpoint
-list is not present in the supplied material. The source-confirmed
-routes used by the Communications resolver are listed in Section 6.</li>
-<li><strong>Migration syntax:</strong> Parks migrations are
+deployment.</p></li>
+<li><p><strong>No live Stripe claim:</strong> The hosted Stripe adapter
+is optional and no live charge is verified by release
+acceptance.</p></li>
+<li><p>Communications can reference eligible Parks program and closure
+snapshots as described in Section 6.</p></li>
+<li><p><strong>Parks HTTP contract:</strong> A complete Parks HTTP
+endpoint list is not present in the supplied material. The
+source-confirmed routes used by the Communications resolver are listed
+in Section 6.</p></li>
+<li><p><strong>Migration syntax:</strong> Parks migrations are
 programmatic. This guide does not invent command-line syntax for
-migrations.</li>
-<li><strong>Role matrix:</strong> <code>local-admin</code> and
+migrations.</p></li>
+<li><p><strong>Role matrix:</strong> <code>local-admin</code> and
 <code>city-staff</code> have all profile-module capabilities;
 <code>clerk</code> has Meetings/Notice/Access/311/Communications/Parks
 and no Records/Code/Data capability; <code>records-staff</code> has
-Records only; <code>code-staff</code> has Code only.</li>
-<li><strong>Windows target:</strong> This guide covers the Windows
-candidate.</li>
+Records only; <code>code-staff</code> has Code only.</p></li>
 </ul>
-<p>This document describes the current candidate state only. It is not
-an acceptance record and does not establish installed, signed, released,
-or upgraded status.</p>
 </article></main>
 <footer>Townlight · Acceptance evidence applies only to its identified artifacts.<span><a href="../announcement.html">Announcement</a> · <a href="../support.html">Support</a></span></footer>
 </body></html>
